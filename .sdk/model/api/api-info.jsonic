@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://ipquery.io"
+      }
+      description: "IpQuery is a versatile API that provides essential information about an IP address, including geolocation data and VPN detection capabilities. It is designed for developers, enabling them to filter and utilize data points critical for enhancing application security and personalization."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.ipquery.io"
+        }
+      ]
+      termsOfService: "https://ipquery.io/terms"
+      title: "IP Address API"
+      version: "2.4.0"
+    }
+  }
+}
+
+}

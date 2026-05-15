@@ -1,0 +1,85 @@
+# Entity: bulk_query_i_p
+
+main: kit: entity: bulk_query_i_p: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ip"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "isp"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "location"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "risk"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "bulk_query_i_p"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "1.1.1.1,8.8.8.8,9.9.9.9"
+                kind: "param"
+                name: "id"
+                orig: "ips"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{ips}"
+          parts: [
+            "{id}"
+          ]
+          rename: {
+            param: {
+              ips: "id"
+            }
+          }
+          select: {
+            exist: [
+              "format"
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

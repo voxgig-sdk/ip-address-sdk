@@ -1,0 +1,410 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "IP Address API",
+    "description": "IpQuery is a versatile API that provides essential information about an IP address, including geolocation data and VPN detection capabilities. It is designed for developers, enabling them to filter and utilize data points critical for enhancing application security and personalization.",
+    "version": "2.4.0",
+    "contact": {
+      "url": "https://ipquery.io"
+    },
+    "termsOfService": "https://ipquery.io/terms"
+  },
+  "servers": [
+    {
+      "url": "https://api.ipquery.io",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Get current IP address",
+        "description": "Returns your current IP address. If no specific format is requested, this endpoint defaults to returning plain text.",
+        "operationId": "getCurrentIP",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "yaml",
+                "text"
+              ],
+              "default": "text"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "1.1.1.1"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "1.1.1.1"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string",
+                  "example": "1.1.1.1"
+                }
+              },
+              "application/yaml": {
+                "schema": {
+                  "type": "string",
+                  "example": "1.1.1.1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid IP format or query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - You have exceeded the rate limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Something went wrong on our end",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{ip}": {
+      "get": {
+        "summary": "Get IP intelligence data",
+        "description": "Returns full intelligence data for a specific IP address including location, ISP, and risk scoring.",
+        "operationId": "getIPIntelligence",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "description": "IP address to query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1.1.1.1"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "yaml",
+                "text"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with IP intelligence data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IPIntelligence"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/IPIntelligence"
+                }
+              },
+              "application/yaml": {
+                "schema": {
+                  "$ref": "#/components/schemas/IPIntelligence"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid IP format or query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - You have exceeded the rate limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Something went wrong on our end",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{ips}": {
+      "get": {
+        "summary": "Bulk query multiple IP addresses",
+        "description": "Bulk query multiple IP addresses in a single request. Comma separated. Results are returned as a list. Batch limit: 10,000 IPs per request. Results are returned in order.",
+        "operationId": "bulkQueryIPs",
+        "parameters": [
+          {
+            "name": "ips",
+            "in": "path",
+            "description": "Comma-separated list of IP addresses (max 10,000)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1.1.1.1,8.8.8.8,9.9.9.9"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Response format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "yaml",
+                "text"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with bulk IP intelligence data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IPIntelligence"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IPIntelligence"
+                  }
+                }
+              },
+              "application/yaml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IPIntelligence"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid IP format or query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - You have exceeded the rate limit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Something went wrong on our end",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IPIntelligence": {
+        "type": "object",
+        "properties": {
+          "ip": {
+            "type": "string",
+            "description": "The queried IP address",
+            "example": "1.1.1.1"
+          },
+          "isp": {
+            "type": "string",
+            "description": "Internet Service Provider name",
+            "example": "Cloudflare, Inc."
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "risk": {
+            "$ref": "#/components/schemas/Risk"
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "description": "Location information for the IP address",
+        "properties": {
+          "country": {
+            "type": "string",
+            "description": "Full name of the country",
+            "example": "United States"
+          },
+          "country_code": {
+            "type": "string",
+            "description": "Two-letter ISO 3166-1 alpha-2 country code",
+            "example": "US"
+          },
+          "city": {
+            "type": "string",
+            "description": "City name",
+            "example": "Los Angeles"
+          },
+          "state": {
+            "type": "string",
+            "description": "Region or state name",
+            "example": "California"
+          },
+          "zipcode": {
+            "type": "string",
+            "description": "Postal code",
+            "example": "90001"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "float",
+            "description": "Latitude coordinate",
+            "example": 34.0522
+          },
+          "longitude": {
+            "type": "number",
+            "format": "float",
+            "description": "Longitude coordinate",
+            "example": -118.2437
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Timezone identifier",
+            "example": "America/Los_Angeles"
+          }
+        }
+      },
+      "Risk": {
+        "type": "object",
+        "description": "Risk assessment data for the IP address",
+        "properties": {
+          "is_mobile": {
+            "type": "boolean",
+            "description": "True if associated with cellular network",
+            "example": false
+          },
+          "is_vpn": {
+            "type": "boolean",
+            "description": "True if belongs to a known VPN provider",
+            "example": false
+          },
+          "is_tor": {
+            "type": "boolean",
+            "description": "True if is a known Tor exit node",
+            "example": false
+          },
+          "is_proxy": {
+            "type": "boolean",
+            "description": "True if is a known public proxy",
+            "example": false
+          },
+          "risk_score": {
+            "type": "integer",
+            "description": "0-100 score indicating malicious activity likelihood",
+            "minimum": 0,
+            "maximum": 100,
+            "example": 0
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "code": {
+            "type": "integer",
+            "description": "HTTP status code"
+          }
+        }
+      }
+    }
+  },
+  "security": [],
+  "tags": []
+}

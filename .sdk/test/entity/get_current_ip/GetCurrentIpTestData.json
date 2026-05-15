@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "get_current_ip": {
+      "GET_CURRENT_IP00": {},
+      "GET_CURRENT_IP01": {},
+      "GET_CURRENT_IP02": {}
+    }
+  },
+  "new": {
+    "get_current_ip": {
+      "get_current_ip_ref01": {}
+    }
+  }
+}

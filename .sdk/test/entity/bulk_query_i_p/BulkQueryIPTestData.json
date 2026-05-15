@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "bulk_query_i_p": {
+      "BULK_QUERY_I_P00": {
+        "ip": "s28",
+        "isp": "s29",
+        "location": {},
+        "risk": {}
+      },
+      "BULK_QUERY_I_P01": {
+        "ip": "s50",
+        "isp": "s51",
+        "location": {},
+        "risk": {}
+      },
+      "BULK_QUERY_I_P02": {
+        "ip": "s78",
+        "isp": "s79",
+        "location": {},
+        "risk": {}
+      }
+    }
+  },
+  "new": {
+    "bulk_query_i_p": {
+      "bulk_query_i_p_ref01": {
+        "ip": "sa0",
+        "isp": "sa1",
+        "location": {},
+        "risk": {}
+      }
+    }
+  }
+}

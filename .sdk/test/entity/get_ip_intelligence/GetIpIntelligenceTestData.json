@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "get_ip_intelligence": {
+      "GET_IP_INTELLIGENCE00": {
+        "ip": "s28",
+        "isp": "s29",
+        "location": {},
+        "risk": {}
+      },
+      "GET_IP_INTELLIGENCE01": {
+        "ip": "s50",
+        "isp": "s51",
+        "location": {},
+        "risk": {}
+      },
+      "GET_IP_INTELLIGENCE02": {
+        "ip": "s78",
+        "isp": "s79",
+        "location": {},
+        "risk": {}
+      }
+    }
+  },
+  "new": {
+    "get_ip_intelligence": {
+      "get_ip_intelligence_ref01": {
+        "ip": "sa0",
+        "isp": "sa1",
+        "location": {},
+        "risk": {}
+      }
+    }
+  }
+}

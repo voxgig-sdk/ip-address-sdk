@@ -1,0 +1,28 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: bulk_query_i_p: {
+    path: "/{ips}": {
+      rename: param: "ips": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: get_current_ip: {
+    path: "/": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: get_ip_intelligence: {
+    path: "/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+  }
+
+}
