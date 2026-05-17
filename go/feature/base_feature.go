@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/ip-address-sdk/core"
+	"github.com/voxgig-sdk/ip-address-sdk/go/core"
 )
 
 type BaseFeature struct {

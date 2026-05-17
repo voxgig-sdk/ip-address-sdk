@@ -1,10 +1,10 @@
 package voxgigipaddresssdk
 
 import (
-	"github.com/voxgig-sdk/ip-address-sdk/core"
-	"github.com/voxgig-sdk/ip-address-sdk/entity"
-	"github.com/voxgig-sdk/ip-address-sdk/feature"
-	_ "github.com/voxgig-sdk/ip-address-sdk/utility"
+	"github.com/voxgig-sdk/ip-address-sdk/go/core"
+	"github.com/voxgig-sdk/ip-address-sdk/go/entity"
+	"github.com/voxgig-sdk/ip-address-sdk/go/feature"
+	_ "github.com/voxgig-sdk/ip-address-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

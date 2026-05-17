@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/ip-address-sdk"
-	"github.com/voxgig-sdk/ip-address-sdk/core"
+	sdk "github.com/voxgig-sdk/ip-address-sdk/go"
+	"github.com/voxgig-sdk/ip-address-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/ip-address-sdk/go/utility/struct"
 )
 
 func TestBulkQueryIPEntity(t *testing.T) {

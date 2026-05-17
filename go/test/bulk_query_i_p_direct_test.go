@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/ip-address-sdk"
-	"github.com/voxgig-sdk/ip-address-sdk/core"
+	sdk "github.com/voxgig-sdk/ip-address-sdk/go"
+	"github.com/voxgig-sdk/ip-address-sdk/go/core"
 )
 
 func TestBulkQueryIPDirect(t *testing.T) {

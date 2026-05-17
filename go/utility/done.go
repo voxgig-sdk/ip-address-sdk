@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/ip-address-sdk/core"
+import "github.com/voxgig-sdk/ip-address-sdk/go/core"
 
 func doneUtil(ctx *core.Context) (any, error) {
 	if ctx.Ctrl.Explain != nil {

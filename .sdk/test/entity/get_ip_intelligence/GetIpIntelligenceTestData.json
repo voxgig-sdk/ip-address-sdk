@@ -5,19 +5,22 @@
         "ip": "s28",
         "isp": "s29",
         "location": {},
-        "risk": {}
+        "risk": {},
+        "id": "GET_IP_INTELLIGENCE00"
       },
       "GET_IP_INTELLIGENCE01": {
         "ip": "s50",
         "isp": "s51",
         "location": {},
-        "risk": {}
+        "risk": {},
+        "id": "GET_IP_INTELLIGENCE01"
       },
       "GET_IP_INTELLIGENCE02": {
         "ip": "s78",
         "isp": "s79",
         "location": {},
-        "risk": {}
+        "risk": {},
+        "id": "GET_IP_INTELLIGENCE02"
       }
     }
   },
