@@ -110,14 +110,12 @@ func get_ip_intelligenceDirectSetup(mockres any) *get_ip_intelligenceDirectSetup
 	env := envOverride(map[string]any{
 		"IPADDRESS_TEST_GET_IP_INTELLIGENCE_ENTID": map[string]any{},
 		"IPADDRESS_TEST_LIVE":    "FALSE",
-		"IPADDRESS_APIKEY":       "NONE",
 	})
 
 	live := env["IPADDRESS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["IPADDRESS_APIKEY"],
 		}
 		client := sdk.NewIpAddressSDK(mergedOpts)
 

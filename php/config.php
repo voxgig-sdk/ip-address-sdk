@@ -20,9 +20,6 @@ class IpAddressConfig
             ],
             "options" => [
                 "base" => "https://api.ipquery.io",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

@@ -75,14 +75,12 @@ function get_ip_intelligence_direct_setup($mockres)
     $env = Runner::env_override([
         "IPADDRESS_TEST_GET_IP_INTELLIGENCE_ENTID" => [],
         "IPADDRESS_TEST_LIVE" => "FALSE",
-        "IPADDRESS_APIKEY" => "NONE",
     ]);
 
     $live = $env["IPADDRESS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["IPADDRESS_APIKEY"],
         ];
         $client = new IpAddressSDK($merged_opts);
         return [

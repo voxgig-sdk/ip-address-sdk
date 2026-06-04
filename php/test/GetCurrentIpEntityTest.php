@@ -85,7 +85,6 @@ function get_current_ip_basic_setup($extra)
         "IPADDRESS_TEST_GET_CURRENT_IP_ENTID" => $idmap,
         "IPADDRESS_TEST_LIVE" => "FALSE",
         "IPADDRESS_TEST_EXPLAIN" => "FALSE",
-        "IPADDRESS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +96,6 @@ function get_current_ip_basic_setup($extra)
     if ($env["IPADDRESS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["IPADDRESS_APIKEY"],
             ],
             $extra ?? [],
         ]);

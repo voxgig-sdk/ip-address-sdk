@@ -118,14 +118,12 @@ func bulk_query_i_pDirectSetup(mockres any) *bulk_query_i_pDirectSetupResult {
 	env := envOverride(map[string]any{
 		"IPADDRESS_TEST_BULK_QUERY_I_P_ENTID": map[string]any{},
 		"IPADDRESS_TEST_LIVE":    "FALSE",
-		"IPADDRESS_APIKEY":       "NONE",
 	})
 
 	live := env["IPADDRESS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["IPADDRESS_APIKEY"],
 		}
 		client := sdk.NewIpAddressSDK(mergedOpts)
 
