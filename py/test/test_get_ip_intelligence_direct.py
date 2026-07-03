@@ -66,12 +66,14 @@ def _get_ip_intelligence_direct_setup(mockres):
     env = runner.env_override({
         "IPADDRESS_TEST_GET_IP_INTELLIGENCE_ENTID": {},
         "IPADDRESS_TEST_LIVE": "FALSE",
+        "IPADDRESS_APIKEY": "NONE",
     })
 
     live = env.get("IPADDRESS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("IPADDRESS_APIKEY"),
         }
         client = IpAddressSDK(merged_opts)
         return {

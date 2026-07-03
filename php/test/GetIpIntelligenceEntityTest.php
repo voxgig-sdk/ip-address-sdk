@@ -85,6 +85,7 @@ function get_ip_intelligence_basic_setup($extra)
         "IPADDRESS_TEST_GET_IP_INTELLIGENCE_ENTID" => $idmap,
         "IPADDRESS_TEST_LIVE" => "FALSE",
         "IPADDRESS_TEST_EXPLAIN" => "FALSE",
+        "IPADDRESS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -96,6 +97,7 @@ function get_ip_intelligence_basic_setup($extra)
     if ($env["IPADDRESS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["IPADDRESS_APIKEY"],
             ],
             $extra ?? [],
         ]);

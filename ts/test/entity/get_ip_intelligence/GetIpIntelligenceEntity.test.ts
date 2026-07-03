@@ -111,6 +111,7 @@ function basicSetup(extra?: any) {
     'IP_ADDRESS_TEST_GET_IP_INTELLIGENCE_ENTID': idmap,
     'IP_ADDRESS_TEST_LIVE': 'FALSE',
     'IP_ADDRESS_TEST_EXPLAIN': 'FALSE',
+    'IP_ADDRESS_APIKEY': 'NONE',
   })
 
   idmap = env['IP_ADDRESS_TEST_GET_IP_INTELLIGENCE_ENTID']
@@ -120,6 +121,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new IpAddressSDK(merge([
       {
+        apikey: env.IP_ADDRESS_APIKEY,
       },
       extra
     ]))

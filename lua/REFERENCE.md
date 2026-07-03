@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -111,7 +111,7 @@ local bulk_query_i_p = client:BulkQueryIP(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:BulkQueryIP(nil):list(nil, nil)
+local results, err = client:BulkQueryIP():list()
 ```
 
 ### Common Methods
@@ -157,7 +157,7 @@ local get_current_ip = client:GetCurrentIp(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetCurrentIp(nil):load({ id = "get_current_ip_id" }, nil)
+local result, err = client:GetCurrentIp():load({ id = "get_current_ip_id" })
 ```
 
 ### Common Methods
@@ -212,7 +212,7 @@ local get_ip_intelligence = client:GetIpIntelligence(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetIpIntelligence(nil):load({ id = "get_ip_intelligence_id" }, nil)
+local result, err = client:GetIpIntelligence():load({ id = "get_ip_intelligence_id" })
 ```
 
 ### Common Methods

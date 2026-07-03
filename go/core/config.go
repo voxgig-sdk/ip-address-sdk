@@ -14,6 +14,9 @@ func MakeConfig() map[string]any {
 		},
 		"options": map[string]any{
 			"base": "https://api.ipquery.io",
+			"auth": map[string]any{
+				"prefix": "Bearer",
+			},
 			"headers": map[string]any{
 				"content-type": "application/json",
 			},
@@ -27,61 +30,63 @@ func MakeConfig() map[string]any {
 			"bulk_query_i_p": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"active": true,
 						"name": "ip",
 						"req": false,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 0,
 					},
 					map[string]any{
+						"active": true,
 						"name": "isp",
 						"req": false,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 1,
 					},
 					map[string]any{
+						"active": true,
 						"name": "location",
 						"req": false,
 						"type": "`$OBJECT`",
-						"active": true,
 						"index$": 2,
 					},
 					map[string]any{
+						"active": true,
 						"name": "risk",
 						"req": false,
 						"type": "`$OBJECT`",
-						"active": true,
 						"index$": 3,
 					},
 				},
 				"name": "bulk_query_i_p",
 				"op": map[string]any{
 					"list": map[string]any{
+						"input": "data",
 						"name": "list",
 						"points": []any{
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
+											"active": true,
 											"example": "1.1.1.1,8.8.8.8,9.9.9.9",
 											"kind": "param",
 											"name": "id",
 											"orig": "ips",
 											"reqd": true,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 									"query": []any{
 										map[string]any{
+											"active": true,
 											"example": "json",
 											"kind": "query",
 											"name": "format",
 											"orig": "format",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 								},
@@ -105,11 +110,9 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
 								"index$": 0,
 							},
 						},
-						"input": "data",
 						"key$": "list",
 					},
 				},
@@ -122,24 +125,27 @@ func MakeConfig() map[string]any {
 				"name": "get_current_ip",
 				"op": map[string]any{
 					"load": map[string]any{
+						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
+											"active": true,
 											"example": "text",
 											"kind": "query",
 											"name": "format",
 											"orig": "format",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 								},
 								"method": "GET",
 								"orig": "/",
+								"parts": []any{},
 								"select": map[string]any{
 									"exist": []any{
 										"format",
@@ -149,12 +155,9 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
-								"parts": []any{},
 								"index$": 0,
 							},
 						},
-						"input": "data",
 						"key$": "load",
 					},
 				},
@@ -165,61 +168,63 @@ func MakeConfig() map[string]any {
 			"get_ip_intelligence": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"active": true,
 						"name": "ip",
 						"req": false,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 0,
 					},
 					map[string]any{
+						"active": true,
 						"name": "isp",
 						"req": false,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 1,
 					},
 					map[string]any{
+						"active": true,
 						"name": "location",
 						"req": false,
 						"type": "`$OBJECT`",
-						"active": true,
 						"index$": 2,
 					},
 					map[string]any{
+						"active": true,
 						"name": "risk",
 						"req": false,
 						"type": "`$OBJECT`",
-						"active": true,
 						"index$": 3,
 					},
 				},
 				"name": "get_ip_intelligence",
 				"op": map[string]any{
 					"load": map[string]any{
+						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
+											"active": true,
 											"example": "1.1.1.1",
 											"kind": "param",
 											"name": "id",
 											"orig": "ip",
 											"reqd": true,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 									"query": []any{
 										map[string]any{
+											"active": true,
 											"example": "json",
 											"kind": "query",
 											"name": "format",
 											"orig": "format",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 								},
@@ -243,11 +248,9 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
 								"index$": 0,
 							},
 						},
-						"input": "data",
 						"key$": "load",
 					},
 				},

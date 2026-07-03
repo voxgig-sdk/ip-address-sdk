@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://api.ipquery.io",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -28,61 +31,63 @@ def make_config():
       "bulk_query_i_p": {
         "fields": [
           {
+            "active": True,
             "name": "ip",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "isp",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "location",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 2,
           },
           {
+            "active": True,
             "name": "risk",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 3,
           },
         ],
         "name": "bulk_query_i_p",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "params": [
                     {
+                      "active": True,
                       "example": "1.1.1.1,8.8.8.8,9.9.9.9",
                       "kind": "param",
                       "name": "id",
                       "orig": "ips",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                   "query": [
                     {
+                      "active": True,
                       "example": "json",
                       "kind": "query",
                       "name": "format",
                       "orig": "format",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -106,11 +111,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
         },
@@ -123,24 +126,27 @@ def make_config():
         "name": "get_current_ip",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "example": "text",
                       "kind": "query",
                       "name": "format",
                       "orig": "format",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
                 "method": "GET",
                 "orig": "/",
+                "parts": [],
                 "select": {
                   "exist": [
                     "format",
@@ -150,12 +156,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "parts": [],
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },
@@ -166,61 +169,63 @@ def make_config():
       "get_ip_intelligence": {
         "fields": [
           {
+            "active": True,
             "name": "ip",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "isp",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "location",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 2,
           },
           {
+            "active": True,
             "name": "risk",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 3,
           },
         ],
         "name": "get_ip_intelligence",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "params": [
                     {
+                      "active": True,
                       "example": "1.1.1.1",
                       "kind": "param",
                       "name": "id",
                       "orig": "ip",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                   "query": [
                     {
+                      "active": True,
                       "example": "json",
                       "kind": "query",
                       "name": "format",
                       "orig": "format",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -244,11 +249,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },

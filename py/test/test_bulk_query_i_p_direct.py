@@ -73,12 +73,14 @@ def _bulk_query_i_p_direct_setup(mockres):
     env = runner.env_override({
         "IPADDRESS_TEST_BULK_QUERY_I_P_ENTID": {},
         "IPADDRESS_TEST_LIVE": "FALSE",
+        "IPADDRESS_APIKEY": "NONE",
     })
 
     live = env.get("IPADDRESS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("IPADDRESS_APIKEY"),
         }
         client = IpAddressSDK(merged_opts)
         return {

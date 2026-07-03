@@ -74,12 +74,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'IPADDRESS_TEST_GET_CURRENT_IP_ENTID': {},
     'IPADDRESS_TEST_LIVE': 'FALSE',
+    'IPADDRESS_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.IPADDRESS_TEST_LIVE
 
   if (live) {
     const client = new IpAddressSDK({
+      apikey: env.IPADDRESS_APIKEY,
     })
 
     let idmap: any = env['IPADDRESS_TEST_GET_CURRENT_IP_ENTID']

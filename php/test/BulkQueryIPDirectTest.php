@@ -82,12 +82,14 @@ function bulk_query_i_p_direct_setup($mockres)
     $env = Runner::env_override([
         "IPADDRESS_TEST_BULK_QUERY_I_P_ENTID" => [],
         "IPADDRESS_TEST_LIVE" => "FALSE",
+        "IPADDRESS_APIKEY" => "NONE",
     ]);
 
     $live = $env["IPADDRESS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["IPADDRESS_APIKEY"],
         ];
         $client = new IpAddressSDK($merged_opts);
         return [

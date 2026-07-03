@@ -117,6 +117,7 @@ func get_ip_intelligenceBasicSetup(extra map[string]any) *entityTestSetup {
 		"IPADDRESS_TEST_GET_IP_INTELLIGENCE_ENTID": idmap,
 		"IPADDRESS_TEST_LIVE":      "FALSE",
 		"IPADDRESS_TEST_EXPLAIN":   "FALSE",
+		"IPADDRESS_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["IPADDRESS_TEST_GET_IP_INTELLIGENCE_ENTID"])
@@ -127,6 +128,7 @@ func get_ip_intelligenceBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["IPADDRESS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["IPADDRESS_APIKEY"],
 			},
 			extra,
 		})

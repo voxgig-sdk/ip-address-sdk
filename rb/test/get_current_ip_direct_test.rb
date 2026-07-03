@@ -61,12 +61,14 @@ def get_current_ip_direct_setup(mockres)
   env = Runner.env_override({
     "IPADDRESS_TEST_GET_CURRENT_IP_ENTID" => {},
     "IPADDRESS_TEST_LIVE" => "FALSE",
+    "IPADDRESS_APIKEY" => "NONE",
   })
 
   live = env["IPADDRESS_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["IPADDRESS_APIKEY"],
     }
     client = IpAddressSDK.new(merged_opts)
     return {

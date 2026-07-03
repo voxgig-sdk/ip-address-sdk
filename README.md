@@ -1,22 +1,8 @@
 # IpAddress SDK
 
-Look up geolocation, ISP, and VPN/proxy/Tor risk signals for any IP address, with no API key required
+IP Address API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About IP Address API
-
-[ipquery](https://ipquery.io) is a public IP intelligence service that returns geolocation and risk data for IPv4 and IPv6 addresses. Requests go to `https://api.ipquery.io` and responses are available in JSON, XML, or YAML.
-
-What you get from the API:
-
-- The caller's own public IP via a request to the API root.
-- Per-IP details: country, country code, city, state, zipcode, and timezone.
-- ISP and network metadata associated with the address.
-- Risk signals: VPN, proxy, Tor node, and mobile-network indicators, plus a numeric risk score (0-100).
-- Bulk lookups: a comma-separated list of IPs can be queried in a single request (documented up to 10,000 per call).
-
-No authentication is required. Published rate limits are not specified, but the service is shared and intended to be used responsibly; abusive traffic may be throttled.
 
 ## Try it
 
@@ -50,29 +36,31 @@ gem install ip-address-sdk
 luarocks install ip-address-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { IpAddressSDK } from 'ip-address'
 
-const client = new IpAddressSDK({})
+const client = new IpAddressSDK({
+  apikey: process.env.IP-ADDRESS_APIKEY,
+})
 
 // List all bulkqueryips
 const bulkqueryips = await client.BulkQueryIP().list()
+console.log(bulkqueryips.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **BulkQueryIP** | Look up many IP addresses in one call by passing a comma-separated list in the path, e.g. `GET /{ip1},{ip2},...` against `https://api.ipquery.io`. | `/{ips}` |
-| **GetCurrentIp** | Return the public IP address of the caller by hitting the API root `GET /` on `https://api.ipquery.io`. | `/` |
-| **GetIpIntelligence** | Return geolocation, ISP, and risk (VPN/proxy/Tor/mobile) details for a single address via `GET /{ip}` on `https://api.ipquery.io`. | `/{ip}` |
+| **BulkQueryIP** |  | `/{ips}` |
+| **GetCurrentIp** |  | `/` |
+| **GetIpIntelligence** |  | `/{ip}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -114,12 +102,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from ipaddress_sdk import IpAddressSDK
 
-client = IpAddressSDK({})
+client = IpAddressSDK({
+    "apikey": os.environ.get("IP-ADDRESS_APIKEY"),
+})
 
 # List all bulkqueryips
-bulkqueryips, err = client.BulkQueryIP(None).list(None, None)
+bulkqueryips, err = client.BulkQueryIP().list()
+print(bulkqueryips)
 ```
 
 ### PHP
@@ -128,10 +120,13 @@ bulkqueryips, err = client.BulkQueryIP(None).list(None, None)
 <?php
 require_once 'ipaddress_sdk.php';
 
-$client = new IpAddressSDK([]);
+$client = new IpAddressSDK([
+    "apikey" => getenv("IP-ADDRESS_APIKEY"),
+]);
 
 // List all bulkqueryips
-[$bulkqueryips, $err] = $client->BulkQueryIP(null)->list(null, null);
+[$bulkqueryips, $err] = $client->BulkQueryIP()->list();
+print_r($bulkqueryips);
 ```
 
 ### Golang
@@ -139,10 +134,13 @@ $client = new IpAddressSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/ip-address-sdk/go"
 
-client := sdk.NewIpAddressSDK(map[string]any{})
+client := sdk.NewIpAddressSDK(map[string]any{
+    "apikey": os.Getenv("IP-ADDRESS_APIKEY"),
+})
 
 // List all bulkqueryips
 bulkqueryips, err := client.BulkQueryIP(nil).List(nil, nil)
+fmt.Println(bulkqueryips)
 ```
 
 ### Ruby
@@ -150,10 +148,13 @@ bulkqueryips, err := client.BulkQueryIP(nil).List(nil, nil)
 ```ruby
 require_relative "IpAddress_sdk"
 
-client = IpAddressSDK.new({})
+client = IpAddressSDK.new({
+  "apikey" => ENV["IP-ADDRESS_APIKEY"],
+})
 
 # List all bulkqueryips
-bulkqueryips, err = client.BulkQueryIP(nil).list(nil, nil)
+bulkqueryips, err = client.BulkQueryIP().list
+puts bulkqueryips
 ```
 
 ### Lua
@@ -161,10 +162,13 @@ bulkqueryips, err = client.BulkQueryIP(nil).list(nil, nil)
 ```lua
 local sdk = require("ip-address_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("IP-ADDRESS_APIKEY"),
+})
 
 -- List all bulkqueryips
-local bulkqueryips, err = client:BulkQueryIP(nil):list(nil, nil)
+local bulkqueryips, err = client:BulkQueryIP():list()
+print(bulkqueryips)
 ```
 
 ## Unit testing in offline mode
@@ -183,25 +187,21 @@ const result = await client.BulkQueryIP().load({ id: 'test01' })
 ### Python
 
 ```python
-client = IpAddressSDK.test(None, None)
-result, err = client.BulkQueryIP(None).load(
-    {"id": "test01"}, None
-)
+client = IpAddressSDK.test()
+result, err = client.BulkQueryIP().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = IpAddressSDK::test(null, null);
-[$result, $err] = $client->BulkQueryIP(null)->load(
-    ["id" => "test01"], null
-);
+$client = IpAddressSDK::test();
+[$result, $err] = $client->BulkQueryIP()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.BulkQueryIP(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -210,19 +210,15 @@ result, err := client.BulkQueryIP(nil).Load(
 ### Ruby
 
 ```ruby
-client = IpAddressSDK.test(nil, nil)
-result, err = client.BulkQueryIP(nil).load(
-  { "id" => "test01" }, nil
-)
+client = IpAddressSDK.test
+result, err = client.BulkQueryIP().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:BulkQueryIP(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:BulkQueryIP():load({ id = "test01" })
 ```
 
 ## How it works
@@ -326,15 +322,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the IP Address API
-
-- Upstream: [https://ipquery.io](https://ipquery.io)
-
-- Open to everyone; no API key or signup required.
-- Commercial use permitted in SaaS, internal tools, and other applications.
-- Operator logs transient data for caching and abuse prevention and states it does not sell query data to third parties.
-- No formal SLA is published; treat as best-effort.
 
 ---
 

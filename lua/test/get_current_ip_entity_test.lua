@@ -91,6 +91,7 @@ function get_current_ip_basic_setup(extra)
     ["IPADDRESS_TEST_GET_CURRENT_IP_ENTID"] = idmap,
     ["IPADDRESS_TEST_LIVE"] = "FALSE",
     ["IPADDRESS_TEST_EXPLAIN"] = "FALSE",
+    ["IPADDRESS_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ function get_current_ip_basic_setup(extra)
   if env["IPADDRESS_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["IPADDRESS_APIKEY"],
       },
       extra or {},
     })

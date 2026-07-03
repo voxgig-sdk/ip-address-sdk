@@ -121,6 +121,7 @@ func bulk_query_i_pBasicSetup(extra map[string]any) *entityTestSetup {
 		"IPADDRESS_TEST_BULK_QUERY_I_P_ENTID": idmap,
 		"IPADDRESS_TEST_LIVE":      "FALSE",
 		"IPADDRESS_TEST_EXPLAIN":   "FALSE",
+		"IPADDRESS_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["IPADDRESS_TEST_BULK_QUERY_I_P_ENTID"])
@@ -131,6 +132,7 @@ func bulk_query_i_pBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["IPADDRESS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["IPADDRESS_APIKEY"],
 			},
 			extra,
 		})
