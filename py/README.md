@@ -10,7 +10,7 @@ The Python SDK for the IpAddress API — an entity-oriented client following Pyt
 
 ## Install
 ```bash
-pip install ip-address-sdk
+pip install voxgig-sdk-ip-address
 ```
 
 Or install from source:

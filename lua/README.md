@@ -10,7 +10,7 @@ The Lua SDK for the IpAddress API — an entity-oriented client using Lua conven
 
 ## Install
 ```bash
-luarocks install ip-address-sdk
+luarocks install voxgig-sdk-ip-address
 ```
 
 If the module is not yet published, add the source directory to

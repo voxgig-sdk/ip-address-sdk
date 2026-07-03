@@ -2,9 +2,17 @@ Gem::Specification.new do |spec|
   spec.name          = "voxgig-sdk-ip-address"
   spec.version       = "0.0.1"
   spec.authors       = ["Voxgig"]
-  spec.summary       = "IpAddress SDK for Ruby"
+  spec.summary       = "Unofficial generated Ruby SDK for the IP Address public API. Not affiliated with or endorsed by the upstream API provider."
+  spec.description   = "Unofficial generated Ruby SDK for the IP Address public API. Not affiliated with or endorsed by the upstream API provider."
   spec.license       = "MIT"
   spec.homepage      = "https://github.com/voxgig-sdk/ip-address-sdk"
+  spec.metadata      = {
+    "homepage_uri"          => "https://github.com/voxgig-sdk/ip-address-sdk",
+    "source_code_uri"       => "https://github.com/voxgig-sdk/ip-address-sdk",
+    "bug_tracker_uri"       => "https://github.com/voxgig-sdk/ip-address-sdk/issues",
+    "changelog_uri"         => "https://github.com/voxgig-sdk/ip-address-sdk/blob/main/CHANGELOG.md",
+    "rubygems_mfa_required" => "true"
+  }
 
   spec.files         = Dir["lib/**/*.rb", "*.rb"]
   spec.require_paths = ["."]

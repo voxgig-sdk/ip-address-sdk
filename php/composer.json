@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/ip-address",
-  "description": "IpAddress SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the IP Address public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "ip-address"],
+  "homepage": "https://github.com/voxgig-sdk/ip-address-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/ip-address-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/ip-address-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

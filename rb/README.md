@@ -10,13 +10,13 @@ The Ruby SDK for the IpAddress API — an entity-oriented client using idiomatic
 
 ## Install
 ```bash
-gem install ip-address-sdk
+gem install voxgig-sdk-ip-address
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "ip-address-sdk"
+gem "voxgig-sdk-ip-address"
 ```
 
 Then run:

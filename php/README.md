@@ -10,7 +10,7 @@ The PHP SDK for the IpAddress API — an entity-oriented client using PHP conven
 
 ## Install
 ```bash
-composer require voxgig/ip-address-sdk
+composer require voxgig-sdk/ip-address
 ```
 
 

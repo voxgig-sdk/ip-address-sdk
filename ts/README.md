@@ -10,7 +10,7 @@ The TypeScript SDK for the IpAddress API — a type-safe, entity-oriented client
 
 ## Install
 ```bash
-npm install ip-address
+npm install @voxgig-sdk/ip-address
 ```
 ## Tutorial: your first API call
 
