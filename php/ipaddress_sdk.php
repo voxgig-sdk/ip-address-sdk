@@ -233,10 +233,10 @@ class IpAddressSDK
 
     private $_bulk_query_i_p = null;
 
-    // Idiomatic facade: $client->bulk_query_i_p()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias BulkQueryIP() (PHP method
-    // names are case-insensitive).
-    public function bulk_query_i_p($data = null)
+    // Canonical facade: $client->BulkQueryIP()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->bulk_query_i_p()
+    // resolves here too.
+    public function BulkQueryIP($data = null)
     {
         require_once __DIR__ . '/entity/bulk_query_i_p_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class IpAddressSDK
 
     private $_get_current_ip = null;
 
-    // Idiomatic facade: $client->get_current_ip()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetCurrentIp() (PHP method
-    // names are case-insensitive).
-    public function get_current_ip($data = null)
+    // Canonical facade: $client->GetCurrentIp()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_current_ip()
+    // resolves here too.
+    public function GetCurrentIp($data = null)
     {
         require_once __DIR__ . '/entity/get_current_ip_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class IpAddressSDK
 
     private $_get_ip_intelligence = null;
 
-    // Idiomatic facade: $client->get_ip_intelligence()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetIpIntelligence() (PHP method
-    // names are case-insensitive).
-    public function get_ip_intelligence($data = null)
+    // Canonical facade: $client->GetIpIntelligence()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_ip_intelligence()
+    // resolves here too.
+    public function GetIpIntelligence($data = null)
     {
         require_once __DIR__ . '/entity/get_ip_intelligence_entity.php';
         if ($data === null) {

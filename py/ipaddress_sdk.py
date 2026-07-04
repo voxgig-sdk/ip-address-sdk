@@ -220,57 +220,27 @@ class IpAddressSDK:
         }
 
 
-    @property
-    def bulk_query_i_p(self):
-        """Idiomatic facade: client.bulk_query_i_p.list() / client.bulk_query_i_p.load({"id": ...})."""
-        from entity.bulk_query_i_p_entity import BulkQueryIPEntity
-        cached = getattr(self, "_bulk_query_i_p", None)
-        if cached is None:
-            cached = BulkQueryIPEntity(self, None)
-            self._bulk_query_i_p = cached
-        return cached
-
-    def BulkQueryIP(self, data=None):
-        # Deprecated: use client.bulk_query_i_p instead.
+    def BulkQueryIP(self, data=None) -> "BulkQueryIPEntity":
+        """Entity factory: client.BulkQueryIP().list({}) / client.BulkQueryIP().load({"id": ...})."""
         from entity.bulk_query_i_p_entity import BulkQueryIPEntity
         return BulkQueryIPEntity(self, data)
 
 
-    @property
-    def get_current_ip(self):
-        """Idiomatic facade: client.get_current_ip.list() / client.get_current_ip.load({"id": ...})."""
-        from entity.get_current_ip_entity import GetCurrentIpEntity
-        cached = getattr(self, "_get_current_ip", None)
-        if cached is None:
-            cached = GetCurrentIpEntity(self, None)
-            self._get_current_ip = cached
-        return cached
-
-    def GetCurrentIp(self, data=None):
-        # Deprecated: use client.get_current_ip instead.
+    def GetCurrentIp(self, data=None) -> "GetCurrentIpEntity":
+        """Entity factory: client.GetCurrentIp().list({}) / client.GetCurrentIp().load({"id": ...})."""
         from entity.get_current_ip_entity import GetCurrentIpEntity
         return GetCurrentIpEntity(self, data)
 
 
-    @property
-    def get_ip_intelligence(self):
-        """Idiomatic facade: client.get_ip_intelligence.list() / client.get_ip_intelligence.load({"id": ...})."""
-        from entity.get_ip_intelligence_entity import GetIpIntelligenceEntity
-        cached = getattr(self, "_get_ip_intelligence", None)
-        if cached is None:
-            cached = GetIpIntelligenceEntity(self, None)
-            self._get_ip_intelligence = cached
-        return cached
-
-    def GetIpIntelligence(self, data=None):
-        # Deprecated: use client.get_ip_intelligence instead.
+    def GetIpIntelligence(self, data=None) -> "GetIpIntelligenceEntity":
+        """Entity factory: client.GetIpIntelligence().list({}) / client.GetIpIntelligence().load({"id": ...})."""
         from entity.get_ip_intelligence_entity import GetIpIntelligenceEntity
         return GetIpIntelligenceEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "IpAddressSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class IpAddressSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.bulk_query_i_p_entity import BulkQueryIPEntity
+    from entity.get_current_ip_entity import GetCurrentIpEntity
+    from entity.get_ip_intelligence_entity import GetIpIntelligenceEntity

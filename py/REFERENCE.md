@@ -88,7 +88,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## BulkQueryIPEntity
 
 ```python
-bulk_query_i_p = client.bulk_query_i_p
+bulk_query_i_p = client.BulkQueryIP()
 ```
 
 ### Fields
@@ -107,7 +107,9 @@ bulk_query_i_p = client.bulk_query_i_p
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.bulk_query_i_p.list({})
+results = client.BulkQueryIP().list({})
+for bulk_query_i_p in results:
+    print(bulk_query_i_p)
 ```
 
 ### Common Methods
@@ -142,7 +144,7 @@ Return the entity name.
 ## GetCurrentIpEntity
 
 ```python
-get_current_ip = client.get_current_ip
+get_current_ip = client.GetCurrentIp()
 ```
 
 ### Operations
@@ -152,7 +154,7 @@ get_current_ip = client.get_current_ip
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.get_current_ip.load({"id": "get_current_ip_id"})
+result = client.GetCurrentIp().load({"id": "get_current_ip_id"})
 ```
 
 ### Common Methods
@@ -187,7 +189,7 @@ Return the entity name.
 ## GetIpIntelligenceEntity
 
 ```python
-get_ip_intelligence = client.get_ip_intelligence
+get_ip_intelligence = client.GetIpIntelligence()
 ```
 
 ### Fields
@@ -206,7 +208,7 @@ get_ip_intelligence = client.get_ip_intelligence
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.get_ip_intelligence.load({"id": "get_ip_intelligence_id"})
+result = client.GetIpIntelligence().load({"id": "get_ip_intelligence_id"})
 ```
 
 ### Common Methods

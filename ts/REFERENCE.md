@@ -133,7 +133,7 @@ Alias for `IpAddressSDK.test()`.
 ## BulkQueryIPEntity
 
 ```ts
-const bulk_query_i_p = client.bulk_query_i_p
+const bulk_query_i_p = client.BulkQueryIP()
 ```
 
 ### Fields
@@ -152,7 +152,7 @@ const bulk_query_i_p = client.bulk_query_i_p
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.bulk_query_i_p.list()
+const results = await client.BulkQueryIP().list()
 ```
 
 ### Common Methods
@@ -186,7 +186,7 @@ Return a copy of the entity options.
 ## GetCurrentIpEntity
 
 ```ts
-const get_current_ip = client.get_current_ip
+const get_current_ip = client.GetCurrentIp()
 ```
 
 ### Operations
@@ -196,7 +196,7 @@ const get_current_ip = client.get_current_ip
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.get_current_ip.load({ id: 'get_current_ip_id' })
+const result = await client.GetCurrentIp().load({ id: 'get_current_ip_id' })
 ```
 
 ### Common Methods
@@ -230,7 +230,7 @@ Return a copy of the entity options.
 ## GetIpIntelligenceEntity
 
 ```ts
-const get_ip_intelligence = client.get_ip_intelligence
+const get_ip_intelligence = client.GetIpIntelligence()
 ```
 
 ### Fields
@@ -249,7 +249,7 @@ const get_ip_intelligence = client.get_ip_intelligence
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.get_ip_intelligence.load({ id: 'get_ip_intelligence_id' })
+const result = await client.GetIpIntelligence().load({ id: 'get_ip_intelligence_id' })
 ```
 
 ### Common Methods

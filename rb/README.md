@@ -28,16 +28,14 @@ require_relative "IpAddress_sdk"
 client = IpAddressSDK.new
 ```
 
-### 2. List bulkqueryips
+### 2. List bulkqueryip records
 
 ```ruby
 begin
-  result = client.bulkqueryip.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of BulkQueryIP records — iterate directly.
+  bulkqueryips = client.BulkQueryIP.list
+  bulkqueryips.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = IpAddressSDK.test
+client = IpAddressSDK.test({
+  "entity" => { "bulkqueryip" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.bulkqueryip.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+bulkqueryip = client.BulkQueryIP.load({ "id" => "test01" })
+puts bulkqueryip
 ```
 
 ### Use a custom fetch function
@@ -250,7 +252,7 @@ API path: `/{ip}`
 
 ### BulkQueryIP
 
-Create an instance: `const bulk_query_i_p = client.bulk_query_i_p`
+Create an instance: `bulk_query_i_p = client.BulkQueryIP`
 
 #### Operations
 
@@ -269,14 +271,15 @@ Create an instance: `const bulk_query_i_p = client.bulk_query_i_p`
 
 #### Example: List
 
-```ts
-const bulk_query_i_ps = await client.bulk_query_i_p.list()
+```ruby
+# list returns an Array of BulkQueryIP records (raises on error).
+bulk_query_i_ps = client.BulkQueryIP.list
 ```
 
 
 ### GetCurrentIp
 
-Create an instance: `const get_current_ip = client.get_current_ip`
+Create an instance: `get_current_ip = client.GetCurrentIp`
 
 #### Operations
 
@@ -286,14 +289,15 @@ Create an instance: `const get_current_ip = client.get_current_ip`
 
 #### Example: Load
 
-```ts
-const get_current_ip = await client.get_current_ip.load({ id: 'get_current_ip_id' })
+```ruby
+# load returns the bare GetCurrentIp record (raises on error).
+get_current_ip = client.GetCurrentIp.load({ "id" => "get_current_ip_id" })
 ```
 
 
 ### GetIpIntelligence
 
-Create an instance: `const get_ip_intelligence = client.get_ip_intelligence`
+Create an instance: `get_ip_intelligence = client.GetIpIntelligence`
 
 #### Operations
 
@@ -312,8 +316,9 @@ Create an instance: `const get_ip_intelligence = client.get_ip_intelligence`
 
 #### Example: Load
 
-```ts
-const get_ip_intelligence = await client.get_ip_intelligence.load({ id: 'get_ip_intelligence_id' })
+```ruby
+# load returns the bare GetIpIntelligence record (raises on error).
+get_ip_intelligence = client.GetIpIntelligence.load({ "id" => "get_ip_intelligence_id" })
 ```
 
 
@@ -388,7 +393,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-bulkqueryip = client.bulkqueryip
+bulkqueryip = client.BulkQueryIP
 bulkqueryip.load({ "id" => "example_id" })
 
 # bulkqueryip.data_get now returns the loaded bulkqueryip data

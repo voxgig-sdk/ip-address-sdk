@@ -93,7 +93,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## BulkQueryIPEntity
 
 ```php
-$bulk_query_i_p = $client->bulk_query_i_p();
+$bulk_query_i_p = $client->BulkQueryIP();
 ```
 
 ### Fields
@@ -112,7 +112,7 @@ $bulk_query_i_p = $client->bulk_query_i_p();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->bulk_query_i_p()->list([]);
+$results = $client->BulkQueryIP()->list([]);
 ```
 
 ### Common Methods
@@ -148,7 +148,7 @@ Return the entity name.
 ## GetCurrentIpEntity
 
 ```php
-$get_current_ip = $client->get_current_ip();
+$get_current_ip = $client->GetCurrentIp();
 ```
 
 ### Operations
@@ -158,7 +158,7 @@ $get_current_ip = $client->get_current_ip();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->get_current_ip()->load(["id" => "get_current_ip_id"]);
+$result = $client->GetCurrentIp()->load(["id" => "get_current_ip_id"]);
 ```
 
 ### Common Methods
@@ -194,7 +194,7 @@ Return the entity name.
 ## GetIpIntelligenceEntity
 
 ```php
-$get_ip_intelligence = $client->get_ip_intelligence();
+$get_ip_intelligence = $client->GetIpIntelligence();
 ```
 
 ### Fields
@@ -213,7 +213,7 @@ $get_ip_intelligence = $client->get_ip_intelligence();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->get_ip_intelligence()->load(["id" => "get_ip_intelligence_id"]);
+$result = $client->GetIpIntelligence()->load(["id" => "get_ip_intelligence_id"]);
 ```
 
 ### Common Methods

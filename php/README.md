@@ -29,18 +29,16 @@ require_once 'ipaddress_sdk.php';
 $client = new IpAddressSDK();
 ```
 
-### 2. List bulkqueryips
+### 2. List bulkqueryip records
 
 ```php
 try {
-    $result = $client->bulkqueryip()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of BulkQueryIP records — iterate directly.
+    $bulkqueryips = $client->BulkQueryIP()->list();
+    foreach ($bulkqueryips as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = IpAddressSDK::test();
+$client = IpAddressSDK::test([
+    "entity" => ["bulkqueryip" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->bulkqueryip()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$bulkqueryip = $client->BulkQueryIP()->load(["id" => "test01"]);
+print_r($bulkqueryip);
 ```
 
 ### Use a custom fetch function
@@ -255,7 +257,7 @@ API path: `/{ip}`
 
 ### BulkQueryIP
 
-Create an instance: `const bulk_query_i_p = client.bulk_query_i_p`
+Create an instance: `$bulk_query_i_p = $client->BulkQueryIP();`
 
 #### Operations
 
@@ -274,14 +276,15 @@ Create an instance: `const bulk_query_i_p = client.bulk_query_i_p`
 
 #### Example: List
 
-```ts
-const bulk_query_i_ps = await client.bulk_query_i_p.list()
+```php
+// list() returns an array of BulkQueryIP records (throws on error).
+$bulk_query_i_ps = $client->BulkQueryIP()->list();
 ```
 
 
 ### GetCurrentIp
 
-Create an instance: `const get_current_ip = client.get_current_ip`
+Create an instance: `$get_current_ip = $client->GetCurrentIp();`
 
 #### Operations
 
@@ -291,14 +294,15 @@ Create an instance: `const get_current_ip = client.get_current_ip`
 
 #### Example: Load
 
-```ts
-const get_current_ip = await client.get_current_ip.load({ id: 'get_current_ip_id' })
+```php
+// load() returns the bare GetCurrentIp record (throws on error).
+$get_current_ip = $client->GetCurrentIp()->load(["id" => "get_current_ip_id"]);
 ```
 
 
 ### GetIpIntelligence
 
-Create an instance: `const get_ip_intelligence = client.get_ip_intelligence`
+Create an instance: `$get_ip_intelligence = $client->GetIpIntelligence();`
 
 #### Operations
 
@@ -317,8 +321,9 @@ Create an instance: `const get_ip_intelligence = client.get_ip_intelligence`
 
 #### Example: Load
 
-```ts
-const get_ip_intelligence = await client.get_ip_intelligence.load({ id: 'get_ip_intelligence_id' })
+```php
+// load() returns the bare GetIpIntelligence record (throws on error).
+$get_ip_intelligence = $client->GetIpIntelligence()->load(["id" => "get_ip_intelligence_id"]);
 ```
 
 
@@ -393,7 +398,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$bulkqueryip = $client->bulkqueryip();
+$bulkqueryip = $client->BulkQueryIP();
 $bulkqueryip->load(["id" => "example_id"]);
 
 // $bulkqueryip->dataGet() now returns the loaded bulkqueryip data

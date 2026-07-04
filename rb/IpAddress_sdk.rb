@@ -208,39 +208,21 @@ class IpAddressSDK
   end
 
 
-  # Idiomatic facade: client.bulk_query_i_p.list / client.bulk_query_i_p.load({ "id" => ... })
-  def bulk_query_i_p
-    require_relative 'entity/bulk_query_i_p_entity'
-    @bulk_query_i_p ||= BulkQueryIPEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.bulk_query_i_p instead.
+  # Canonical facade: client.BulkQueryIP.list / client.BulkQueryIP.load({ "id" => ... })
   def BulkQueryIP(data = nil)
     require_relative 'entity/bulk_query_i_p_entity'
     BulkQueryIPEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.get_current_ip.list / client.get_current_ip.load({ "id" => ... })
-  def get_current_ip
-    require_relative 'entity/get_current_ip_entity'
-    @get_current_ip ||= GetCurrentIpEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_current_ip instead.
+  # Canonical facade: client.GetCurrentIp.list / client.GetCurrentIp.load({ "id" => ... })
   def GetCurrentIp(data = nil)
     require_relative 'entity/get_current_ip_entity'
     GetCurrentIpEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.get_ip_intelligence.list / client.get_ip_intelligence.load({ "id" => ... })
-  def get_ip_intelligence
-    require_relative 'entity/get_ip_intelligence_entity'
-    @get_ip_intelligence ||= GetIpIntelligenceEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_ip_intelligence instead.
+  # Canonical facade: client.GetIpIntelligence.list / client.GetIpIntelligence.load({ "id" => ... })
   def GetIpIntelligence(data = nil)
     require_relative 'entity/get_ip_intelligence_entity'
     GetIpIntelligenceEntity.new(self, data)

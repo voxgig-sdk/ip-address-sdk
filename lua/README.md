@@ -31,17 +31,17 @@ local sdk = require("ip-address_sdk")
 local client = sdk.new()
 ```
 
-### 2. List bulkqueryips
+### 2. List bulkqueryip records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:bulkqueryip():list()
+local bulkqueryips, err = client:BulkQueryIP():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(bulkqueryips) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:bulkqueryip():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:BulkQueryIP():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -191,17 +191,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local bulk_query_i_p, err = client:BulkQueryIP():load({ id = "example_id" })
+    if err then error(err) end
+    -- bulk_query_i_p is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -247,7 +252,7 @@ API path: `/{ip}`
 
 ### BulkQueryIP
 
-Create an instance: `const bulk_query_i_p = client.bulk_query_i_p`
+Create an instance: `local bulk_query_i_p = client:BulkQueryIP(nil)`
 
 #### Operations
 
@@ -266,14 +271,14 @@ Create an instance: `const bulk_query_i_p = client.bulk_query_i_p`
 
 #### Example: List
 
-```ts
-const bulk_query_i_ps = await client.bulk_query_i_p.list()
+```lua
+local bulk_query_i_ps, err = client:BulkQueryIP():list()
 ```
 
 
 ### GetCurrentIp
 
-Create an instance: `const get_current_ip = client.get_current_ip`
+Create an instance: `local get_current_ip = client:GetCurrentIp(nil)`
 
 #### Operations
 
@@ -283,14 +288,14 @@ Create an instance: `const get_current_ip = client.get_current_ip`
 
 #### Example: Load
 
-```ts
-const get_current_ip = await client.get_current_ip.load({ id: 'get_current_ip_id' })
+```lua
+local get_current_ip, err = client:GetCurrentIp():load({ id = "get_current_ip_id" })
 ```
 
 
 ### GetIpIntelligence
 
-Create an instance: `const get_ip_intelligence = client.get_ip_intelligence`
+Create an instance: `local get_ip_intelligence = client:GetIpIntelligence(nil)`
 
 #### Operations
 
@@ -309,8 +314,8 @@ Create an instance: `const get_ip_intelligence = client.get_ip_intelligence`
 
 #### Example: Load
 
-```ts
-const get_ip_intelligence = await client.get_ip_intelligence.load({ id: 'get_ip_intelligence_id' })
+```lua
+local get_ip_intelligence, err = client:GetIpIntelligence():load({ id = "get_ip_intelligence_id" })
 ```
 
 
@@ -385,7 +390,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local bulkqueryip = client:bulkqueryip()
+local bulkqueryip = client:BulkQueryIP()
 bulkqueryip:load({ id = "example_id" })
 
 -- bulkqueryip:data_get() now returns the loaded bulkqueryip data

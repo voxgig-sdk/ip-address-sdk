@@ -91,7 +91,7 @@ same parameters as `direct()`.
 ## BulkQueryIPEntity
 
 ```lua
-local bulk_query_i_p = client:bulk_query_i_p(nil)
+local bulk_query_i_p = client:BulkQueryIP(nil)
 ```
 
 ### Fields
@@ -110,7 +110,7 @@ local bulk_query_i_p = client:bulk_query_i_p(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:bulk_query_i_p():list()
+local results, err = client:BulkQueryIP():list()
 ```
 
 ### Common Methods
@@ -146,7 +146,7 @@ Return the entity name.
 ## GetCurrentIpEntity
 
 ```lua
-local get_current_ip = client:get_current_ip(nil)
+local get_current_ip = client:GetCurrentIp(nil)
 ```
 
 ### Operations
@@ -156,7 +156,7 @@ local get_current_ip = client:get_current_ip(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:get_current_ip():load({ id = "get_current_ip_id" })
+local result, err = client:GetCurrentIp():load({ id = "get_current_ip_id" })
 ```
 
 ### Common Methods
@@ -192,7 +192,7 @@ Return the entity name.
 ## GetIpIntelligenceEntity
 
 ```lua
-local get_ip_intelligence = client:get_ip_intelligence(nil)
+local get_ip_intelligence = client:GetIpIntelligence(nil)
 ```
 
 ### Fields
@@ -211,7 +211,7 @@ local get_ip_intelligence = client:get_ip_intelligence(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:get_ip_intelligence():load({ id = "get_ip_intelligence_id" })
+local result, err = client:GetIpIntelligence():load({ id = "get_ip_intelligence_id" })
 ```
 
 ### Common Methods

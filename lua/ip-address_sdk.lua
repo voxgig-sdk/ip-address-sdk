@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:bulk_query_i_p():list() / client:bulk_query_i_p():load({ id = ... })
-function IpAddressSDK:bulk_query_i_p(data)
+-- Idiomatic facade: client:BulkQueryIP():list() / client:BulkQueryIP():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpAddressSDK:BulkQueryIP(data)
   local EntityMod = require("entity.bulk_query_i_p_entity")
   if data == nil then
     if self._bulk_query_i_p == nil then
@@ -256,15 +257,10 @@ function IpAddressSDK:bulk_query_i_p(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:bulk_query_i_p() instead.
-function IpAddressSDK:BulkQueryIP(data)
-  local EntityMod = require("entity.bulk_query_i_p_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:get_current_ip():list() / client:get_current_ip():load({ id = ... })
-function IpAddressSDK:get_current_ip(data)
+-- Idiomatic facade: client:GetCurrentIp():list() / client:GetCurrentIp():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpAddressSDK:GetCurrentIp(data)
   local EntityMod = require("entity.get_current_ip_entity")
   if data == nil then
     if self._get_current_ip == nil then
@@ -275,15 +271,10 @@ function IpAddressSDK:get_current_ip(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:get_current_ip() instead.
-function IpAddressSDK:GetCurrentIp(data)
-  local EntityMod = require("entity.get_current_ip_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:get_ip_intelligence():list() / client:get_ip_intelligence():load({ id = ... })
-function IpAddressSDK:get_ip_intelligence(data)
+-- Idiomatic facade: client:GetIpIntelligence():list() / client:GetIpIntelligence():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IpAddressSDK:GetIpIntelligence(data)
   local EntityMod = require("entity.get_ip_intelligence_entity")
   if data == nil then
     if self._get_ip_intelligence == nil then
@@ -291,12 +282,6 @@ function IpAddressSDK:get_ip_intelligence(data)
     end
     return self._get_ip_intelligence
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:get_ip_intelligence() instead.
-function IpAddressSDK:GetIpIntelligence(data)
-  local EntityMod = require("entity.get_ip_intelligence_entity")
   return EntityMod.new(self, data)
 end
 

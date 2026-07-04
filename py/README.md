@@ -31,14 +31,16 @@ from ipaddress_sdk import IpAddressSDK
 client = IpAddressSDK()
 ```
 
-### 2. List bulkqueryips
+### 2. List bulkqueryip records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.bulkqueryip.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    bulkqueryips = client.BulkQueryIP().list({})
+    for bulkqueryip in bulkqueryips:
+        print(bulkqueryip)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = IpAddressSDK.test()
 
-result = client.bulkqueryip.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+bulkqueryip = client.BulkQueryIP().load({"id": "test01"})
+# bulkqueryip contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -247,7 +250,7 @@ API path: `/{ip}`
 
 ### BulkQueryIP
 
-Create an instance: `const bulk_query_i_p = client.bulk_query_i_p`
+Create an instance: `bulk_query_i_p = client.BulkQueryIP()`
 
 #### Operations
 
@@ -266,14 +269,14 @@ Create an instance: `const bulk_query_i_p = client.bulk_query_i_p`
 
 #### Example: List
 
-```ts
-const bulk_query_i_ps = await client.bulk_query_i_p.list()
+```python
+bulk_query_i_ps = client.BulkQueryIP().list({})
 ```
 
 
 ### GetCurrentIp
 
-Create an instance: `const get_current_ip = client.get_current_ip`
+Create an instance: `get_current_ip = client.GetCurrentIp()`
 
 #### Operations
 
@@ -283,14 +286,14 @@ Create an instance: `const get_current_ip = client.get_current_ip`
 
 #### Example: Load
 
-```ts
-const get_current_ip = await client.get_current_ip.load({ id: 'get_current_ip_id' })
+```python
+get_current_ip = client.GetCurrentIp().load({"id": "get_current_ip_id"})
 ```
 
 
 ### GetIpIntelligence
 
-Create an instance: `const get_ip_intelligence = client.get_ip_intelligence`
+Create an instance: `get_ip_intelligence = client.GetIpIntelligence()`
 
 #### Operations
 
@@ -309,8 +312,8 @@ Create an instance: `const get_ip_intelligence = client.get_ip_intelligence`
 
 #### Example: Load
 
-```ts
-const get_ip_intelligence = await client.get_ip_intelligence.load({ id: 'get_ip_intelligence_id' })
+```python
+get_ip_intelligence = client.GetIpIntelligence().load({"id": "get_ip_intelligence_id"})
 ```
 
 
@@ -384,7 +387,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-bulkqueryip = client.bulkqueryip
+bulkqueryip = client.BulkQueryIP()
 bulkqueryip.load({"id": "example_id"})
 
 # bulkqueryip.data_get() now returns the loaded bulkqueryip data

@@ -26,9 +26,11 @@ import { IpAddressSDK } from '@voxgig-sdk/ip-address'
 
 const client = new IpAddressSDK()
 
-// List all bulkqueryips
-const bulkqueryips = await client.bulkqueryip.list()
-console.log(bulkqueryips.data)
+// List all bulkqueryips (returns BulkQueryIP[])
+const bulkqueryips = await client.BulkQueryIP().list()
+for (const bulkqueryip of bulkqueryips) {
+  console.log(bulkqueryip)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -85,9 +87,10 @@ from ipaddress_sdk import IpAddressSDK
 
 client = IpAddressSDK()
 
-# List all bulkqueryips
-bulkqueryips = client.bulkqueryip.list()
-print(bulkqueryips)
+# List all bulkqueryips (returns a list, raises on error)
+bulkqueryips = client.BulkQueryIP().list({})
+for bulkqueryip in bulkqueryips:
+    print(bulkqueryip)
 ```
 
 ### PHP
@@ -98,8 +101,8 @@ require_once 'ipaddress_sdk.php';
 
 $client = new IpAddressSDK();
 
-// List all bulkqueryips (throws on error)
-$bulkqueryips = $client->bulkqueryip()->list();
+// List all bulkqueryips (returns an array; throws on error)
+$bulkqueryips = $client->BulkQueryIP()->list();
 print_r($bulkqueryips);
 ```
 
@@ -122,8 +125,8 @@ require_relative "IpAddress_sdk"
 
 client = IpAddressSDK.new
 
-# List all bulkqueryips
-bulkqueryips = client.bulkqueryip.list
+# List all bulkqueryips (returns an Array; raises on error)
+bulkqueryips = client.BulkQueryIP.list
 puts bulkqueryips
 ```
 
@@ -135,7 +138,7 @@ local sdk = require("ip-address_sdk")
 local client = sdk.new()
 
 -- List all bulkqueryips
-local bulkqueryips, err = client:bulkqueryip():list()
+local bulkqueryips, err = client:BulkQueryIP():list()
 print(bulkqueryips)
 ```
 
@@ -148,22 +151,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = IpAddressSDK.test()
-const result = await client.bulkqueryip.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const bulkqueryip = await client.BulkQueryIP().load({ id: 'test01' })
+// bulkqueryip is a bare BulkQueryIP populated with mock data
+console.log(bulkqueryip)
 ```
 
 ### Python
 
 ```python
 client = IpAddressSDK.test()
-result = client.bulkqueryip.load({"id": "test01"})
+bulkqueryip = client.BulkQueryIP().load({"id": "test01"})
+print(bulkqueryip)
 ```
 
 ### PHP
 
 ```php
-$client = IpAddressSDK::test();
-$result = $client->bulkqueryip()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = IpAddressSDK::test([
+    "entity" => ["bulkqueryip" => ["test01" => ["id" => "test01"]]],
+]);
+$bulkqueryip = $client->BulkQueryIP()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -178,15 +186,18 @@ result, err := client.BulkQueryIP(nil).Load(
 ### Ruby
 
 ```ruby
-client = IpAddressSDK.test
-result = client.bulkqueryip.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = IpAddressSDK.test({
+  "entity" => { "bulkqueryip" => { "test01" => { "id" => "test01" } } },
+})
+bulkqueryip = client.BulkQueryIP.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:bulkqueryip():load({ id = "test01" })
+local result, err = client:BulkQueryIP():load({ id = "test01" })
 ```
 
 ## How it works
@@ -234,6 +245,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 
