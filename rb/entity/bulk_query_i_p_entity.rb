@@ -45,6 +45,7 @@ class BulkQueryIPEntity
     end
   end
 
+  # @return [BulkQueryIP, Hash] the current BulkQueryIP data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class BulkQueryIPEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of BulkQueryIP fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class BulkQueryIPEntity
   
 
   
+  # List BulkQueryIP items matching the given filter.
+  #
+  # @param reqmatch [BulkQueryIPListMatch, Hash, nil] match filter (any subset of BulkQueryIP fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<BulkQueryIP>, Array] the matching BulkQueryIP items; raises IpAddressError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

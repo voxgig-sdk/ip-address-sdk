@@ -85,6 +85,27 @@ func (e *GetCurrentIpEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an GetCurrentIp; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *GetCurrentIpEntity) DataTyped(data ...GetCurrentIp) GetCurrentIp {
+	if len(data) > 0 {
+		return typedFrom[GetCurrentIp](e.Data(asMap(data[0])))
+	}
+	return typedFrom[GetCurrentIp](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through GetCurrentIp (all fields
+// optional at the wire level).
+func (e *GetCurrentIpEntity) MatchTyped(match ...GetCurrentIp) GetCurrentIp {
+	if len(match) > 0 {
+		return typedFrom[GetCurrentIp](e.Match(asMap(match[0])))
+	}
+	return typedFrom[GetCurrentIp](e.Match())
+}
+
 
 func (e *GetCurrentIpEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *GetCurrentIpEntity) Load(reqmatch map[string]any, ctrl map[string]any) 
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// GetCurrentIpLoadMatch and returns an GetCurrentIp. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *GetCurrentIpEntity) LoadTyped(reqmatch GetCurrentIpLoadMatch, ctrl map[string]any) (GetCurrentIp, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return GetCurrentIp{}, err
+	}
+	return typedFrom[GetCurrentIp](res), nil
 }
 
 

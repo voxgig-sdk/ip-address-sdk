@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GetCurrentIp,
+  GetCurrentIpLoadMatch,
+} from '../IpAddressTypes'
 
 // TODO: needs Entity superclass
-class GetCurrentIpEntity extends IpAddressEntityBase {
+class GetCurrentIpEntity extends IpAddressEntityBase<GetCurrentIp> {
 
   constructor(client: IpAddressSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class GetCurrentIpEntity extends IpAddressEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: GetCurrentIpLoadMatch, ctrl?: Control): Promise<GetCurrentIp> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class GetCurrentIpEntity extends IpAddressEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GetCurrentIp> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -52,8 +52,7 @@ class BulkQueryIPEntityTest extends TestCase
             "ips" => $setup["idmap"]["ips01"],
         ];
 
-        [$bulk_query_i_p_ref01_list_result, $err] = $bulk_query_i_p_ref01_ent->list($bulk_query_i_p_ref01_match, null);
-        $this->assertNull($err);
+        $bulk_query_i_p_ref01_list_result = $bulk_query_i_p_ref01_ent->list($bulk_query_i_p_ref01_match, null);
         $this->assertIsArray($bulk_query_i_p_ref01_list_result);
 
     }
@@ -88,7 +87,6 @@ function bulk_query_i_p_basic_setup($extra)
         "IPADDRESS_TEST_BULK_QUERY_I_P_ENTID" => $idmap,
         "IPADDRESS_TEST_LIVE" => "FALSE",
         "IPADDRESS_TEST_EXPLAIN" => "FALSE",
-        "IPADDRESS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +98,6 @@ function bulk_query_i_p_basic_setup($extra)
     if ($env["IPADDRESS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["IPADDRESS_APIKEY"],
             ],
             $extra ?? [],
         ]);

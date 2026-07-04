@@ -4,6 +4,8 @@ import { BulkQueryIPEntity } from './entity/BulkQueryIPEntity'
 import { GetCurrentIpEntity } from './entity/GetCurrentIpEntity'
 import { GetIpIntelligenceEntity } from './entity/GetIpIntelligenceEntity'
 
+export type * from './IpAddressTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -204,18 +206,42 @@ class IpAddressSDK {
 
 
 
+  _bulk_query_i_p?: BulkQueryIPEntity
+
+  // Idiomatic facade: `client.bulk_query_i_p.list()` / `client.bulk_query_i_p.load({ id })`.
+  get bulk_query_i_p(): BulkQueryIPEntity {
+    return (this._bulk_query_i_p ??= new BulkQueryIPEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.bulk_query_i_p` instead. */
   BulkQueryIP(data?: any) {
     const self = this
     return new BulkQueryIPEntity(self,data)
   }
 
 
+  _get_current_ip?: GetCurrentIpEntity
+
+  // Idiomatic facade: `client.get_current_ip.list()` / `client.get_current_ip.load({ id })`.
+  get get_current_ip(): GetCurrentIpEntity {
+    return (this._get_current_ip ??= new GetCurrentIpEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.get_current_ip` instead. */
   GetCurrentIp(data?: any) {
     const self = this
     return new GetCurrentIpEntity(self,data)
   }
 
 
+  _get_ip_intelligence?: GetIpIntelligenceEntity
+
+  // Idiomatic facade: `client.get_ip_intelligence.list()` / `client.get_ip_intelligence.load({ id })`.
+  get get_ip_intelligence(): GetIpIntelligenceEntity {
+    return (this._get_ip_intelligence ??= new GetIpIntelligenceEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.get_ip_intelligence` instead. */
   GetIpIntelligence(data?: any) {
     const self = this
     return new GetIpIntelligenceEntity(self,data)

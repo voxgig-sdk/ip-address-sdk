@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://api.ipquery.io',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -110,7 +106,8 @@ class Config {
                     "name": "id",
                     "orig": "ips",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -248,7 +245,8 @@ class Config {
                     "name": "id",
                     "orig": "ip",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

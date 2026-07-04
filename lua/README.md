@@ -9,12 +9,9 @@ The Lua SDK for the IpAddress API — an entity-oriented client using Lua conven
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-ip-address
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/ip-address-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("ip-address_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("IP-ADDRESS_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List bulkqueryips
 
 ```lua
-local result, err = client:BulkQueryIP():list()
+local result, err = client:bulkqueryip():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -93,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:IpAddress():load({ id = "test01" })
+local result, err = client:bulkqueryip():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -126,8 +121,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-IP-ADDRESS_TEST_LIVE=TRUE
-IP-ADDRESS_APIKEY=<your-key>
+IP_ADDRESS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -150,7 +144,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -254,7 +247,7 @@ API path: `/{ip}`
 
 ### BulkQueryIP
 
-Create an instance: `const bulk_query_i_p = client.BulkQueryIP()`
+Create an instance: `const bulk_query_i_p = client.bulk_query_i_p`
 
 #### Operations
 
@@ -274,13 +267,13 @@ Create an instance: `const bulk_query_i_p = client.BulkQueryIP()`
 #### Example: List
 
 ```ts
-const bulk_query_i_ps = await client.BulkQueryIP().list()
+const bulk_query_i_ps = await client.bulk_query_i_p.list()
 ```
 
 
 ### GetCurrentIp
 
-Create an instance: `const get_current_ip = client.GetCurrentIp()`
+Create an instance: `const get_current_ip = client.get_current_ip`
 
 #### Operations
 
@@ -291,13 +284,13 @@ Create an instance: `const get_current_ip = client.GetCurrentIp()`
 #### Example: Load
 
 ```ts
-const get_current_ip = await client.GetCurrentIp().load({ id: 'get_current_ip_id' })
+const get_current_ip = await client.get_current_ip.load({ id: 'get_current_ip_id' })
 ```
 
 
 ### GetIpIntelligence
 
-Create an instance: `const get_ip_intelligence = client.GetIpIntelligence()`
+Create an instance: `const get_ip_intelligence = client.get_ip_intelligence`
 
 #### Operations
 
@@ -317,7 +310,7 @@ Create an instance: `const get_ip_intelligence = client.GetIpIntelligence()`
 #### Example: Load
 
 ```ts
-const get_ip_intelligence = await client.GetIpIntelligence().load({ id: 'get_ip_intelligence_id' })
+const get_ip_intelligence = await client.get_ip_intelligence.load({ id: 'get_ip_intelligence_id' })
 ```
 
 
@@ -392,11 +385,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local bulkqueryip = client:bulkqueryip()
+bulkqueryip:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- bulkqueryip:data_get() now returns the loaded bulkqueryip data
+-- bulkqueryip:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -70,14 +70,12 @@ function get_ip_intelligence_direct_setup(mockres)
   local env = runner.env_override({
     ["IPADDRESS_TEST_GET_IP_INTELLIGENCE_ENTID"] = {},
     ["IPADDRESS_TEST_LIVE"] = "FALSE",
-    ["IPADDRESS_APIKEY"] = "NONE",
   })
 
   local live = env["IPADDRESS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["IPADDRESS_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -134,7 +133,7 @@ Alias for `IpAddressSDK.test()`.
 ## BulkQueryIPEntity
 
 ```ts
-const bulk_query_i_p = client.BulkQueryIP()
+const bulk_query_i_p = client.bulk_query_i_p
 ```
 
 ### Fields
@@ -153,7 +152,7 @@ const bulk_query_i_p = client.BulkQueryIP()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.BulkQueryIP().list()
+const results = await client.bulk_query_i_p.list()
 ```
 
 ### Common Methods
@@ -187,7 +186,7 @@ Return a copy of the entity options.
 ## GetCurrentIpEntity
 
 ```ts
-const get_current_ip = client.GetCurrentIp()
+const get_current_ip = client.get_current_ip
 ```
 
 ### Operations
@@ -197,7 +196,7 @@ const get_current_ip = client.GetCurrentIp()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetCurrentIp().load({ id: 'get_current_ip_id' })
+const result = await client.get_current_ip.load({ id: 'get_current_ip_id' })
 ```
 
 ### Common Methods
@@ -231,7 +230,7 @@ Return a copy of the entity options.
 ## GetIpIntelligenceEntity
 
 ```ts
-const get_ip_intelligence = client.GetIpIntelligence()
+const get_ip_intelligence = client.get_ip_intelligence
 ```
 
 ### Fields
@@ -250,7 +249,7 @@ const get_ip_intelligence = client.GetIpIntelligence()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetIpIntelligence().load({ id: 'get_ip_intelligence_id' })
+const result = await client.get_ip_intelligence.load({ id: 'get_ip_intelligence_id' })
 ```
 
 ### Common Methods

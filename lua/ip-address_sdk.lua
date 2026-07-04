@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:bulk_query_i_p():list() / client:bulk_query_i_p():load({ id = ... })
+function IpAddressSDK:bulk_query_i_p(data)
+  local EntityMod = require("entity.bulk_query_i_p_entity")
+  if data == nil then
+    if self._bulk_query_i_p == nil then
+      self._bulk_query_i_p = EntityMod.new(self, nil)
+    end
+    return self._bulk_query_i_p
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:bulk_query_i_p() instead.
 function IpAddressSDK:BulkQueryIP(data)
   local EntityMod = require("entity.bulk_query_i_p_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:get_current_ip():list() / client:get_current_ip():load({ id = ... })
+function IpAddressSDK:get_current_ip(data)
+  local EntityMod = require("entity.get_current_ip_entity")
+  if data == nil then
+    if self._get_current_ip == nil then
+      self._get_current_ip = EntityMod.new(self, nil)
+    end
+    return self._get_current_ip
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_current_ip() instead.
 function IpAddressSDK:GetCurrentIp(data)
   local EntityMod = require("entity.get_current_ip_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:get_ip_intelligence():list() / client:get_ip_intelligence():load({ id = ... })
+function IpAddressSDK:get_ip_intelligence(data)
+  local EntityMod = require("entity.get_ip_intelligence_entity")
+  if data == nil then
+    if self._get_ip_intelligence == nil then
+      self._get_ip_intelligence = EntityMod.new(self, nil)
+    end
+    return self._get_ip_intelligence
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_ip_intelligence() instead.
 function IpAddressSDK:GetIpIntelligence(data)
   local EntityMod = require("entity.get_ip_intelligence_entity")
   return EntityMod.new(self, data)

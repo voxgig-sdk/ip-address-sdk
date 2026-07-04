@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch GetCurrentIpLoadMatch
+---@param ctrl? table
+---@return GetCurrentIp
+---@return string? err
 function GetCurrentIpEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -15,9 +15,6 @@ module IpAddressConfig
       },
       "options" => {
         "base" => "https://api.ipquery.io",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -77,6 +74,7 @@ module IpAddressConfig
                         "orig" => "ips",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -215,6 +213,7 @@ module IpAddressConfig
                         "orig" => "ip",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [

@@ -49,8 +49,7 @@ class TestGetCurrentIpEntity:
         # LOAD
         get_current_ip_ref01_ent = client.GetCurrentIp(None)
         get_current_ip_ref01_match_dt0 = {}
-        get_current_ip_ref01_data_dt0_loaded, err = get_current_ip_ref01_ent.load(get_current_ip_ref01_match_dt0, None)
-        assert err is None
+        get_current_ip_ref01_data_dt0_loaded = get_current_ip_ref01_ent.load(get_current_ip_ref01_match_dt0, None)
         assert get_current_ip_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _get_current_ip_basic_setup(extra):
         "IPADDRESS_TEST_GET_CURRENT_IP_ENTID": idmap,
         "IPADDRESS_TEST_LIVE": "FALSE",
         "IPADDRESS_TEST_EXPLAIN": "FALSE",
-        "IPADDRESS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _get_current_ip_basic_setup(extra):
     if env.get("IPADDRESS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("IPADDRESS_APIKEY"),
             },
             extra or {},
         ])

@@ -77,14 +77,12 @@ function bulk_query_i_p_direct_setup(mockres)
   local env = runner.env_override({
     ["IPADDRESS_TEST_BULK_QUERY_I_P_ENTID"] = {},
     ["IPADDRESS_TEST_LIVE"] = "FALSE",
-    ["IPADDRESS_APIKEY"] = "NONE",
   })
 
   local live = env["IPADDRESS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["IPADDRESS_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

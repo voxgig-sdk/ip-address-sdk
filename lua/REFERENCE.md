@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -92,7 +91,7 @@ same parameters as `direct()`.
 ## BulkQueryIPEntity
 
 ```lua
-local bulk_query_i_p = client:BulkQueryIP(nil)
+local bulk_query_i_p = client:bulk_query_i_p(nil)
 ```
 
 ### Fields
@@ -111,7 +110,7 @@ local bulk_query_i_p = client:BulkQueryIP(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:BulkQueryIP():list()
+local results, err = client:bulk_query_i_p():list()
 ```
 
 ### Common Methods
@@ -147,7 +146,7 @@ Return the entity name.
 ## GetCurrentIpEntity
 
 ```lua
-local get_current_ip = client:GetCurrentIp(nil)
+local get_current_ip = client:get_current_ip(nil)
 ```
 
 ### Operations
@@ -157,7 +156,7 @@ local get_current_ip = client:GetCurrentIp(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetCurrentIp():load({ id = "get_current_ip_id" })
+local result, err = client:get_current_ip():load({ id = "get_current_ip_id" })
 ```
 
 ### Common Methods
@@ -193,7 +192,7 @@ Return the entity name.
 ## GetIpIntelligenceEntity
 
 ```lua
-local get_ip_intelligence = client:GetIpIntelligence(nil)
+local get_ip_intelligence = client:get_ip_intelligence(nil)
 ```
 
 ### Fields
@@ -212,7 +211,7 @@ local get_ip_intelligence = client:GetIpIntelligence(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetIpIntelligence():load({ id = "get_ip_intelligence_id" })
+local result, err = client:get_ip_intelligence():load({ id = "get_ip_intelligence_id" })
 ```
 
 ### Common Methods

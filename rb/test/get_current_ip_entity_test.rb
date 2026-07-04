@@ -42,8 +42,7 @@ class GetCurrentIpEntityTest < Minitest::Test
     # LOAD
     get_current_ip_ref01_ent = client.GetCurrentIp(nil)
     get_current_ip_ref01_match_dt0 = {}
-    get_current_ip_ref01_data_dt0_loaded, err = get_current_ip_ref01_ent.load(get_current_ip_ref01_match_dt0, nil)
-    assert_nil err
+    get_current_ip_ref01_data_dt0_loaded = get_current_ip_ref01_ent.load(get_current_ip_ref01_match_dt0, nil)
     assert !get_current_ip_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def get_current_ip_basic_setup(extra)
     "IPADDRESS_TEST_GET_CURRENT_IP_ENTID" => idmap,
     "IPADDRESS_TEST_LIVE" => "FALSE",
     "IPADDRESS_TEST_EXPLAIN" => "FALSE",
-    "IPADDRESS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def get_current_ip_basic_setup(extra)
   if env["IPADDRESS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["IPADDRESS_APIKEY"],
       },
       extra || {},
     ])

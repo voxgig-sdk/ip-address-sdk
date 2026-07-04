@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://api.ipquery.io",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -76,6 +73,7 @@ local function make_config()
                       ["orig"] = "ips",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -214,6 +212,7 @@ local function make_config()
                       ["orig"] = "ip",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {

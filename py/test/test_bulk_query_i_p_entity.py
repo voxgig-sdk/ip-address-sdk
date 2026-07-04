@@ -52,8 +52,7 @@ class TestBulkQueryIPEntity:
             "ips": setup["idmap"]["ips01"],
         }
 
-        bulk_query_i_p_ref01_list_result, err = bulk_query_i_p_ref01_ent.list(bulk_query_i_p_ref01_match, None)
-        assert err is None
+        bulk_query_i_p_ref01_list_result = bulk_query_i_p_ref01_ent.list(bulk_query_i_p_ref01_match, None)
         assert isinstance(bulk_query_i_p_ref01_list_result, list)
 
 
@@ -94,7 +93,6 @@ def _bulk_query_i_p_basic_setup(extra):
         "IPADDRESS_TEST_BULK_QUERY_I_P_ENTID": idmap,
         "IPADDRESS_TEST_LIVE": "FALSE",
         "IPADDRESS_TEST_EXPLAIN": "FALSE",
-        "IPADDRESS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +103,6 @@ def _bulk_query_i_p_basic_setup(extra):
     if env.get("IPADDRESS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("IPADDRESS_APIKEY"),
             },
             extra or {},
         ])

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  BulkQueryIP,
+  BulkQueryIPListMatch,
+} from '../IpAddressTypes'
 
 // TODO: needs Entity superclass
-class BulkQueryIPEntity extends IpAddressEntityBase {
+class BulkQueryIPEntity extends IpAddressEntityBase<BulkQueryIP> {
 
   constructor(client: IpAddressSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class BulkQueryIPEntity extends IpAddressEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: BulkQueryIPListMatch, ctrl?: Control): Promise<BulkQueryIP[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class BulkQueryIPEntity extends IpAddressEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<BulkQueryIP[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

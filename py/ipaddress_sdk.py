@@ -144,16 +144,23 @@ class IpAddressSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class IpAddressSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,25 +212,58 @@ class IpAddressSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def bulk_query_i_p(self):
+        """Idiomatic facade: client.bulk_query_i_p.list() / client.bulk_query_i_p.load({"id": ...})."""
+        from entity.bulk_query_i_p_entity import BulkQueryIPEntity
+        cached = getattr(self, "_bulk_query_i_p", None)
+        if cached is None:
+            cached = BulkQueryIPEntity(self, None)
+            self._bulk_query_i_p = cached
+        return cached
 
     def BulkQueryIP(self, data=None):
+        # Deprecated: use client.bulk_query_i_p instead.
         from entity.bulk_query_i_p_entity import BulkQueryIPEntity
         return BulkQueryIPEntity(self, data)
 
 
+    @property
+    def get_current_ip(self):
+        """Idiomatic facade: client.get_current_ip.list() / client.get_current_ip.load({"id": ...})."""
+        from entity.get_current_ip_entity import GetCurrentIpEntity
+        cached = getattr(self, "_get_current_ip", None)
+        if cached is None:
+            cached = GetCurrentIpEntity(self, None)
+            self._get_current_ip = cached
+        return cached
+
     def GetCurrentIp(self, data=None):
+        # Deprecated: use client.get_current_ip instead.
         from entity.get_current_ip_entity import GetCurrentIpEntity
         return GetCurrentIpEntity(self, data)
 
 
+    @property
+    def get_ip_intelligence(self):
+        """Idiomatic facade: client.get_ip_intelligence.list() / client.get_ip_intelligence.load({"id": ...})."""
+        from entity.get_ip_intelligence_entity import GetIpIntelligenceEntity
+        cached = getattr(self, "_get_ip_intelligence", None)
+        if cached is None:
+            cached = GetIpIntelligenceEntity(self, None)
+            self._get_ip_intelligence = cached
+        return cached
+
     def GetIpIntelligence(self, data=None):
+        # Deprecated: use client.get_ip_intelligence instead.
         from entity.get_ip_intelligence_entity import GetIpIntelligenceEntity
         return GetIpIntelligenceEntity(self, data)
 

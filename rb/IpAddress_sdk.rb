@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'IpAddress_types'
+
 
 class IpAddressSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class IpAddressSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class IpAddressSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue IpAddressError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = IpAddressHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class IpAddressSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,28 +198,49 @@ class IpAddressSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.bulk_query_i_p.list / client.bulk_query_i_p.load({ "id" => ... })
+  def bulk_query_i_p
+    require_relative 'entity/bulk_query_i_p_entity'
+    @bulk_query_i_p ||= BulkQueryIPEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.bulk_query_i_p instead.
   def BulkQueryIP(data = nil)
     require_relative 'entity/bulk_query_i_p_entity'
     BulkQueryIPEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.get_current_ip.list / client.get_current_ip.load({ "id" => ... })
+  def get_current_ip
+    require_relative 'entity/get_current_ip_entity'
+    @get_current_ip ||= GetCurrentIpEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.get_current_ip instead.
   def GetCurrentIp(data = nil)
     require_relative 'entity/get_current_ip_entity'
     GetCurrentIpEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.get_ip_intelligence.list / client.get_ip_intelligence.load({ "id" => ... })
+  def get_ip_intelligence
+    require_relative 'entity/get_ip_intelligence_entity'
+    @get_ip_intelligence ||= GetIpIntelligenceEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.get_ip_intelligence instead.
   def GetIpIntelligence(data = nil)
     require_relative 'entity/get_ip_intelligence_entity'
     GetIpIntelligenceEntity.new(self, data)

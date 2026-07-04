@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch BulkQueryIPListMatch
+---@param ctrl? table
+---@return BulkQueryIP[]
+---@return string? err
 function BulkQueryIPEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

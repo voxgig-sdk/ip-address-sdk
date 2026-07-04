@@ -245,16 +245,25 @@ func (sdk *IpAddressSDK) Direct(fetchargs map[string]any) (map[string]any, error
 }
 
 
+// BulkQueryIP returns a BulkQueryIP entity bound to this client.
+// Idiomatic usage: client.BulkQueryIP(nil).List(nil, nil) or
+// client.BulkQueryIP(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpAddressSDK) BulkQueryIP(data map[string]any) IpAddressEntity {
 	return NewBulkQueryIPEntityFunc(sdk, data)
 }
 
 
+// GetCurrentIp returns a GetCurrentIp entity bound to this client.
+// Idiomatic usage: client.GetCurrentIp(nil).List(nil, nil) or
+// client.GetCurrentIp(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpAddressSDK) GetCurrentIp(data map[string]any) IpAddressEntity {
 	return NewGetCurrentIpEntityFunc(sdk, data)
 }
 
 
+// GetIpIntelligence returns a GetIpIntelligence entity bound to this client.
+// Idiomatic usage: client.GetIpIntelligence(nil).List(nil, nil) or
+// client.GetIpIntelligence(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *IpAddressSDK) GetIpIntelligence(data map[string]any) IpAddressEntity {
 	return NewGetIpIntelligenceEntityFunc(sdk, data)
 }
