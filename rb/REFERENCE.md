@@ -8,7 +8,7 @@ Complete API reference for the IpAddress Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'ip-address_sdk'
+require_relative 'IpAddress_sdk'
 
 client = IpAddressSDK.new(options)
 ```
@@ -101,19 +101,19 @@ bulk_query_i_p = client.BulkQueryIP
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | No |  |
-| `isp` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `risk` | ``$OBJECT`` | No |  |
+| `ip` | `String` | No |  |
+| `isp` | `String` | No |  |
+| `location` | `Hash` | No |  |
+| `risk` | `Hash` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.BulkQueryIP.list(nil)
+results = client.BulkQueryIP.list
 ```
 
 ### Common Methods
@@ -159,7 +159,7 @@ get_current_ip = client.GetCurrentIp
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetCurrentIp.load({ "id" => "get_current_ip_id" })
+result = client.GetCurrentIp.load()
 ```
 
 ### Common Methods
@@ -202,10 +202,10 @@ get_ip_intelligence = client.GetIpIntelligence
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | No |  |
-| `isp` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `risk` | ``$OBJECT`` | No |  |
+| `ip` | `String` | No |  |
+| `isp` | `String` | No |  |
+| `location` | `Hash` | No |  |
+| `risk` | `Hash` | No |  |
 
 ### Operations
 

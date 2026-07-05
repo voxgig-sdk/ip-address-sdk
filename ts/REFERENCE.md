@@ -140,10 +140,10 @@ const bulk_query_i_p = client.BulkQueryIP()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | No |  |
-| `isp` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `risk` | ``$OBJECT`` | No |  |
+| `ip` | `string` | No |  |
+| `isp` | `string` | No |  |
+| `location` | `Record<string, any>` | No |  |
+| `risk` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -196,7 +196,7 @@ const get_current_ip = client.GetCurrentIp()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetCurrentIp().load({ id: 'get_current_ip_id' })
+const result = await client.GetCurrentIp().load()
 ```
 
 ### Common Methods
@@ -237,10 +237,10 @@ const get_ip_intelligence = client.GetIpIntelligence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | No |  |
-| `isp` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `risk` | ``$OBJECT`` | No |  |
+| `ip` | `string` | No |  |
+| `isp` | `string` | No |  |
+| `location` | `Record<string, any>` | No |  |
+| `risk` | `Record<string, any>` | No |  |
 
 ### Operations
 

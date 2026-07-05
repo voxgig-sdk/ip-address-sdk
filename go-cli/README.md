@@ -17,8 +17,6 @@ go build -o ip-address-cli ./...
 ```sh
 # One-shot: arguments form a single AQL expression
 ./ip-address-cli list bulk_query_i_p
-./ip-address-cli load 1 bulk_query_i_p
-./ip-address-cli load '{id:1}' bulk_query_i_p
 
 # REPL
 ./ip-address-cli
@@ -30,7 +28,6 @@ go build -o ip-address-cli ./...
 |----------|----------------------------------------------|----------------------------|
 | `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

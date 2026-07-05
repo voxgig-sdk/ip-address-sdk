@@ -221,19 +221,19 @@ class IpAddressSDK:
 
 
     def BulkQueryIP(self, data=None) -> "BulkQueryIPEntity":
-        """Entity factory: client.BulkQueryIP().list({}) / client.BulkQueryIP().load({"id": ...})."""
+        """Entity factory: client.BulkQueryIP().list() / client.BulkQueryIP().load({"id": ...})."""
         from entity.bulk_query_i_p_entity import BulkQueryIPEntity
         return BulkQueryIPEntity(self, data)
 
 
     def GetCurrentIp(self, data=None) -> "GetCurrentIpEntity":
-        """Entity factory: client.GetCurrentIp().list({}) / client.GetCurrentIp().load({"id": ...})."""
+        """Entity factory: client.GetCurrentIp().list() / client.GetCurrentIp().load({"id": ...})."""
         from entity.get_current_ip_entity import GetCurrentIpEntity
         return GetCurrentIpEntity(self, data)
 
 
     def GetIpIntelligence(self, data=None) -> "GetIpIntelligenceEntity":
-        """Entity factory: client.GetIpIntelligence().list({}) / client.GetIpIntelligence().load({"id": ...})."""
+        """Entity factory: client.GetIpIntelligence().list() / client.GetIpIntelligence().load({"id": ...})."""
         from entity.get_ip_intelligence_entity import GetIpIntelligenceEntity
         return GetIpIntelligenceEntity(self, data)
 

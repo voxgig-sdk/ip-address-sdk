@@ -42,7 +42,7 @@ BulkQueryIPListMatch = Struct.new(
 class GetCurrentIp
 end
 
-# Match filter for GetCurrentIp#load (any subset of GetCurrentIp fields).
+# Request payload for GetCurrentIp#load.
 class GetCurrentIpLoadMatch
 end
 

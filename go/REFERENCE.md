@@ -105,10 +105,10 @@ bulk_query_i_p := client.BulkQueryIP(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | No |  |
-| `isp` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `risk` | ``$OBJECT`` | No |  |
+| `ip` | `string` | No |  |
+| `isp` | `string` | No |  |
+| `location` | `map[string]any` | No |  |
+| `risk` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -157,7 +157,7 @@ get_current_ip := client.GetCurrentIp(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.GetCurrentIp(nil).Load(map[string]any{"id": "get_current_ip_id"}, nil)
+result, err := client.GetCurrentIp(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -194,10 +194,10 @@ get_ip_intelligence := client.GetIpIntelligence(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | No |  |
-| `isp` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `risk` | ``$OBJECT`` | No |  |
+| `ip` | `string` | No |  |
+| `isp` | `string` | No |  |
+| `location` | `map[string]any` | No |  |
+| `risk` | `map[string]any` | No |  |
 
 ### Operations
 

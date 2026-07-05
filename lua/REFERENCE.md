@@ -98,10 +98,10 @@ local bulk_query_i_p = client:BulkQueryIP(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | No |  |
-| `isp` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `risk` | ``$OBJECT`` | No |  |
+| `ip` | `string` | No |  |
+| `isp` | `string` | No |  |
+| `location` | `table` | No |  |
+| `risk` | `table` | No |  |
 
 ### Operations
 
@@ -156,7 +156,7 @@ local get_current_ip = client:GetCurrentIp(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetCurrentIp():load({ id = "get_current_ip_id" })
+local result, err = client:GetCurrentIp():load()
 ```
 
 ### Common Methods
@@ -199,10 +199,10 @@ local get_ip_intelligence = client:GetIpIntelligence(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | No |  |
-| `isp` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `risk` | ``$OBJECT`` | No |  |
+| `ip` | `string` | No |  |
+| `isp` | `string` | No |  |
+| `location` | `table` | No |  |
+| `risk` | `table` | No |  |
 
 ### Operations
 

@@ -8,7 +8,7 @@ Complete API reference for the IpAddress Python SDK.
 ### Constructor
 
 ```python
-from ip-address_sdk import IpAddressSDK
+from ipaddress_sdk import IpAddressSDK
 
 client = IpAddressSDK(options)
 ```
@@ -95,19 +95,19 @@ bulk_query_i_p = client.BulkQueryIP()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | No |  |
-| `isp` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `risk` | ``$OBJECT`` | No |  |
+| `ip` | `str` | No |  |
+| `isp` | `str` | No |  |
+| `location` | `dict` | No |  |
+| `risk` | `dict` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.BulkQueryIP().list({})
+results = client.BulkQueryIP().list()
 for bulk_query_i_p in results:
     print(bulk_query_i_p)
 ```
@@ -154,7 +154,7 @@ get_current_ip = client.GetCurrentIp()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.GetCurrentIp().load({"id": "get_current_ip_id"})
+result = client.GetCurrentIp().load()
 ```
 
 ### Common Methods
@@ -196,10 +196,10 @@ get_ip_intelligence = client.GetIpIntelligence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | No |  |
-| `isp` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `risk` | ``$OBJECT`` | No |  |
+| `ip` | `str` | No |  |
+| `isp` | `str` | No |  |
+| `location` | `dict` | No |  |
+| `risk` | `dict` | No |  |
 
 ### Operations
 

@@ -32,7 +32,7 @@ class GetCurrentIp
 {
 }
 
-/** Match filter for GetCurrentIp#load (any subset of GetCurrentIp fields). */
+/** Request payload for GetCurrentIp#load. */
 class GetCurrentIpLoadMatch
 {
 }

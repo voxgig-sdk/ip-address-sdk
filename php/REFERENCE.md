@@ -8,7 +8,7 @@ Complete API reference for the IpAddress PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/ip-address_sdk.php';
+require_once __DIR__ . '/ipaddress_sdk.php';
 
 $client = new IpAddressSDK($options);
 ```
@@ -53,11 +53,11 @@ Create a new `GetCurrentIpEntity` instance. Pass `null` for no initial data.
 
 Create a new `GetIpIntelligenceEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): IpAddressUtility`
 
 Return a copy of the SDK utility object.
 
@@ -100,36 +100,36 @@ $bulk_query_i_p = $client->BulkQueryIP();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | No |  |
-| `isp` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `risk` | ``$OBJECT`` | No |  |
+| `ip` | `string` | No |  |
+| `isp` | `string` | No |  |
+| `location` | `array` | No |  |
+| `risk` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->BulkQueryIP()->list([]);
+$results = $client->BulkQueryIP()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -138,7 +138,7 @@ Set the entity match criteria.
 Create a new `BulkQueryIPEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -158,24 +158,24 @@ $get_current_ip = $client->GetCurrentIp();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->GetCurrentIp()->load(["id" => "get_current_ip_id"]);
+$result = $client->GetCurrentIp()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -184,7 +184,7 @@ Set the entity match criteria.
 Create a new `GetCurrentIpEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -201,10 +201,10 @@ $get_ip_intelligence = $client->GetIpIntelligence();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | ``$STRING`` | No |  |
-| `isp` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `risk` | ``$OBJECT`` | No |  |
+| `ip` | `string` | No |  |
+| `isp` | `string` | No |  |
+| `location` | `array` | No |  |
+| `risk` | `array` | No |  |
 
 ### Operations
 
@@ -218,19 +218,19 @@ $result = $client->GetIpIntelligence()->load(["id" => "get_ip_intelligence_id"])
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -239,7 +239,7 @@ Set the entity match criteria.
 Create a new `GetIpIntelligenceEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

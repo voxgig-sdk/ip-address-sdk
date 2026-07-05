@@ -25,8 +25,7 @@ type BulkQueryIPListMatch struct {
 type GetCurrentIp struct {
 }
 
-// GetCurrentIpLoadMatch mirrors the get_current_ip fields as an all-optional match
-// filter (Go analog of Partial<GetCurrentIp>).
+// GetCurrentIpLoadMatch is the typed request payload for GetCurrentIp.LoadTyped.
 type GetCurrentIpLoadMatch struct {
 }
 

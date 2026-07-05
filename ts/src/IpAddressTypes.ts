@@ -19,7 +19,8 @@ export interface BulkQueryIPListMatch {
 export interface GetCurrentIp {
 }
 
-export type GetCurrentIpLoadMatch = Partial<GetCurrentIp>
+export interface GetCurrentIpLoadMatch {
+}
 
 export interface GetIpIntelligence {
   ip?: string
