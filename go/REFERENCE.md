@@ -98,7 +98,8 @@ same parameters as `Direct()`.
 ## BulkQueryIPEntity
 
 ```go
-bulk_query_i_p := client.BulkQueryIP(nil)
+bulkQueryIP := client.BulkQueryIP(nil)
+fmt.Println(bulkQueryIP.GetName()) // "bulk_query_i_p"
 ```
 
 ### Fields
@@ -118,6 +119,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.BulkQueryIP(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -147,7 +152,8 @@ Return the entity name.
 ## GetCurrentIpEntity
 
 ```go
-get_current_ip := client.GetCurrentIp(nil)
+getCurrentIp := client.GetCurrentIp(nil)
+fmt.Println(getCurrentIp.GetName()) // "get_current_ip"
 ```
 
 ### Operations
@@ -158,6 +164,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.GetCurrentIp(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -187,7 +197,8 @@ Return the entity name.
 ## GetIpIntelligenceEntity
 
 ```go
-get_ip_intelligence := client.GetIpIntelligence(nil)
+getIpIntelligence := client.GetIpIntelligence(nil)
+fmt.Println(getIpIntelligence.GetName()) // "get_ip_intelligence"
 ```
 
 ### Fields
@@ -207,6 +218,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.GetIpIntelligence(nil).Load(map[string]any{"id": "get_ip_intelligence_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

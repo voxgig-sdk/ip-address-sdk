@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // List bulkqueryip records — the value is the array of records itself.
-    bulkqueryips, err := client.BulkQueryIP(nil).List(nil, nil)
+    // List bulkQueryIP records — the value is the array of records itself.
+    bulkQueryIPs, err := client.BulkQueryIP(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-    for _, item := range bulkqueryips.([]any) {
+    for _, item := range bulkQueryIPs.([]any) {
         fmt.Println(item)
     }
 }
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-bulkqueryip, err := client.BulkQueryIP(nil).List(
+bulkQueryIP, err := client.BulkQueryIP(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(bulkqueryip) // the returned mock data
+fmt.Println(bulkQueryIP) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -251,9 +251,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    bulkqueryip, err := client.BulkQueryIP(nil).List(map[string]any{/* fields */}, nil)
+    bulkQueryIP, err := client.BulkQueryIP(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // bulkqueryip is the returned record
+    // bulkQueryIP is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -302,7 +302,7 @@ API path: `/{ip}`
 
 ### BulkQueryIP
 
-Create an instance: `bulk_query_i_p := client.BulkQueryIP(nil)`
+Create an instance: `bulkQueryIP := client.BulkQueryIP(nil)`
 
 #### Operations
 
@@ -322,17 +322,17 @@ Create an instance: `bulk_query_i_p := client.BulkQueryIP(nil)`
 #### Example: List
 
 ```go
-bulk_query_i_ps, err := client.BulkQueryIP(nil).List(nil, nil)
+bulkQueryIPs, err := client.BulkQueryIP(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(bulk_query_i_ps) // the array of records
+fmt.Println(bulkQueryIPs) // the array of records
 ```
 
 
 ### GetCurrentIp
 
-Create an instance: `get_current_ip := client.GetCurrentIp(nil)`
+Create an instance: `getCurrentIp := client.GetCurrentIp(nil)`
 
 #### Operations
 
@@ -343,17 +343,17 @@ Create an instance: `get_current_ip := client.GetCurrentIp(nil)`
 #### Example: Load
 
 ```go
-get_current_ip, err := client.GetCurrentIp(nil).Load(nil, nil)
+getCurrentIp, err := client.GetCurrentIp(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_current_ip) // the loaded record
+fmt.Println(getCurrentIp) // the loaded record
 ```
 
 
 ### GetIpIntelligence
 
-Create an instance: `get_ip_intelligence := client.GetIpIntelligence(nil)`
+Create an instance: `getIpIntelligence := client.GetIpIntelligence(nil)`
 
 #### Operations
 
@@ -373,11 +373,11 @@ Create an instance: `get_ip_intelligence := client.GetIpIntelligence(nil)`
 #### Example: Load
 
 ```go
-get_ip_intelligence, err := client.GetIpIntelligence(nil).Load(map[string]any{"id": "get_ip_intelligence_id"}, nil)
+getIpIntelligence, err := client.GetIpIntelligence(nil).Load(map[string]any{"id": "get_ip_intelligence_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_ip_intelligence) // the loaded record
+fmt.Println(getIpIntelligence) // the loaded record
 ```
 
 

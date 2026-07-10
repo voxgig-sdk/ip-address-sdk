@@ -15,10 +15,10 @@ main: {
           url: "https://api.ipquery.io"
         }
       ]
+      summary: "IpQuery is a versatile API that provides essential information about an IP address, including geolocation data and VPN detection capabilities."
       termsOfService: "https://ipquery.io/terms"
       title: "IP Address API"
       version: "2.4.0"
+      website: "https://ipquery.io"
     }
   }
-}
-
