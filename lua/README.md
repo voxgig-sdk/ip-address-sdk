@@ -222,9 +222,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local bulk_query_i_p, err = client:BulkQueryIP():load()
+    local get_current_ip, err = client:GetCurrentIp():load()
     if err then error(err) end
-    -- bulk_query_i_p is the loaded record
+    -- get_current_ip is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.

@@ -43,8 +43,8 @@ class IpAddressTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('IPADDRESS_TEST_LIVE');
-        $override = self::getenv('IPADDRESS_TEST_OVERRIDE');
+        $live = self::getenv('IP_ADDRESS_TEST_LIVE');
+        $override = self::getenv('IP_ADDRESS_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class IpAddressTestRunner
             }
         }
 
-        $explain = self::getenv('IPADDRESS_TEST_EXPLAIN');
+        $explain = self::getenv('IP_ADDRESS_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['IPADDRESS_TEST_EXPLAIN'] = $explain;
+            $m['IP_ADDRESS_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

@@ -23,7 +23,7 @@ support (`list`, `load`):
 
 ```ts
 const client = new IpAddressSDK()
-const items = await client.BulkQueryIP().list()
+const items = await client.BulkQueryIP().list({ id: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = IpAddressSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = IpAddressSDK.test({
+  entity: {
+    bulk_query_i_p: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const bulkqueryips = await client.BulkQueryIP().list()
-// bulkqueryips is an array of bare BulkQueryIP records populated with mock data
+// bulkqueryips is an array of BulkQueryIP entities, populated with mock data
+// — call bulkqueryips[0].data() for the record itself
 console.log(bulkqueryips)
 ```
 
@@ -110,8 +119,8 @@ import { IpAddressSDK } from '@voxgig-sdk/ip-address'
 
 const client = new IpAddressSDK()
 
-// List all bulkqueryips (returns BulkQueryIP[])
-const bulkqueryips = await client.BulkQueryIP().list()
+// List all bulkqueryips (returns BulkQueryIPEntity[] — .data() for the record)
+const bulkqueryips = await client.BulkQueryIP().list({ id: "example" })
 for (const bulkqueryip of bulkqueryips) {
   console.log(bulkqueryip)
 }
@@ -172,7 +181,7 @@ from ipaddress_sdk import IpAddressSDK
 client = IpAddressSDK()
 
 # List all bulkqueryips (returns a list, raises on error)
-bulkqueryips = client.BulkQueryIP().list()
+bulkqueryips = client.BulkQueryIP().list({"id": "example"})
 for bulkqueryip in bulkqueryips:
     print(bulkqueryip)
 ```
@@ -345,6 +354,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://ipquery.io](https://ipquery.io)
 

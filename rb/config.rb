@@ -89,6 +89,7 @@ module IpAddressConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ips}",
                   "parts" => [
@@ -142,6 +143,7 @@ module IpAddressConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/",
                   "parts" => [],
@@ -228,6 +230,7 @@ module IpAddressConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{ip}",
                   "parts" => [

@@ -94,6 +94,7 @@ class IpAddressConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ips}',
                   'parts' => [
@@ -147,6 +148,7 @@ class IpAddressConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/',
                   'parts' => [],
@@ -233,6 +235,7 @@ class IpAddressConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}',
                   'parts' => [

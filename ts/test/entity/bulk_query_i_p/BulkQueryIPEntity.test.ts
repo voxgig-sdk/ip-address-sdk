@@ -26,8 +26,8 @@ import {
 describe('BulkQueryIPEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when IPADDRESS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('IPADDRESS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when IP_ADDRESS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('IP_ADDRESS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = IpAddressSDK.test()
@@ -64,7 +64,7 @@ describe('BulkQueryIPEntity', async () => {
     const bulk_query_i_p_ref01_match: any = {}
     bulk_query_i_p_ref01_match['ips'] = setup.idmap['ips01']
 
-    const bulk_query_i_p_ref01_list = await bulk_query_i_p_ref01_ent.list(bulk_query_i_p_ref01_match)
+    const bulk_query_i_p_ref01_list = (await bulk_query_i_p_ref01_ent.list(bulk_query_i_p_ref01_match)).map((e: any) => e.data())
 
 
   })

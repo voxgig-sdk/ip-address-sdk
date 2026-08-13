@@ -26,8 +26,8 @@ import {
 describe('GetCurrentIpEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when IPADDRESS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('IPADDRESS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when IP_ADDRESS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('IP_ADDRESS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = IpAddressSDK.test()
@@ -62,7 +62,7 @@ describe('GetCurrentIpEntity', async () => {
     // LOAD
     const get_current_ip_ref01_ent = client.GetCurrentIp()
     const get_current_ip_ref01_match_dt0: any = {}
-    const get_current_ip_ref01_data_dt0 = await get_current_ip_ref01_ent.load(get_current_ip_ref01_match_dt0)
+    const get_current_ip_ref01_data_dt0 = (await get_current_ip_ref01_ent.load(get_current_ip_ref01_match_dt0)).data()
     assert(null != get_current_ip_ref01_data_dt0)
 
 

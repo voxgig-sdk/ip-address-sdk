@@ -26,8 +26,8 @@ import {
 describe('GetIpIntelligenceEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when IPADDRESS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('IPADDRESS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when IP_ADDRESS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('IP_ADDRESS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = IpAddressSDK.test()

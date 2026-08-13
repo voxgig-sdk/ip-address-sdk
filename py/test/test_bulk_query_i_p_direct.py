@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from ipaddress_sdk.utility.voxgig_struct import voxgig_struct as vs
 from ipaddress_sdk import IpAddressSDK
-from core import helpers
+from ipaddress_sdk.core import helpers
 from test import runner
 
 
@@ -70,11 +70,11 @@ def _bulk_query_i_p_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "IPADDRESS_TEST_BULK_QUERY_I_P_ENTID": {},
-        "IPADDRESS_TEST_LIVE": "FALSE",
+        "IP_ADDRESS_TEST_BULK_QUERY_I_P_ENTID": {},
+        "IP_ADDRESS_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("IPADDRESS_TEST_LIVE") == "TRUE"
+    live = env.get("IP_ADDRESS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

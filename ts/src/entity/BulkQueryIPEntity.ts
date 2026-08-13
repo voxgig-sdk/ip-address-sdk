@@ -37,7 +37,7 @@ class BulkQueryIPEntity extends IpAddressEntityBase<BulkQueryIP> {
 
 
 
-  async list(this: any, reqmatch?: BulkQueryIPListMatch, ctrl?: Control): Promise<BulkQueryIP[]> {
+  async list(this: any, reqmatch?: BulkQueryIPListMatch, ctrl?: Control): Promise<BulkQueryIPEntity[]> {
 
     const utility = this._utility
 

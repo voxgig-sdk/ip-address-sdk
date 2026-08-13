@@ -152,7 +152,7 @@ const bulk_query_i_p = client.BulkQueryIP()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.BulkQueryIP().list()
+const results = await client.BulkQueryIP().list({ id: "example" })
 ```
 
 ### Common Methods

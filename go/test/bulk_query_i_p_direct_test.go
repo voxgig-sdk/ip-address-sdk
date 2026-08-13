@@ -50,9 +50,10 @@ func TestBulkQueryIPDirect(t *testing.T) {
 			"params": params,
 		})
 		if setup.live {
-			// Live mode is lenient: synthetic IDs frequently 4xx and the
-			// list-response shape varies wildly across public APIs. Skip
-			// rather than fail when the call doesn't return a usable list.
+			// Live-mode leniency is a model decision
+			// (main.kit.test.live.strict): synthetic IDs 4xx constantly
+			// against an arbitrary public API, so the default SKIPS here.
+			// A project that owns its test server sets strict and FAILS.
 			if err != nil {
 				t.Skipf("list call failed (likely synthetic IDs against live API): %v", err)
 			}
@@ -116,11 +117,11 @@ func bulk_query_i_pDirectSetup(mockres any) *bulk_query_i_pDirectSetupResult {
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"IPADDRESS_TEST_BULK_QUERY_I_P_ENTID": map[string]any{},
-		"IPADDRESS_TEST_LIVE":    "FALSE",
+		"IP_ADDRESS_TEST_BULK_QUERY_I_P_ENTID": map[string]any{},
+		"IP_ADDRESS_TEST_LIVE":    "FALSE",
 	})
 
-	live := env["IPADDRESS_TEST_LIVE"] == "TRUE"
+	live := env["IP_ADDRESS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
@@ -128,7 +129,7 @@ func bulk_query_i_pDirectSetup(mockres any) *bulk_query_i_pDirectSetupResult {
 		client := sdk.NewIpAddressSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["IPADDRESS_TEST_BULK_QUERY_I_P_ENTID"]; ok {
+		if entidRaw, ok := env["IP_ADDRESS_TEST_BULK_QUERY_I_P_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {

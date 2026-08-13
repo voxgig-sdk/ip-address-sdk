@@ -107,7 +107,7 @@ bulk_query_i_p = client.BulkQueryIP()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.BulkQueryIP().list()
+results = client.BulkQueryIP().list({"id": "example"})
 for bulk_query_i_p in results:
     print(bulk_query_i_p)
 ```

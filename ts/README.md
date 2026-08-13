@@ -35,10 +35,12 @@ const client = new IpAddressSDK()
 
 ### 2. List bulkqueryip records
 
-`list()` resolves to an array of BulkQueryIP objects — iterate it directly:
+`list()` resolves to an array of BulkQueryIP ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
-const bulkqueryips = await client.BulkQueryIP().list()
+const bulkqueryips = await client.BulkQueryIP().list({ id: "example" })
 
 for (const bulkqueryip of bulkqueryips) {
   console.log(bulkqueryip)
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = IpAddressSDK.test()
 
 const bulkqueryip = await client.BulkQueryIP().list()
-// bulkqueryip is a bare entity populated with mock response data
+// bulkqueryip is the entity, populated with mock response data
+// — call bulkqueryip.data() for the record itself
 console.log(bulkqueryip)
 ```
 
@@ -346,7 +349,7 @@ Create an instance: `const bulk_query_i_p = client.BulkQueryIP()`
 #### Example: List
 
 ```ts
-const bulk_query_i_ps = await client.BulkQueryIP().list()
+const bulk_query_i_ps = await client.BulkQueryIP().list({ id: "example" })
 ```
 
 

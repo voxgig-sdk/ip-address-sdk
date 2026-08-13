@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = IpAddressSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 bulkqueryip = client.BulkQueryIP.list()
 puts bulkqueryip
 ```
@@ -315,7 +316,7 @@ Create an instance: `get_current_ip = client.GetCurrentIp`
 #### Example: Load
 
 ```ruby
-# load returns the bare GetCurrentIp record (raises on error).
+# load returns the ENTITY — call data_get for the GetCurrentIp record (raises on error).
 get_current_ip = client.GetCurrentIp.load()
 ```
 
@@ -342,7 +343,7 @@ Create an instance: `get_ip_intelligence = client.GetIpIntelligence`
 #### Example: Load
 
 ```ruby
-# load returns the bare GetIpIntelligence record (raises on error).
+# load returns the ENTITY — call data_get for the GetIpIntelligence record (raises on error).
 get_ip_intelligence = client.GetIpIntelligence.load({ "id" => "get_ip_intelligence_id" })
 ```
 
