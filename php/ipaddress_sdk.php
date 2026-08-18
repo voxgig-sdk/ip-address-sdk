@@ -40,7 +40,7 @@ class IpAddressSDK
         $utility = new IpAddressUtility();
         $this->_utility = $utility;
 
-        $config = IpAddressConfig::make_config();
+        $config = IpAddressConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
