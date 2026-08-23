@@ -140,10 +140,10 @@ const bulk_query_i_p = client.BulkQueryIP()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `string` | No |  |
-| `isp` | `string` | No |  |
-| `location` | `Record<string, any>` | No |  |
-| `risk` | `Record<string, any>` | No |  |
+| `ip` | `string` | No | The queried IP address |
+| `isp` | `string` | No | Internet Service Provider name |
+| `location` | `Record<string, any>` | No | Location information for the IP address |
+| `risk` | `Record<string, any>` | No | Risk assessment data for the IP address |
 
 ### Operations
 
@@ -237,10 +237,10 @@ const get_ip_intelligence = client.GetIpIntelligence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `string` | No |  |
-| `isp` | `string` | No |  |
-| `location` | `Record<string, any>` | No |  |
-| `risk` | `Record<string, any>` | No |  |
+| `ip` | `string` | No | The queried IP address |
+| `isp` | `string` | No | Internet Service Provider name |
+| `location` | `Record<string, any>` | No | Location information for the IP address |
+| `risk` | `Record<string, any>` | No | Risk assessment data for the IP address |
 
 ### Operations
 

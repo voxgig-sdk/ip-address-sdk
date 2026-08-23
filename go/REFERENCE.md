@@ -106,10 +106,10 @@ fmt.Println(bulkQueryIP.GetName()) // "bulk_query_i_p"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `string` | No |  |
-| `isp` | `string` | No |  |
-| `location` | `map[string]any` | No |  |
-| `risk` | `map[string]any` | No |  |
+| `ip` | `string` | No | The queried IP address |
+| `isp` | `string` | No | Internet Service Provider name |
+| `location` | `map[string]any` | No | Location information for the IP address |
+| `risk` | `map[string]any` | No | Risk assessment data for the IP address |
 
 ### Operations
 
@@ -205,10 +205,10 @@ fmt.Println(getIpIntelligence.GetName()) // "get_ip_intelligence"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `string` | No |  |
-| `isp` | `string` | No |  |
-| `location` | `map[string]any` | No |  |
-| `risk` | `map[string]any` | No |  |
+| `ip` | `string` | No | The queried IP address |
+| `isp` | `string` | No | Internet Service Provider name |
+| `location` | `map[string]any` | No | Location information for the IP address |
+| `risk` | `map[string]any` | No | Risk assessment data for the IP address |
 
 ### Operations
 

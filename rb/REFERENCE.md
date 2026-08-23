@@ -101,10 +101,10 @@ bulk_query_i_p = client.BulkQueryIP
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `String` | No |  |
-| `isp` | `String` | No |  |
-| `location` | `Hash` | No |  |
-| `risk` | `Hash` | No |  |
+| `ip` | `String` | No | The queried IP address |
+| `isp` | `String` | No | Internet Service Provider name |
+| `location` | `Hash` | No | Location information for the IP address |
+| `risk` | `Hash` | No | Risk assessment data for the IP address |
 
 ### Operations
 
@@ -202,10 +202,10 @@ get_ip_intelligence = client.GetIpIntelligence
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `String` | No |  |
-| `isp` | `String` | No |  |
-| `location` | `Hash` | No |  |
-| `risk` | `Hash` | No |  |
+| `ip` | `String` | No | The queried IP address |
+| `isp` | `String` | No | Internet Service Provider name |
+| `location` | `Hash` | No | Location information for the IP address |
+| `risk` | `Hash` | No | Risk assessment data for the IP address |
 
 ### Operations
 

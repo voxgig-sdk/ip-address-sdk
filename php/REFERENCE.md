@@ -100,10 +100,10 @@ $bulk_query_i_p = $client->BulkQueryIP();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `string` | No |  |
-| `isp` | `string` | No |  |
-| `location` | `array` | No |  |
-| `risk` | `array` | No |  |
+| `ip` | `string` | No | The queried IP address |
+| `isp` | `string` | No | Internet Service Provider name |
+| `location` | `array` | No | Location information for the IP address |
+| `risk` | `array` | No | Risk assessment data for the IP address |
 
 ### Operations
 
@@ -201,10 +201,10 @@ $get_ip_intelligence = $client->GetIpIntelligence();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `string` | No |  |
-| `isp` | `string` | No |  |
-| `location` | `array` | No |  |
-| `risk` | `array` | No |  |
+| `ip` | `string` | No | The queried IP address |
+| `isp` | `string` | No | Internet Service Provider name |
+| `location` | `array` | No | Location information for the IP address |
+| `risk` | `array` | No | Risk assessment data for the IP address |
 
 ### Operations
 

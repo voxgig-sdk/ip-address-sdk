@@ -1,6 +1,6 @@
-# Entity: bulk_query_i_p
+# Entity: get_ip_intelligence
 
-main: kit: entity: bulk_query_i_p: {
+main: kit: entity: get_ip_intelligence: {
 
   alias: field: {}
 
@@ -8,38 +8,42 @@ main: kit: entity: bulk_query_i_p: {
     {
       name: "ip"
       req: false
+      short: "The queried IP address"
       type: "`$STRING`"
     }
     {
       name: "isp"
       req: false
+      short: "Internet Service Provider name"
       type: "`$STRING`"
     }
     {
       name: "location"
       req: false
+      short: "Location information for the IP address"
       type: "`$OBJECT`"
     }
     {
       name: "risk"
       req: false
+      short: "Risk assessment data for the IP address"
       type: "`$OBJECT`"
     }
   ]
 
-  name: "bulk_query_i_p"
+  name: "get_ip_intelligence"
   op: {
-    list: {
-      name: "list"
+    load: {
+      name: "load"
       points: [
         {
           args: {
             params: [
               {
-                example: "1.1.1.1,8.8.8.8,9.9.9.9"
+                example: "1.1.1.1"
                 kind: "param"
                 name: "id"
-                orig: "ips"
+                orig: "ip"
                 reqd: true
                 type: "`$STRING`"
               }
@@ -56,13 +60,13 @@ main: kit: entity: bulk_query_i_p: {
             ]
           }
           method: "GET"
-          orig: "/{ips}"
+          orig: "/{ip}"
           parts: [
             "{id}"
           ]
           rename: {
             param: {
-              ips: "id"
+              ip: "id"
             }
           }
           select: {

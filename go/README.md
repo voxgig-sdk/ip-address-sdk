@@ -6,7 +6,7 @@ The Golang SDK for the IpAddress API — an entity-oriented client using standar
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.BulkQueryIP(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -264,10 +264,10 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"ip"` |  |
-| `"isp"` |  |
-| `"location"` |  |
-| `"risk"` |  |
+| `"ip"` | The queried IP address |
+| `"isp"` | Internet Service Provider name |
+| `"location"` | Location information for the IP address |
+| `"risk"` | Risk assessment data for the IP address |
 
 Operations: List.
 
@@ -286,10 +286,10 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `"ip"` |  |
-| `"isp"` |  |
-| `"location"` |  |
-| `"risk"` |  |
+| `"ip"` | The queried IP address |
+| `"isp"` | Internet Service Provider name |
+| `"location"` | Location information for the IP address |
+| `"risk"` | Risk assessment data for the IP address |
 
 Operations: Load.
 
@@ -314,10 +314,10 @@ Create an instance: `bulkQueryIP := client.BulkQueryIP(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` |  |
-| `isp` | `string` |  |
-| `location` | `map[string]any` |  |
-| `risk` | `map[string]any` |  |
+| `ip` | `string` | The queried IP address |
+| `isp` | `string` | Internet Service Provider name |
+| `location` | `map[string]any` | Location information for the IP address |
+| `risk` | `map[string]any` | Risk assessment data for the IP address |
 
 #### Example: List
 
@@ -365,10 +365,10 @@ Create an instance: `getIpIntelligence := client.GetIpIntelligence(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` |  |
-| `isp` | `string` |  |
-| `location` | `map[string]any` |  |
-| `risk` | `map[string]any` |  |
+| `ip` | `string` | The queried IP address |
+| `isp` | `string` | Internet Service Provider name |
+| `location` | `map[string]any` | Location information for the IP address |
+| `risk` | `map[string]any` | Risk assessment data for the IP address |
 
 #### Example: Load
 

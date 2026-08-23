@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "IpAddress",
+			"slug": "ip-address",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -35,18 +38,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ip",
+						"short": "The queried IP address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "isp",
+						"short": "Internet Service Provider name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "location",
+						"short": "Location information for the IP address",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "risk",
+						"short": "Risk assessment data for the IP address",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -152,18 +159,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ip",
+						"short": "The queried IP address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "isp",
+						"short": "Internet Service Provider name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "location",
+						"short": "Location information for the IP address",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "risk",
+						"short": "Risk assessment data for the IP address",
 						"type": "`$OBJECT`",
 					},
 				},

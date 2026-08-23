@@ -95,10 +95,10 @@ bulk_query_i_p = client.BulkQueryIP()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `str` | No |  |
-| `isp` | `str` | No |  |
-| `location` | `dict` | No |  |
-| `risk` | `dict` | No |  |
+| `ip` | `str` | No | The queried IP address |
+| `isp` | `str` | No | Internet Service Provider name |
+| `location` | `dict` | No | Location information for the IP address |
+| `risk` | `dict` | No | Risk assessment data for the IP address |
 
 ### Operations
 
@@ -196,10 +196,10 @@ get_ip_intelligence = client.GetIpIntelligence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `str` | No |  |
-| `isp` | `str` | No |  |
-| `location` | `dict` | No |  |
-| `risk` | `dict` | No |  |
+| `ip` | `str` | No | The queried IP address |
+| `isp` | `str` | No | Internet Service Provider name |
+| `location` | `dict` | No | Location information for the IP address |
+| `risk` | `dict` | No | Risk assessment data for the IP address |
 
 ### Operations
 

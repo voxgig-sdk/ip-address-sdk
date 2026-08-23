@@ -235,10 +235,10 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `risk` |  |
+| `ip` | The queried IP address |
+| `isp` | Internet Service Provider name |
+| `location` | Location information for the IP address |
+| `risk` | Risk assessment data for the IP address |
 
 Operations: List.
 
@@ -257,10 +257,10 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `risk` |  |
+| `ip` | The queried IP address |
+| `isp` | Internet Service Provider name |
+| `location` | Location information for the IP address |
+| `risk` | Risk assessment data for the IP address |
 
 Operations: Load.
 
@@ -285,10 +285,10 @@ Create an instance: `local bulk_query_i_p = client:BulkQueryIP(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` |  |
-| `isp` | `string` |  |
-| `location` | `table` |  |
-| `risk` | `table` |  |
+| `ip` | `string` | The queried IP address |
+| `isp` | `string` | Internet Service Provider name |
+| `location` | `table` | Location information for the IP address |
+| `risk` | `table` | Risk assessment data for the IP address |
 
 #### Example: List
 
@@ -328,10 +328,10 @@ Create an instance: `local get_ip_intelligence = client:GetIpIntelligence(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` |  |
-| `isp` | `string` |  |
-| `location` | `table` |  |
-| `risk` | `table` |  |
+| `ip` | `string` | The queried IP address |
+| `isp` | `string` | Internet Service Provider name |
+| `location` | `table` | Location information for the IP address |
+| `risk` | `table` | Risk assessment data for the IP address |
 
 #### Example: Load
 

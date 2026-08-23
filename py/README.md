@@ -246,10 +246,10 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `risk` |  |
+| `ip` | The queried IP address |
+| `isp` | Internet Service Provider name |
+| `location` | Location information for the IP address |
+| `risk` | Risk assessment data for the IP address |
 
 Operations: List.
 
@@ -268,10 +268,10 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `risk` |  |
+| `ip` | The queried IP address |
+| `isp` | Internet Service Provider name |
+| `location` | Location information for the IP address |
+| `risk` | Risk assessment data for the IP address |
 
 Operations: Load.
 
@@ -296,10 +296,10 @@ Create an instance: `bulk_query_i_p = client.BulkQueryIP()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `str` |  |
-| `isp` | `str` |  |
-| `location` | `dict` |  |
-| `risk` | `dict` |  |
+| `ip` | `str` | The queried IP address |
+| `isp` | `str` | Internet Service Provider name |
+| `location` | `dict` | Location information for the IP address |
+| `risk` | `dict` | Risk assessment data for the IP address |
 
 #### Example: List
 
@@ -339,10 +339,10 @@ Create an instance: `get_ip_intelligence = client.GetIpIntelligence()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `str` |  |
-| `isp` | `str` |  |
-| `location` | `dict` |  |
-| `risk` | `dict` |  |
+| `ip` | `str` | The queried IP address |
+| `isp` | `str` | Internet Service Provider name |
+| `location` | `dict` | Location information for the IP address |
+| `risk` | `dict` | Risk assessment data for the IP address |
 
 #### Example: Load
 

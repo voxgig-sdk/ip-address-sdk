@@ -33,6 +33,9 @@ class IpAddressConfig
         return [
             "main" => [
                 "name" => "IpAddress",
+                "slug" => "ip-address",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -57,18 +60,22 @@ class IpAddressConfig
           'fields' => [
             [
               'name' => 'ip',
+              'short' => 'The queried IP address',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'isp',
+              'short' => 'Internet Service Provider name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'location',
+              'short' => 'Location information for the IP address',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'risk',
+              'short' => 'Risk assessment data for the IP address',
               'type' => '`$OBJECT`',
             ],
           ],
@@ -174,18 +181,22 @@ class IpAddressConfig
           'fields' => [
             [
               'name' => 'ip',
+              'short' => 'The queried IP address',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'isp',
+              'short' => 'Internet Service Provider name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'location',
+              'short' => 'Location information for the IP address',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'risk',
+              'short' => 'Risk assessment data for the IP address',
               'type' => '`$OBJECT`',
             ],
           ],

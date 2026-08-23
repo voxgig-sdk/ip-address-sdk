@@ -250,10 +250,10 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `risk` |  |
+| `ip` | The queried IP address |
+| `isp` | Internet Service Provider name |
+| `location` | Location information for the IP address |
+| `risk` | Risk assessment data for the IP address |
 
 Operations: List.
 
@@ -272,10 +272,10 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `risk` |  |
+| `ip` | The queried IP address |
+| `isp` | Internet Service Provider name |
+| `location` | Location information for the IP address |
+| `risk` | Risk assessment data for the IP address |
 
 Operations: Load.
 
@@ -300,10 +300,10 @@ Create an instance: `$bulk_query_i_p = $client->BulkQueryIP();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` |  |
-| `isp` | `string` |  |
-| `location` | `array` |  |
-| `risk` | `array` |  |
+| `ip` | `string` | The queried IP address |
+| `isp` | `string` | Internet Service Provider name |
+| `location` | `array` | Location information for the IP address |
+| `risk` | `array` | Risk assessment data for the IP address |
 
 #### Example: List
 
@@ -345,10 +345,10 @@ Create an instance: `$get_ip_intelligence = $client->GetIpIntelligence();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` |  |
-| `isp` | `string` |  |
-| `location` | `array` |  |
-| `risk` | `array` |  |
+| `ip` | `string` | The queried IP address |
+| `isp` | `string` | Internet Service Provider name |
+| `location` | `array` | Location information for the IP address |
+| `risk` | `array` | Risk assessment data for the IP address |
 
 #### Example: Load
 

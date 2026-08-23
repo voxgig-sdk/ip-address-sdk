@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -291,10 +291,10 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `risk` |  |
+| `ip` | The queried IP address |
+| `isp` | Internet Service Provider name |
+| `location` | Location information for the IP address |
+| `risk` | Risk assessment data for the IP address |
 
 Operations: list.
 
@@ -313,10 +313,10 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `risk` |  |
+| `ip` | The queried IP address |
+| `isp` | Internet Service Provider name |
+| `location` | Location information for the IP address |
+| `risk` | Risk assessment data for the IP address |
 
 Operations: load.
 
@@ -341,10 +341,10 @@ Create an instance: `const bulk_query_i_p = client.BulkQueryIP()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` |  |
-| `isp` | `string` |  |
-| `location` | `Record<string, any>` |  |
-| `risk` | `Record<string, any>` |  |
+| `ip` | `string` | The queried IP address |
+| `isp` | `string` | Internet Service Provider name |
+| `location` | `Record<string, any>` | Location information for the IP address |
+| `risk` | `Record<string, any>` | Risk assessment data for the IP address |
 
 #### Example: List
 
@@ -384,10 +384,10 @@ Create an instance: `const get_ip_intelligence = client.GetIpIntelligence()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` |  |
-| `isp` | `string` |  |
-| `location` | `Record<string, any>` |  |
-| `risk` | `Record<string, any>` |  |
+| `ip` | `string` | The queried IP address |
+| `isp` | `string` | Internet Service Provider name |
+| `location` | `Record<string, any>` | Location information for the IP address |
+| `risk` | `Record<string, any>` | Risk assessment data for the IP address |
 
 #### Example: Load
 

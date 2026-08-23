@@ -240,10 +240,10 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `risk` |  |
+| `ip` | The queried IP address |
+| `isp` | Internet Service Provider name |
+| `location` | Location information for the IP address |
+| `risk` | Risk assessment data for the IP address |
 
 Operations: List.
 
@@ -262,10 +262,10 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `risk` |  |
+| `ip` | The queried IP address |
+| `isp` | Internet Service Provider name |
+| `location` | Location information for the IP address |
+| `risk` | Risk assessment data for the IP address |
 
 Operations: Load.
 
@@ -290,10 +290,10 @@ Create an instance: `bulk_query_i_p = client.BulkQueryIP`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `String` |  |
-| `isp` | `String` |  |
-| `location` | `Hash` |  |
-| `risk` | `Hash` |  |
+| `ip` | `String` | The queried IP address |
+| `isp` | `String` | Internet Service Provider name |
+| `location` | `Hash` | Location information for the IP address |
+| `risk` | `Hash` | Risk assessment data for the IP address |
 
 #### Example: List
 
@@ -335,10 +335,10 @@ Create an instance: `get_ip_intelligence = client.GetIpIntelligence`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `String` |  |
-| `isp` | `String` |  |
-| `location` | `Hash` |  |
-| `risk` | `Hash` |  |
+| `ip` | `String` | The queried IP address |
+| `isp` | `String` | Internet Service Provider name |
+| `location` | `Hash` | Location information for the IP address |
+| `risk` | `Hash` | Risk assessment data for the IP address |
 
 #### Example: Load
 

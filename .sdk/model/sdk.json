@@ -36,24 +36,28 @@
               "active": true,
               "name": "ip",
               "req": false,
+              "short": "The queried IP address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "isp",
               "req": false,
+              "short": "Internet Service Provider name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "location",
               "req": false,
+              "short": "Location information for the IP address",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "risk",
               "req": false,
+              "short": "Risk assessment data for the IP address",
               "type": "`$OBJECT`"
             }
           ],
@@ -176,24 +180,28 @@
               "active": true,
               "name": "ip",
               "req": false,
+              "short": "The queried IP address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "isp",
               "req": false,
+              "short": "Internet Service Provider name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "location",
               "req": false,
+              "short": "Location information for the IP address",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "risk",
               "req": false,
+              "short": "Risk assessment data for the IP address",
               "type": "`$OBJECT`"
             }
           ],
