@@ -10,6 +10,9 @@
 
 # BulkQueryIP entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip
 #   @return [String, nil]
 #
@@ -22,6 +25,7 @@
 # @!attribute [rw] risk
 #   @return [Hash, nil]
 BulkQueryIP = Struct.new(
+  :id,
   :ip,
   :isp,
   :location,
@@ -48,6 +52,9 @@ end
 
 # GetIpIntelligence entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip
 #   @return [String, nil]
 #
@@ -60,6 +67,7 @@ end
 # @!attribute [rw] risk
 #   @return [Hash, nil]
 GetIpIntelligence = Struct.new(
+  :id,
   :ip,
   :isp,
   :location,

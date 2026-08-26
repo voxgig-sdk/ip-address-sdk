@@ -43,7 +43,7 @@ local bulkqueryips, err = client:BulkQueryIP():list()
 if err then error(err) end
 
 for _, item in ipairs(bulkqueryips) do
-  print(item["ip"])
+  print(item["id"], item["ip"])
 end
 ```
 
@@ -235,6 +235,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -257,6 +258,7 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -285,6 +287,7 @@ Create an instance: `local bulk_query_i_p = client:BulkQueryIP(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `table` | Location information for the IP address |
@@ -328,6 +331,7 @@ Create an instance: `local get_ip_intelligence = client:GetIpIntelligence(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `table` | Location information for the IP address |

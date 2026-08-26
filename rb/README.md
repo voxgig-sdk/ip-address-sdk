@@ -37,7 +37,7 @@ begin
   # list returns an Array of BulkQueryIP records — iterate directly.
   bulkqueryips = client.BulkQueryIP.list
   bulkqueryips.each do |item|
-    puts "#{item["ip"]}"
+    puts "#{item["id"]} #{item["ip"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -240,6 +240,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -262,6 +263,7 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -290,6 +292,7 @@ Create an instance: `bulk_query_i_p = client.BulkQueryIP`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `String` |  |
 | `ip` | `String` | The queried IP address |
 | `isp` | `String` | Internet Service Provider name |
 | `location` | `Hash` | Location information for the IP address |
@@ -335,6 +338,7 @@ Create an instance: `get_ip_intelligence = client.GetIpIntelligence`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `String` |  |
 | `ip` | `String` | The queried IP address |
 | `isp` | `String` | Internet Service Provider name |
 | `location` | `Hash` | Location information for the IP address |

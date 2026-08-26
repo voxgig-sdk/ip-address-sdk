@@ -6,6 +6,11 @@ main: kit: entity: bulk_query_i_p: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "ip"
       req: false
       short: "The queried IP address"
@@ -30,6 +35,11 @@ main: kit: entity: bulk_query_i_p: {
       type: "`$OBJECT`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "bulk_query_i_p"
   op: {

@@ -48,9 +48,13 @@ class TestGetIpIntelligenceEntity:
 
         # LOAD
         get_ip_intelligence_ref01_ent = client.GetIpIntelligence(None)
-        get_ip_intelligence_ref01_match_dt0 = {}
+        get_ip_intelligence_ref01_match_dt0 = {
+            "id": get_ip_intelligence_ref01_data["id"],
+        }
         get_ip_intelligence_ref01_data_dt0_loaded = get_ip_intelligence_ref01_ent.load(get_ip_intelligence_ref01_match_dt0, None)
-        assert get_ip_intelligence_ref01_data_dt0_loaded is not None
+        get_ip_intelligence_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(get_ip_intelligence_ref01_data_dt0_loaded))
+        assert get_ip_intelligence_ref01_data_dt0_load_result is not None
+        assert get_ip_intelligence_ref01_data_dt0_load_result["id"] == get_ip_intelligence_ref01_data["id"]
 
 
 

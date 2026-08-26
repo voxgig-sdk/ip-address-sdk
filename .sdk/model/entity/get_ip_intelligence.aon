@@ -6,6 +6,11 @@ main: kit: entity: get_ip_intelligence: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "ip"
       req: false
       short: "The queried IP address"
@@ -30,6 +35,11 @@ main: kit: entity: get_ip_intelligence: {
       type: "`$OBJECT`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "get_ip_intelligence"
   op: {

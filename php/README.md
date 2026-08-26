@@ -38,7 +38,7 @@ try {
     // list() returns an array of BulkQueryIP records — iterate directly.
     $bulkqueryips = $client->BulkQueryIP()->list();
     foreach ($bulkqueryips as $item) {
-        echo $item["ip"] . "\n";
+        echo $item["id"] . " " . $item["ip"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -250,6 +250,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -272,6 +273,7 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -300,6 +302,7 @@ Create an instance: `$bulk_query_i_p = $client->BulkQueryIP();`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `array` | Location information for the IP address |
@@ -345,6 +348,7 @@ Create an instance: `$get_ip_intelligence = $client->GetIpIntelligence();`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `array` | Location information for the IP address |

@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -53,6 +54,10 @@ def make_config():
         "entity": {
       "bulk_query_i_p": {
         "fields": [
+          {
+            "name": "id",
+            "type": "`$STRING`",
+          },
           {
             "name": "ip",
             "short": "The queried IP address",
@@ -174,6 +179,10 @@ def make_config():
       },
       "get_ip_intelligence": {
         "fields": [
+          {
+            "name": "id",
+            "type": "`$STRING`",
+          },
           {
             "name": "ip",
             "short": "The queried IP address",

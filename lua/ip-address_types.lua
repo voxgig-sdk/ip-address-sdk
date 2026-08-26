@@ -7,6 +7,7 @@
 -- edit by hand.
 
 ---@class BulkQueryIP
+---@field id? string
 ---@field ip? string
 ---@field isp? string
 ---@field location? table
@@ -20,6 +21,7 @@
 ---@class GetCurrentIpLoadMatch
 
 ---@class GetIpIntelligence
+---@field id? string
 ---@field ip? string
 ---@field isp? string
 ---@field location? table

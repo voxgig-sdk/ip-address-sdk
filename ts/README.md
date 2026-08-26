@@ -146,7 +146,7 @@ await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -291,6 +291,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -313,6 +314,7 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -341,6 +343,7 @@ Create an instance: `const bulk_query_i_p = client.BulkQueryIP()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `Record<string, any>` | Location information for the IP address |
@@ -384,6 +387,7 @@ Create an instance: `const get_ip_intelligence = client.GetIpIntelligence()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `Record<string, any>` | Location information for the IP address |

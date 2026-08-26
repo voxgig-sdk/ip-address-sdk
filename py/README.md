@@ -246,6 +246,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -268,6 +269,7 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -296,6 +298,7 @@ Create an instance: `bulk_query_i_p = client.BulkQueryIP()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `str` |  |
 | `ip` | `str` | The queried IP address |
 | `isp` | `str` | Internet Service Provider name |
 | `location` | `dict` | Location information for the IP address |
@@ -339,6 +342,7 @@ Create an instance: `get_ip_intelligence = client.GetIpIntelligence()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `str` |  |
 | `ip` | `str` | The queried IP address |
 | `isp` | `str` | Internet Service Provider name |
 | `location` | `dict` | Location information for the IP address |

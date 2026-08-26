@@ -101,6 +101,7 @@ bulk_query_i_p = client.BulkQueryIP
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `ip` | `String` | No | The queried IP address |
 | `isp` | `String` | No | Internet Service Provider name |
 | `location` | `Hash` | No | Location information for the IP address |
@@ -202,6 +203,7 @@ get_ip_intelligence = client.GetIpIntelligence
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `ip` | `String` | No | The queried IP address |
 | `isp` | `String` | No | Internet Service Provider name |
 | `location` | `Hash` | No | Location information for the IP address |

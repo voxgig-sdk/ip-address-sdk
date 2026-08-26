@@ -28,6 +28,7 @@ module IpAddressConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -44,6 +45,10 @@ module IpAddressConfig
       "entity" => {
         "bulk_query_i_p" => {
           "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
             {
               "name" => "ip",
               "short" => "The queried IP address",
@@ -165,6 +170,10 @@ module IpAddressConfig
         },
         "get_ip_intelligence" => {
           "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
             {
               "name" => "ip",
               "short" => "The queried IP address",

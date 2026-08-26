@@ -106,6 +106,7 @@ fmt.Println(bulkQueryIP.GetName()) // "bulk_query_i_p"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `map[string]any` | No | Location information for the IP address |
@@ -205,6 +206,7 @@ fmt.Println(getIpIntelligence.GetName()) // "get_ip_intelligence"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `map[string]any` | No | Location information for the IP address |

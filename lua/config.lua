@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -32,6 +33,10 @@ local function make_config()
     entity = {
       ["bulk_query_i_p"] = {
         ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
           {
             ["name"] = "ip",
             ["short"] = "The queried IP address",
@@ -153,6 +158,10 @@ local function make_config()
       },
       ["get_ip_intelligence"] = {
         ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
           {
             ["name"] = "ip",
             ["short"] = "The queried IP address",

@@ -6,6 +6,7 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface BulkQueryIP {
+  id?: string
   ip?: string
   isp?: string
   location?: Record<string, any>
@@ -23,6 +24,7 @@ export interface GetCurrentIpLoadMatch {
 }
 
 export interface GetIpIntelligence {
+  id?: string
   ip?: string
   isp?: string
   location?: Record<string, any>

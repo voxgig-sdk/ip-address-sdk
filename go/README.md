@@ -264,6 +264,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 | `"ip"` | The queried IP address |
 | `"isp"` | Internet Service Provider name |
 | `"location"` | Location information for the IP address |
@@ -286,6 +287,7 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 | `"ip"` | The queried IP address |
 | `"isp"` | Internet Service Provider name |
 | `"location"` | Location information for the IP address |
@@ -314,6 +316,7 @@ Create an instance: `bulkQueryIP := client.BulkQueryIP(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `map[string]any` | Location information for the IP address |
@@ -365,6 +368,7 @@ Create an instance: `getIpIntelligence := client.GetIpIntelligence(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `map[string]any` | Location information for the IP address |

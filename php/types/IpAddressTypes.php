@@ -15,6 +15,7 @@ declare(strict_types=1);
 /** BulkQueryIP entity data model. */
 class BulkQueryIP
 {
+    public ?string $id = null;
     public ?string $ip = null;
     public ?string $isp = null;
     public ?array $location = null;
@@ -40,6 +41,7 @@ class GetCurrentIpLoadMatch
 /** GetIpIntelligence entity data model. */
 class GetIpIntelligence
 {
+    public ?string $id = null;
     public ?string $ip = null;
     public ?string $isp = null;
     public ?array $location = null;

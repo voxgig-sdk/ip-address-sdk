@@ -17,6 +17,7 @@ from typing import TypedDict, Any
 
 
 class BulkQueryIP(TypedDict, total=False):
+    id: str
     ip: str
     isp: str
     location: dict
@@ -36,6 +37,7 @@ class GetCurrentIpLoadMatch(TypedDict):
 
 
 class GetIpIntelligence(TypedDict, total=False):
+    id: str
     ip: str
     isp: str
     location: dict

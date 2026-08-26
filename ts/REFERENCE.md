@@ -140,6 +140,7 @@ const bulk_query_i_p = client.BulkQueryIP()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `Record<string, any>` | No | Location information for the IP address |
@@ -237,6 +238,7 @@ const get_ip_intelligence = client.GetIpIntelligence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `Record<string, any>` | No | Location information for the IP address |

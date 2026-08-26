@@ -48,9 +48,13 @@ class GetIpIntelligenceEntityTest extends TestCase
 
         // LOAD
         $get_ip_intelligence_ref01_ent = $client->GetIpIntelligence(null);
-        $get_ip_intelligence_ref01_match_dt0 = [];
+        $get_ip_intelligence_ref01_match_dt0 = [
+            "id" => $get_ip_intelligence_ref01_data["id"],
+        ];
         $get_ip_intelligence_ref01_data_dt0_loaded = $get_ip_intelligence_ref01_ent->load($get_ip_intelligence_ref01_match_dt0, null);
-        $this->assertNotNull($get_ip_intelligence_ref01_data_dt0_loaded);
+        $get_ip_intelligence_ref01_data_dt0_load_result = Helpers::to_map(is_object($get_ip_intelligence_ref01_data_dt0_loaded) && method_exists($get_ip_intelligence_ref01_data_dt0_loaded, 'data_get') ? $get_ip_intelligence_ref01_data_dt0_loaded->data_get() : $get_ip_intelligence_ref01_data_dt0_loaded);
+        $this->assertNotNull($get_ip_intelligence_ref01_data_dt0_load_result);
+        $this->assertEquals($get_ip_intelligence_ref01_data_dt0_load_result["id"], $get_ip_intelligence_ref01_data["id"]);
 
     }
 }

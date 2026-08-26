@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -71,6 +72,10 @@ class Config {
   entity = {
     "bulk_query_i_p": {
       "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        },
         {
           "name": "ip",
           "short": "The queried IP address",
@@ -192,6 +197,10 @@ class Config {
     },
     "get_ip_intelligence": {
       "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        },
         {
           "name": "ip",
           "short": "The queried IP address",

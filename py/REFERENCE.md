@@ -95,6 +95,7 @@ bulk_query_i_p = client.BulkQueryIP()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `str` | No |  |
 | `ip` | `str` | No | The queried IP address |
 | `isp` | `str` | No | Internet Service Provider name |
 | `location` | `dict` | No | Location information for the IP address |
@@ -196,6 +197,7 @@ get_ip_intelligence = client.GetIpIntelligence()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `str` | No |  |
 | `ip` | `str` | No | The queried IP address |
 | `isp` | `str` | No | Internet Service Provider name |
 | `location` | `dict` | No | Location information for the IP address |

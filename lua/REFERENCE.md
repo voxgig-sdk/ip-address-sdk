@@ -98,6 +98,7 @@ local bulk_query_i_p = client:BulkQueryIP(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `table` | No | Location information for the IP address |
@@ -199,6 +200,7 @@ local get_ip_intelligence = client:GetIpIntelligence(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `table` | No | Location information for the IP address |

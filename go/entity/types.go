@@ -14,6 +14,7 @@ import (
 
 // BulkQueryIP is the typed data model for the bulk_query_i_p entity.
 type BulkQueryIP struct {
+	Id *string `json:"id,omitempty"`
 	Ip *string `json:"ip,omitempty"`
 	Isp *string `json:"isp,omitempty"`
 	Location *map[string]any `json:"location,omitempty"`
@@ -35,6 +36,7 @@ type GetCurrentIpLoadMatch struct {
 
 // GetIpIntelligence is the typed data model for the get_ip_intelligence entity.
 type GetIpIntelligence struct {
+	Id *string `json:"id,omitempty"`
 	Ip *string `json:"ip,omitempty"`
 	Isp *string `json:"isp,omitempty"`
 	Location *map[string]any `json:"location,omitempty"`

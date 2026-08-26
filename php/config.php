@@ -42,6 +42,7 @@ class IpAddressConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -58,6 +59,10 @@ class IpAddressConfig
             "entity" => [
         'bulk_query_i_p' => [
           'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
             [
               'name' => 'ip',
               'short' => 'The queried IP address',
@@ -179,6 +184,10 @@ class IpAddressConfig
         ],
         'get_ip_intelligence' => [
           'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
             [
               'name' => 'ip',
               'short' => 'The queried IP address',
