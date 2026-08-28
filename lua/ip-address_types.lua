@@ -15,10 +15,12 @@
 
 ---@class BulkQueryIPListMatch
 ---@field id string
+---@field format? string
 
 ---@class GetCurrentIp
 
 ---@class GetCurrentIpLoadMatch
+---@field format? string
 
 ---@class GetIpIntelligence
 ---@field id? string
@@ -29,6 +31,7 @@
 
 ---@class GetIpIntelligenceLoadMatch
 ---@field id string
+---@field format? string
 
 local M = {}
 

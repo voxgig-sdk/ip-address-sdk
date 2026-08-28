@@ -26,6 +26,7 @@ class BulkQueryIP
 class BulkQueryIPListMatch
 {
     public string $id;
+    public ?string $format = null;
 }
 
 /** GetCurrentIp entity data model. */
@@ -36,6 +37,7 @@ class GetCurrentIp
 /** Request payload for GetCurrentIp#load. */
 class GetCurrentIpLoadMatch
 {
+    public ?string $format = null;
 }
 
 /** GetIpIntelligence entity data model. */
@@ -52,5 +54,6 @@ class GetIpIntelligence
 class GetIpIntelligenceLoadMatch
 {
     public string $id;
+    public ?string $format = null;
 }
 

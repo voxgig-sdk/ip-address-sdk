@@ -24,6 +24,7 @@ type BulkQueryIP struct {
 // BulkQueryIPListMatch is the typed request payload for BulkQueryIP.ListTyped.
 type BulkQueryIPListMatch struct {
 	Id string `json:"id"`
+	Format *string `json:"format,omitempty"`
 }
 
 // GetCurrentIp is the typed data model for the get_current_ip entity.
@@ -32,6 +33,7 @@ type GetCurrentIp struct {
 
 // GetCurrentIpLoadMatch is the typed request payload for GetCurrentIp.LoadTyped.
 type GetCurrentIpLoadMatch struct {
+	Format *string `json:"format,omitempty"`
 }
 
 // GetIpIntelligence is the typed data model for the get_ip_intelligence entity.
@@ -46,6 +48,7 @@ type GetIpIntelligence struct {
 // GetIpIntelligenceLoadMatch is the typed request payload for GetIpIntelligence.LoadTyped.
 type GetIpIntelligenceLoadMatch struct {
 	Id string `json:"id"`
+	Format *string `json:"format,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

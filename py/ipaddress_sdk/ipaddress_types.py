@@ -24,16 +24,20 @@ class BulkQueryIP(TypedDict, total=False):
     risk: dict
 
 
-class BulkQueryIPListMatch(TypedDict):
+class BulkQueryIPListMatchRequired(TypedDict):
     id: str
+
+
+class BulkQueryIPListMatch(BulkQueryIPListMatchRequired, total=False):
+    format: str
 
 
 class GetCurrentIp(TypedDict):
     pass
 
 
-class GetCurrentIpLoadMatch(TypedDict):
-    pass
+class GetCurrentIpLoadMatch(TypedDict, total=False):
+    format: str
 
 
 class GetIpIntelligence(TypedDict, total=False):
@@ -44,5 +48,9 @@ class GetIpIntelligence(TypedDict, total=False):
     risk: dict
 
 
-class GetIpIntelligenceLoadMatch(TypedDict):
+class GetIpIntelligenceLoadMatchRequired(TypedDict):
     id: str
+
+
+class GetIpIntelligenceLoadMatch(GetIpIntelligenceLoadMatchRequired, total=False):
+    format: str
