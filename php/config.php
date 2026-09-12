@@ -84,6 +84,10 @@ class IpAddressConfig
               'type' => '`$OBJECT`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'bulk_query_i_p',
           'op' => [
             'list' => [
@@ -115,12 +119,14 @@ class IpAddressConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ips}',
-                  'parts' => [
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'ips' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -132,6 +138,9 @@ class IpAddressConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    '{id}',
                   ],
                 ],
               ],
@@ -164,7 +173,7 @@ class IpAddressConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/',
-                  'parts' => [],
+                  'segments' => [],
                   'select' => [
                     'exist' => [
                       'format',
@@ -174,6 +183,7 @@ class IpAddressConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [],
                 ],
               ],
             ],
@@ -209,6 +219,10 @@ class IpAddressConfig
               'type' => '`$OBJECT`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'get_ip_intelligence',
           'op' => [
             'load' => [
@@ -240,12 +254,14 @@ class IpAddressConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}',
-                  'parts' => [
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'ip' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -257,6 +273,9 @@ class IpAddressConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    '{id}',
                   ],
                 ],
               ],

@@ -71,14 +71,16 @@ main: kit: entity: get_ip_intelligence: {
           }
           method: "GET"
           orig: "/{ip}"
-          parts: [
-            "{id}"
-          ]
           rename: {
             param: {
               ip: "id"
             }
           }
+          segments: [
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "format"

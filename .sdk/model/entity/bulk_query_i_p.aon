@@ -71,14 +71,16 @@ main: kit: entity: bulk_query_i_p: {
           }
           method: "GET"
           orig: "/{ips}"
-          parts: [
-            "{id}"
-          ]
           rename: {
             param: {
               ips: "id"
             }
           }
+          segments: [
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "format"
