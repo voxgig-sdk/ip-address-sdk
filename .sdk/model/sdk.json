@@ -1063,7 +1063,7 @@
             "registry": {
               "active": false,
               "name": "npm",
-              "package": "",
+              "package": "@voxgig-sdk/ip-address-sdk",
               "state": "pending",
               "url": "https://registry.npmjs.org",
               "vault": {

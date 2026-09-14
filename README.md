@@ -105,7 +105,7 @@ local results, err = client:BulkQueryIP():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ip-address` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ip-address-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/releases) |
 | Python | `voxgig-sdk-ip-address` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/releases) |
 | PHP | `voxgig-sdk/ip-address` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/ip-address-sdk/go` | `go get github.com/voxgig-sdk/ip-address-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:BulkQueryIP():list()
 ### TypeScript
 
 ```ts
-import { IpAddressSDK } from '@voxgig-sdk/ip-address'
+import { IpAddressSDK } from '@voxgig-sdk/ip-address-sdk'
 
 const client = new IpAddressSDK()
 
