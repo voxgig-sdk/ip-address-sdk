@@ -4,7 +4,10 @@ declare(strict_types=1);
 // IpAddress SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class IpAddressFeatures
@@ -14,8 +17,14 @@ class IpAddressFeatures
         switch ($name) {
             case "base":
                 return new IpAddressBaseFeature();
+            case "ratelimit":
+                return new IpAddressRatelimitFeature();
+            case "retry":
+                return new IpAddressRetryFeature();
             case "test":
                 return new IpAddressTestFeature();
+            case "timeout":
+                return new IpAddressTimeoutFeature();
             default:
                 return new IpAddressBaseFeature();
         }
@@ -31,7 +40,10 @@ class IpAddressFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

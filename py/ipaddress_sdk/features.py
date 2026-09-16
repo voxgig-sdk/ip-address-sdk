@@ -1,12 +1,18 @@
 # IpAddress SDK feature factory
 
 from ipaddress_sdk.feature.base_feature import IpAddressBaseFeature
+from ipaddress_sdk.feature.ratelimit_feature import IpAddressRatelimitFeature
+from ipaddress_sdk.feature.retry_feature import IpAddressRetryFeature
 from ipaddress_sdk.feature.test_feature import IpAddressTestFeature
+from ipaddress_sdk.feature.timeout_feature import IpAddressTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: IpAddressBaseFeature(),
+    "ratelimit": lambda: IpAddressRatelimitFeature(),
+    "retry": lambda: IpAddressRetryFeature(),
     "test": lambda: IpAddressTestFeature(),
+    "timeout": lambda: IpAddressTimeoutFeature(),
 }
 
 
