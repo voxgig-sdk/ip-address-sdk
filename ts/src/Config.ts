@@ -127,15 +127,15 @@ class Config {
 
     entity: {
       
-      bulk_query_i_p: {
-      },
-
-      get_current_ip: {
-      },
-
-      get_ip_intelligence: {
-      },
-
+        bulk_query_i_p: {
+        },
+  
+        get_current_ip: {
+        },
+  
+        get_ip_intelligence: {
+        },
+  
     }
   }
 

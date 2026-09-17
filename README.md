@@ -105,12 +105,12 @@ local results, err = client:BulkQueryIP():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ip-address-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/releases) |
-| Python | `voxgig-sdk-ip-address` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/releases) |
-| PHP | `voxgig-sdk/ip-address` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ip-address-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/tags) |
+| Python | `voxgig-sdk-ip-address` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/tags) |
+| PHP | `voxgig-sdk/ip-address` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/ip-address-sdk/go` | `go get github.com/voxgig-sdk/ip-address-sdk/go@latest` |
-| Ruby | `voxgig-sdk-ip-address` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/releases) |
-| Lua | `voxgig-sdk-ip-address` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/releases) |
+| Ruby | `voxgig-sdk-ip-address` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/tags) |
+| Lua | `voxgig-sdk-ip-address` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-address-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/ip-address-sdk/go-cli` | `go install github.com/voxgig-sdk/ip-address-sdk/go-cli/cmd/ip-address@latest` |
 | Go MCP server | `github.com/voxgig-sdk/ip-address-sdk/go-mcp` | `go get github.com/voxgig-sdk/ip-address-sdk/go-mcp@latest` |
 

@@ -1,5 +1,5 @@
 # Entity Models
 
-@"bulk_query_i_p.aon"
-@"get_current_ip.aon"
-@"get_ip_intelligence.aon"
+@"./bulk_query_i_p.aon"
+@"./get_current_ip.aon"
+@"./get_ip_intelligence.aon"
