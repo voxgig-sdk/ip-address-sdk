@@ -2,13 +2,13 @@
 
 # Typed models for the IpAddress SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Member types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Member types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Ruby types are unenforced; these YARD
 # annotations document the shapes. Do not edit by hand.
 
-# BulkQueryIP entity data model.
+# BulkQueryIp entity data model.
 #
 # @!attribute [rw] id
 #   @return [String, nil]
@@ -24,7 +24,7 @@
 #
 # @!attribute [rw] risk
 #   @return [Hash, nil]
-BulkQueryIP = Struct.new(
+BulkQueryIp = Struct.new(
   :id,
   :ip,
   :isp,
@@ -33,14 +33,14 @@ BulkQueryIP = Struct.new(
   keyword_init: true
 )
 
-# Request payload for BulkQueryIP#list.
+# Request payload for BulkQueryIp#list.
 #
 # @!attribute [rw] id
 #   @return [String]
 #
 # @!attribute [rw] format
 #   @return [String, nil]
-BulkQueryIPListMatch = Struct.new(
+BulkQueryIpListMatch = Struct.new(
   :id,
   :format,
   keyword_init: true

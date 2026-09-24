@@ -289,10 +289,10 @@ class IpAddressSDK
   end
 
 
-  # Canonical facade: client.BulkQueryIP.list / client.BulkQueryIP.load({ "id" => ... })
-  def BulkQueryIP(data = nil)
-    require_relative 'entity/bulk_query_i_p_entity'
-    BulkQueryIPEntity.new(self, data)
+  # Canonical facade: client.BulkQueryIp.list / client.BulkQueryIp.load({ "id" => ... })
+  def BulkQueryIp(data = nil)
+    require_relative 'entity/bulk_query_ip_entity'
+    BulkQueryIpEntity.new(self, data)
   end
 
 

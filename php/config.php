@@ -105,82 +105,94 @@ class IpAddressConfig
           'content-type' => 'application/json',
         ],
                 "entity" => [
-                    "bulk_query_i_p" => [],
+                    "bulk_query_ip" => [],
                     "get_current_ip" => [],
                     "get_ip_intelligence" => [],
                 ],
             ],
             "entity" => [
-        'bulk_query_i_p' => [
+        'bulk_query_ip' => [
           'fields' => [
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'ip',
-              'short' => 'The queried IP address',
+              'title' => 'Ip',
               'type' => '`$STRING`',
+              'short' => 'The queried IP address',
             ],
             [
               'name' => 'isp',
-              'short' => 'Internet Service Provider name',
+              'title' => 'Isp',
               'type' => '`$STRING`',
+              'short' => 'Internet Service Provider name',
             ],
             [
               'name' => 'location',
-              'short' => 'Location information for the IP address',
+              'title' => 'Location',
               'type' => '`$OBJECT`',
+              'short' => 'Location information for the IP address',
             ],
             [
               'name' => 'risk',
-              'short' => 'Risk assessment data for the IP address',
+              'title' => 'Risk',
               'type' => '`$OBJECT`',
+              'short' => 'Risk assessment data for the IP address',
             ],
           ],
           'id' => [
             'field' => 'id',
             'name' => 'id',
           ],
-          'name' => 'bulk_query_i_p',
+          'name' => 'bulk_query_ip',
           'op' => [
             'list' => [
               'input' => 'data',
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'example' => '1.1.1.1,8.8.8.8,9.9.9.9',
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'ips',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                    'query' => [
-                      [
-                        'example' => 'json',
-                        'kind' => 'query',
-                        'name' => 'format',
-                        'orig' => 'format',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ips}',
+                  'segments' => [
+                    [
+                      'var' => 'id',
+                    ],
+                  ],
+                  'parts' => [
+                    '{id}',
+                  ],
                   'rename' => [
                     'param' => [
                       'ips' => 'id',
                     ],
                   ],
-                  'segments' => [
-                    [
-                      'var' => 'id',
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'ips',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                        'example' => '1.1.1.1,8.8.8.8,9.9.9.9',
+                      ],
+                    ],
+                    'query' => [
+                      [
+                        'name' => 'format',
+                        'orig' => 'format',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'json',
+                      ],
                     ],
                   ],
                   'select' => [
@@ -188,13 +200,6 @@ class IpAddressConfig
                       'format',
                       'id',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    '{id}',
                   ],
                 ],
               ],
@@ -213,31 +218,32 @@ class IpAddressConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'example' => 'text',
-                        'kind' => 'query',
-                        'name' => 'format',
-                        'orig' => 'format',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/',
                   'segments' => [],
+                  'parts' => [],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'format',
+                        'orig' => 'format',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'text',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'format',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [],
                 ],
               ],
             ],
@@ -250,27 +256,32 @@ class IpAddressConfig
           'fields' => [
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'ip',
-              'short' => 'The queried IP address',
+              'title' => 'Ip',
               'type' => '`$STRING`',
+              'short' => 'The queried IP address',
             ],
             [
               'name' => 'isp',
-              'short' => 'Internet Service Provider name',
+              'title' => 'Isp',
               'type' => '`$STRING`',
+              'short' => 'Internet Service Provider name',
             ],
             [
               'name' => 'location',
-              'short' => 'Location information for the IP address',
+              'title' => 'Location',
               'type' => '`$OBJECT`',
+              'short' => 'Location information for the IP address',
             ],
             [
               'name' => 'risk',
-              'short' => 'Risk assessment data for the IP address',
+              'title' => 'Risk',
               'type' => '`$OBJECT`',
+              'short' => 'Risk assessment data for the IP address',
             ],
           ],
           'id' => [
@@ -284,38 +295,45 @@ class IpAddressConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'example' => '1.1.1.1',
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'ip',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                    'query' => [
-                      [
-                        'example' => 'json',
-                        'kind' => 'query',
-                        'name' => 'format',
-                        'orig' => 'format',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{ip}',
+                  'segments' => [
+                    [
+                      'var' => 'id',
+                    ],
+                  ],
+                  'parts' => [
+                    '{id}',
+                  ],
                   'rename' => [
                     'param' => [
                       'ip' => 'id',
                     ],
                   ],
-                  'segments' => [
-                    [
-                      'var' => 'id',
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'ip',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                        'example' => '1.1.1.1',
+                      ],
+                    ],
+                    'query' => [
+                      [
+                        'name' => 'format',
+                        'orig' => 'format',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'json',
+                      ],
                     ],
                   ],
                   'select' => [
@@ -323,13 +341,6 @@ class IpAddressConfig
                       'format',
                       'id',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    '{id}',
                   ],
                 ],
               ],

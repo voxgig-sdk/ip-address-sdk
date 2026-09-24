@@ -76,7 +76,7 @@ _CLIENT_VARS = ("client", "sdk")
 
 # The API's capitalised semantic entities -> lowercase fixture key.
 _ENTITIES = {
-    "BulkQueryIP": "bulk_query_i_p",
+    "BulkQueryIp": "bulk_query_ip",
     "GetCurrentIp": "get_current_ip",
     "GetIpIntelligence": "get_ip_intelligence",
 }

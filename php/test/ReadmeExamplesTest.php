@@ -40,7 +40,7 @@ class ReadmeExamplesTest extends TestCase
 
     // Entity accessor (\$client->Name()) => fixture storage key (lowercase name).
     private const ENTITIES = [
-        "BulkQueryIP" => "bulk_query_i_p",
+        "BulkQueryIp" => "bulk_query_ip",
         "GetCurrentIp" => "get_current_ip",
         "GetIpIntelligence" => "get_ip_intelligence",
     ];

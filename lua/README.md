@@ -4,7 +4,7 @@
 
 The Lua SDK for the IpAddress API — an entity-oriented client using Lua conventions.
 
-It exposes the API as capitalised, semantic **Entities** — e.g. `client:BulkQueryIP()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:BulkQueryIp()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
@@ -39,11 +39,11 @@ Entity operations return `(value, err)`. For `list`, `value` is the
 array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local bulkqueryips, err = client:BulkQueryIP():list()
+local bulkqueryips, err = client:BulkQueryIp():list()
 if err then error(err) end
 
 for _, item in ipairs(bulkqueryips) do
-  print(item["id"], item["ip"])
+  print(item["id"])
 end
 ```
 
@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local bulkqueryips, err = client:BulkQueryIP():list()
+local bulkqueryips, err = client:BulkQueryIp():list()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:BulkQueryIP():list()
+local result, err = client:BulkQueryIp():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -191,7 +191,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `BulkQueryIP` | `(data) -> BulkQueryIPEntity` | Create a BulkQueryIP entity instance. |
+| `BulkQueryIp` | `(data) -> BulkQueryIpEntity` | Create a BulkQueryIp entity instance. |
 | `GetCurrentIp` | `(data) -> GetCurrentIpEntity` | Create a GetCurrentIp entity instance. |
 | `GetIpIntelligence` | `(data) -> GetIpIntelligenceEntity` | Create a GetIpIntelligence entity instance. |
 
@@ -231,7 +231,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 ### Entities
 
-#### BulkQueryIP
+#### BulkQueryIp
 
 | Field | Description |
 | --- | --- |
@@ -273,9 +273,9 @@ API path: `/{ip}`
 ## Entities
 
 
-### BulkQueryIP
+### BulkQueryIp
 
-Create an instance: `local bulk_query_i_p = client:BulkQueryIP(nil)`
+Create an instance: `local bulk_query_ip = client:BulkQueryIp(nil)`
 
 #### Operations
 
@@ -296,7 +296,7 @@ Create an instance: `local bulk_query_i_p = client:BulkQueryIP(nil)`
 #### Example: List
 
 ```lua
-local bulk_query_i_ps, err = client:BulkQueryIP():list()
+local bulk_query_ips, err = client:BulkQueryIp():list()
 ```
 
 
@@ -505,7 +505,7 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local bulkqueryip = client:BulkQueryIP()
+local bulkqueryip = client:BulkQueryIp()
 bulkqueryip:list()
 
 -- bulkqueryip:data_get() now returns the bulkqueryip data from the last list

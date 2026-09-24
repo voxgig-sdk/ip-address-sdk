@@ -48,9 +48,9 @@ const client = IpAddressSDK.test()
 
 ### Instance Methods
 
-#### `BulkQueryIP(data?: object)`
+#### `BulkQueryIp(data?: object)`
 
-Create a new `BulkQueryIP` entity instance.
+Create a new `BulkQueryIp` entity instance.
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ Create a new `BulkQueryIP` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `BulkQueryIPEntity` instance.
+**Returns:** `BulkQueryIpEntity` instance.
 
 #### `GetCurrentIp(data?: object)`
 
@@ -130,10 +130,10 @@ Alias for `IpAddressSDK.test()`.
 
 ---
 
-## BulkQueryIPEntity
+## BulkQueryIpEntity
 
 ```ts
-const bulk_query_i_p = client.BulkQueryIP()
+const bulk_query_ip = client.BulkQueryIp()
 ```
 
 ### Fields
@@ -153,7 +153,7 @@ const bulk_query_i_p = client.BulkQueryIP()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.BulkQueryIP().list({ id: "example" })
+const results = await client.BulkQueryIp().list({ id: "example" })
 ```
 
 ### Common Methods
@@ -170,7 +170,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `BulkQueryIPEntity` instance with the same client and
+Create a new `BulkQueryIpEntity` instance with the same client and
 options.
 
 #### `client()`

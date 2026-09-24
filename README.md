@@ -14,20 +14,20 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
 ## Entities, not endpoints
 
-This SDK exposes the API as a small set of **semantic entities** — BulkQueryIP, GetCurrentIp and GetIpIntelligence — that you
+This SDK exposes the API as a small set of **semantic entities** — BulkQueryIp, GetCurrentIp and GetIpIntelligence — that you
 call directly, instead of assembling URL paths and query strings. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`, `load`):
 
 ```ts
 const client = new IpAddressSDK()
-const items = await client.BulkQueryIP().list({ id: "example" })
+const items = await client.BulkQueryIp().list({ id: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -46,13 +46,13 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = IpAddressSDK.test({
   entity: {
-    bulk_query_i_p: {
+    bulk_query_ip: {
       test01: { id: 'test01' },
     },
   },
 })
-const bulkqueryips = await client.BulkQueryIP().list()
-// bulkqueryips is an array of BulkQueryIP entities, populated with mock data
+const bulkqueryips = await client.BulkQueryIp().list()
+// bulkqueryips is an array of BulkQueryIp entities, populated with mock data
 // — call bulkqueryips[0].data() for the record itself
 console.log(bulkqueryips)
 ```
@@ -61,7 +61,7 @@ console.log(bulkqueryips)
 
 ```python
 client = IpAddressSDK.test()
-bulkqueryips = client.BulkQueryIP().list()
+bulkqueryips = client.BulkQueryIp().list()
 print(bulkqueryips)
 ```
 
@@ -72,14 +72,14 @@ print(bulkqueryips)
 $client = IpAddressSDK::test([
     "entity" => ["bulkqueryip" => ["test01" => []]],
 ]);
-$bulkqueryips = $client->BulkQueryIP()->list();
+$bulkqueryips = $client->BulkQueryIp()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.BulkQueryIP(nil).List(
+result, err := client.BulkQueryIp(nil).List(
     nil, nil,
 )
 ```
@@ -91,14 +91,14 @@ result, err := client.BulkQueryIP(nil).List(
 client = IpAddressSDK.test({
   "entity" => { "bulkqueryip" => { "test01" => {} } },
 })
-bulkqueryips = client.BulkQueryIP.list()
+bulkqueryips = client.BulkQueryIp.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:BulkQueryIP():list()
+local results, err = client:BulkQueryIp():list()
 ```
 
 ## Packages
@@ -123,8 +123,8 @@ import { IpAddressSDK } from '@voxgig-sdk/ip-address-sdk'
 
 const client = new IpAddressSDK()
 
-// List all bulkqueryips (returns BulkQueryIPEntity[] — .data() for the record)
-const bulkqueryips = await client.BulkQueryIP().list({ id: "example" })
+// List all bulkqueryips (returns BulkQueryIpEntity[] — .data() for the record)
+const bulkqueryips = await client.BulkQueryIp().list({ id: "example" })
 for (const bulkqueryip of bulkqueryips) {
   console.log(bulkqueryip)
 }
@@ -168,7 +168,7 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **BulkQueryIP** | The BulkQueryIP entity (list). | `/{ips}` |
+| **BulkQueryIp** | The BulkQueryIp entity (list). | `/{ips}` |
 | **GetCurrentIp** | The GetCurrentIp entity (load). | `/` |
 | **GetIpIntelligence** | The GetIpIntelligence entity (load). | `/{ip}` |
 
@@ -185,7 +185,7 @@ from ipaddress_sdk import IpAddressSDK
 client = IpAddressSDK()
 
 # List all bulkqueryips (returns a list, raises on error)
-bulkqueryips = client.BulkQueryIP().list({"id": "example"})
+bulkqueryips = client.BulkQueryIp().list({"id": "example"})
 for bulkqueryip in bulkqueryips:
     print(bulkqueryip)
 ```
@@ -199,7 +199,7 @@ require_once 'ipaddress_sdk.php';
 $client = new IpAddressSDK();
 
 // List all bulkqueryips (returns an array; throws on error)
-$bulkqueryips = $client->BulkQueryIP()->list();
+$bulkqueryips = $client->BulkQueryIp()->list();
 print_r(array_map(fn($item) => $item->data_get(), $bulkqueryips));
 ```
 
@@ -211,11 +211,11 @@ import sdk "github.com/voxgig-sdk/ip-address-sdk/go"
 client := sdk.New()
 
 // List all bulkqueryips
-bulkQueryIPs, err := client.BulkQueryIP(nil).List(nil, nil)
+bulkQueryIps, err := client.BulkQueryIp(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(bulkQueryIPs)
+fmt.Println(bulkQueryIps)
 ```
 
 ### Ruby
@@ -226,7 +226,7 @@ require_relative "IpAddress_sdk"
 client = IpAddressSDK.new
 
 # List all bulkqueryips (returns an Array; raises on error)
-bulkqueryips = client.BulkQueryIP.list
+bulkqueryips = client.BulkQueryIp.list
 puts bulkqueryips
 ```
 
@@ -238,7 +238,7 @@ local sdk = require("ip-address_sdk")
 local client = sdk.new()
 
 -- List all bulkqueryips
-local bulkqueryips, err = client:BulkQueryIP():list()
+local bulkqueryips, err = client:BulkQueryIp():list()
 print(bulkqueryips)
 ```
 

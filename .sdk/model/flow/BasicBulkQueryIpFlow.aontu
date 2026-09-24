@@ -1,0 +1,26 @@
+# BasicBulkQueryIpFlow
+
+main: kit: flow: BasicBulkQueryIpFlow:
+{
+  entity: "bulk_query_ip",
+  kind: "basic",
+  name: "BasicBulkQueryIpFlow",
+  step: [
+    {
+      m: {
+        ips: "ips01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "bulk_query_ip_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBulkQueryIpFlow"
+}

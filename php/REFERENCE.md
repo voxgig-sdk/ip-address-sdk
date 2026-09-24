@@ -41,9 +41,9 @@ $client = IpAddressSDK::test();
 
 ### Instance Methods
 
-#### `BulkQueryIP($data = null)`
+#### `BulkQueryIp($data = null)`
 
-Create a new `BulkQueryIPEntity` instance. Pass `null` for no initial data.
+Create a new `BulkQueryIpEntity` instance. Pass `null` for no initial data.
 
 #### `GetCurrentIp($data = null)`
 
@@ -90,10 +90,10 @@ Prepare a fetch definition without sending the request. Returns the
 
 ---
 
-## BulkQueryIPEntity
+## BulkQueryIpEntity
 
 ```php
-$bulk_query_i_p = $client->BulkQueryIP();
+$bulk_query_ip = $client->BulkQueryIp();
 ```
 
 ### Fields
@@ -113,7 +113,7 @@ $bulk_query_i_p = $client->BulkQueryIP();
 List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->BulkQueryIP()->list();
+$results = $client->BulkQueryIp()->list();
 ```
 
 ### Common Methods
@@ -134,9 +134,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): BulkQueryIPEntity`
+#### `make(): BulkQueryIpEntity`
 
-Create a new `BulkQueryIPEntity` instance with the same client and
+Create a new `BulkQueryIpEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

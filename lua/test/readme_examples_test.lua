@@ -20,7 +20,7 @@ local SDK_MODULE = "ip-address_sdk"
 -- A test-mode client seeded with a fixture for every entity. The constructor
 -- of each runnable snippet is rewritten to this form so the offline mock has
 -- data to return.
-local TEST_SEED = '{ entity = { ["bulk_query_i_p"] = { ["test01"] = { id = "test01" } }, ["get_current_ip"] = { ["test01"] = { id = "test01" } }, ["get_ip_intelligence"] = { ["test01"] = { id = "test01" } } } }'
+local TEST_SEED = '{ entity = { ["bulk_query_ip"] = { ["test01"] = { id = "test01" } }, ["get_current_ip"] = { ["test01"] = { id = "test01" } }, ["get_ip_intelligence"] = { ["test01"] = { id = "test01" } } } }'
 local TEST_CTOR = "sdk.test(" .. TEST_SEED .. ")"
 
 local function script_dir()

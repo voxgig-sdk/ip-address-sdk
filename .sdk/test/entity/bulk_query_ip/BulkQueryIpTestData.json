@@ -1,0 +1,44 @@
+{
+  "existing": {
+    "bulk_query_ip": {
+      "BULK_QUERY_IP00": {
+        "id": "BULK_QUERY_IP00",
+        "ip": "s33",
+        "isp": "s34",
+        "location": {},
+        "risk": {}
+      },
+      "BULK_QUERY_IP01": {
+        "id": "BULK_QUERY_IP01",
+        "ip": "s65",
+        "isp": "s66",
+        "location": {},
+        "risk": {}
+      },
+      "BULK_QUERY_IP02": {
+        "id": "BULK_QUERY_IP02",
+        "ip": "s97",
+        "isp": "s98",
+        "location": {},
+        "risk": {}
+      }
+    }
+  },
+  "new": {
+    "bulk_query_ip": {
+      "bulk_query_ip_ref01": {
+        "ip": "sc9",
+        "isp": "sca",
+        "location": {},
+        "risk": {}
+      }
+    }
+  },
+  "requests": {
+    "GET /{ips}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -47,9 +47,9 @@ client := sdk.TestSDK(testopts, sdkopts)
 
 ### Instance Methods
 
-#### `BulkQueryIP(data map[string]any) IpAddressEntity`
+#### `BulkQueryIp(data map[string]any) IpAddressEntity`
 
-Create a new `BulkQueryIP` entity instance. Pass `nil` for no initial data.
+Create a new `BulkQueryIp` entity instance. Pass `nil` for no initial data.
 
 #### `GetCurrentIp(data map[string]any) IpAddressEntity`
 
@@ -95,11 +95,11 @@ same parameters as `Direct()`.
 
 ---
 
-## BulkQueryIPEntity
+## BulkQueryIpEntity
 
 ```go
-bulkQueryIP := client.BulkQueryIP(nil)
-fmt.Println(bulkQueryIP.GetName()) // "bulk_query_i_p"
+bulkQueryIp := client.BulkQueryIp(nil)
+fmt.Println(bulkQueryIp.GetName()) // "bulk_query_ip"
 ```
 
 ### Fields
@@ -119,7 +119,7 @@ fmt.Println(bulkQueryIP.GetName()) // "bulk_query_i_p"
 List entities matching the given criteria. Returns an array.
 
 ```go
-results, err := client.BulkQueryIP(nil).List(nil, nil)
+results, err := client.BulkQueryIp(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -140,7 +140,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `BulkQueryIPEntity` instance with the same client and
+Create a new `BulkQueryIpEntity` instance with the same client and
 options.
 
 #### `GetName() string`

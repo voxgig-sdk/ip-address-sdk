@@ -4,7 +4,7 @@
 
 The Golang SDK for the IpAddress API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
-It exposes the API as capitalised, semantic **Entities** — e.g. `client.BulkQueryIP(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.BulkQueryIp(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
 > Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // List bulkQueryIP records — the value is the array of records itself.
-    bulkQueryIPs, err := client.BulkQueryIP(nil).List(nil, nil)
+    // List bulkQueryIp records — the value is the array of records itself.
+    bulkQueryIps, err := client.BulkQueryIp(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-    for _, item := range bulkQueryIPs.([]any) {
+    for _, item := range bulkQueryIps.([]any) {
         fmt.Println(item)
     }
 }
@@ -68,7 +68,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-bulkqueryips, err := client.BulkQueryIP(nil).List(nil, nil)
+bulkqueryips, err := client.BulkQueryIp(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-bulkQueryIP, err := client.BulkQueryIP(nil).List(
+bulkQueryIp, err := client.BulkQueryIp(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(bulkQueryIP) // the returned mock data
+fmt.Println(bulkQueryIp) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -220,7 +220,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `BulkQueryIP` | `(data map[string]any) IpAddressEntity` | Create a BulkQueryIP entity instance. |
+| `BulkQueryIp` | `(data map[string]any) IpAddressEntity` | Create a BulkQueryIp entity instance. |
 | `GetCurrentIp` | `(data map[string]any) IpAddressEntity` | Create a GetCurrentIp entity instance. |
 | `GetIpIntelligence` | `(data map[string]any) IpAddressEntity` | Create a GetIpIntelligence entity instance. |
 
@@ -251,16 +251,16 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    bulkQueryIP, err := client.BulkQueryIP(nil).List(map[string]any{/* fields */}, nil)
+    bulkQueryIp, err := client.BulkQueryIp(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // bulkQueryIP is the returned record
+    // bulkQueryIp is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
-#### BulkQueryIP
+#### BulkQueryIp
 
 | Field | Description |
 | --- | --- |
@@ -302,9 +302,9 @@ API path: `/{ip}`
 ## Entities
 
 
-### BulkQueryIP
+### BulkQueryIp
 
-Create an instance: `bulkQueryIP := client.BulkQueryIP(nil)`
+Create an instance: `bulkQueryIp := client.BulkQueryIp(nil)`
 
 #### Operations
 
@@ -325,11 +325,11 @@ Create an instance: `bulkQueryIP := client.BulkQueryIP(nil)`
 #### Example: List
 
 ```go
-bulkQueryIPs, err := client.BulkQueryIP(nil).List(nil, nil)
+bulkQueryIps, err := client.BulkQueryIp(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(bulkQueryIPs) // the array of records
+fmt.Println(bulkQueryIps) // the array of records
 ```
 
 
@@ -542,7 +542,7 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-bulkqueryip := client.BulkQueryIP(nil)
+bulkqueryip := client.BulkQueryIp(nil)
 bulkqueryip.List(nil, nil)
 
 // bulkqueryip.Data() now returns the bulkqueryip data from the last list

@@ -1,0 +1,111 @@
+# Entity: bulk_query_ip
+
+main: kit: entity: bulk_query_ip: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    ip: {
+      h: "Ip"
+      n: "ip"
+      r: false
+      sh: "The queried IP address"
+      t: "`$STRING`"
+    }
+    isp: {
+      h: "Isp"
+      n: "isp"
+      r: false
+      sh: "Internet Service Provider name"
+      t: "`$STRING`"
+    }
+    location: {
+      h: "Location"
+      n: "location"
+      r: false
+      sh: "Location information for the IP address"
+      t: "`$OBJECT`"
+    }
+    risk: {
+      h: "Risk"
+      n: "risk"
+      r: false
+      sh: "Risk assessment data for the IP address"
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "bulk_query_ip"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /{ips}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "1.1.1.1,8.8.8.8,9.9.9.9"
+                k: "param"
+                n: "id"
+                or: "ips"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "json"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/{ips}"
+          q: {
+            exist: [
+              "format"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              ips: "id"
+            }
+          }
+          s: [
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

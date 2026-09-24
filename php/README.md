@@ -4,7 +4,7 @@
 
 The PHP SDK for the IpAddress API — an entity-oriented client using PHP conventions.
 
-The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->BulkQueryIP()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->BulkQueryIp()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
 
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
@@ -36,7 +36,7 @@ $client = new IpAddressSDK();
 ```php
 try {
     // list() returns entity instances; data_get() reads each record.
-    $bulkqueryips = $client->BulkQueryIP()->list();
+    $bulkqueryips = $client->BulkQueryIp()->list();
     foreach ($bulkqueryips as $record) {
         $item = $record->data_get();
         echo $item["id"] . " " . $item["ip"] . "\n";
@@ -54,7 +54,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $bulkqueryips = $client->BulkQueryIP()->list();
+    $bulkqueryips = $client->BulkQueryIp()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -211,7 +211,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `BulkQueryIP` | `($data): BulkQueryIPEntity` | Create a BulkQueryIP entity instance. |
+| `BulkQueryIp` | `($data): BulkQueryIpEntity` | Create a BulkQueryIp entity instance. |
 | `GetCurrentIp` | `($data): GetCurrentIpEntity` | Create a GetCurrentIp entity instance. |
 | `GetIpIntelligence` | `($data): GetIpIntelligenceEntity` | Create a GetIpIntelligence entity instance. |
 
@@ -250,7 +250,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 ### Entities
 
-#### BulkQueryIP
+#### BulkQueryIp
 
 | Field | Description |
 | --- | --- |
@@ -292,9 +292,9 @@ API path: `/{ip}`
 ## Entities
 
 
-### BulkQueryIP
+### BulkQueryIp
 
-Create an instance: `$bulk_query_i_p = $client->BulkQueryIP();`
+Create an instance: `$bulk_query_ip = $client->BulkQueryIp();`
 
 #### Operations
 
@@ -315,8 +315,8 @@ Create an instance: `$bulk_query_i_p = $client->BulkQueryIP();`
 #### Example: List
 
 ```php
-// list() returns an array of BulkQueryIP records (throws on error).
-$bulk_query_i_ps = $client->BulkQueryIP()->list();
+// list() returns an array of BulkQueryIp records (throws on error).
+$bulk_query_ips = $client->BulkQueryIp()->list();
 ```
 
 
@@ -527,7 +527,7 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$bulkqueryip = $client->BulkQueryIP();
+$bulkqueryip = $client->BulkQueryIp();
 $bulkqueryip->list();
 
 // $bulkqueryip->data_get() now returns the bulkqueryip data from the last list

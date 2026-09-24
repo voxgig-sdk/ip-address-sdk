@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -106,97 +99,102 @@ class Config {
             "content-type": "application/json"
         },
         entity: {
-            bulk_query_i_p: {},
+            bulk_query_ip: {},
             get_current_ip: {},
             get_ip_intelligence: {},
         }
     };
     entity = {
-        "bulk_query_i_p": {
+        "bulk_query_ip": {
             "fields": [
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "ip",
-                    "short": "The queried IP address",
-                    "type": "`$STRING`"
+                    "title": "Ip",
+                    "type": "`$STRING`",
+                    "short": "The queried IP address"
                 },
                 {
                     "name": "isp",
-                    "short": "Internet Service Provider name",
-                    "type": "`$STRING`"
+                    "title": "Isp",
+                    "type": "`$STRING`",
+                    "short": "Internet Service Provider name"
                 },
                 {
                     "name": "location",
-                    "short": "Location information for the IP address",
-                    "type": "`$OBJECT`"
+                    "title": "Location",
+                    "type": "`$OBJECT`",
+                    "short": "Location information for the IP address"
                 },
                 {
                     "name": "risk",
-                    "short": "Risk assessment data for the IP address",
-                    "type": "`$OBJECT`"
+                    "title": "Risk",
+                    "type": "`$OBJECT`",
+                    "short": "Risk assessment data for the IP address"
                 }
             ],
             "id": {
                 "field": "id",
                 "name": "id"
             },
-            "name": "bulk_query_i_p",
+            "name": "bulk_query_ip",
             "op": {
                 "list": {
                     "input": "data",
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": "1.1.1.1,8.8.8.8,9.9.9.9",
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "ips",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "example": "json",
-                                        "kind": "query",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/{ips}",
-                            "rename": {
-                                "param": {
-                                    "ips": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "format",
-                                    "id"
-                                ]
+                            "parts": [
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "ips": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "ips",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": "1.1.1.1,8.8.8.8,9.9.9.9"
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "json"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "format",
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -214,31 +212,32 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "text",
-                                        "kind": "query",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/",
                             "segments": [],
-                            "select": {
-                                "exist": [
-                                    "format"
-                                ]
-                            },
+                            "parts": [],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": []
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "text"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "format"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -251,27 +250,32 @@ class Config {
             "fields": [
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "ip",
-                    "short": "The queried IP address",
-                    "type": "`$STRING`"
+                    "title": "Ip",
+                    "type": "`$STRING`",
+                    "short": "The queried IP address"
                 },
                 {
                     "name": "isp",
-                    "short": "Internet Service Provider name",
-                    "type": "`$STRING`"
+                    "title": "Isp",
+                    "type": "`$STRING`",
+                    "short": "Internet Service Provider name"
                 },
                 {
                     "name": "location",
-                    "short": "Location information for the IP address",
-                    "type": "`$OBJECT`"
+                    "title": "Location",
+                    "type": "`$OBJECT`",
+                    "short": "Location information for the IP address"
                 },
                 {
                     "name": "risk",
-                    "short": "Risk assessment data for the IP address",
-                    "type": "`$OBJECT`"
+                    "title": "Risk",
+                    "type": "`$OBJECT`",
+                    "short": "Risk assessment data for the IP address"
                 }
             ],
             "id": {
@@ -285,53 +289,53 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": "1.1.1.1",
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "ip",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "example": "json",
-                                        "kind": "query",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/{ip}",
-                            "rename": {
-                                "param": {
-                                    "ip": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "var": "id"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "format",
-                                    "id"
-                                ]
+                            "parts": [
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "ip": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "{id}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "ip",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": "1.1.1.1"
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "json"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "format",
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }

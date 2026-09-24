@@ -40,9 +40,9 @@ local client = sdk.test()
 
 ### Instance Methods
 
-#### `BulkQueryIP(data)`
+#### `BulkQueryIp(data)`
 
-Create a new `BulkQueryIP` entity instance. Pass `nil` for no initial data.
+Create a new `BulkQueryIp` entity instance. Pass `nil` for no initial data.
 
 #### `GetCurrentIp(data)`
 
@@ -88,10 +88,10 @@ same parameters as `direct()`.
 
 ---
 
-## BulkQueryIPEntity
+## BulkQueryIpEntity
 
 ```lua
-local bulk_query_i_p = client:BulkQueryIP(nil)
+local bulk_query_ip = client:BulkQueryIp(nil)
 ```
 
 ### Fields
@@ -111,7 +111,7 @@ local bulk_query_i_p = client:BulkQueryIP(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:BulkQueryIP():list()
+local results, err = client:BulkQueryIp():list()
 ```
 
 ### Common Methods
@@ -134,7 +134,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `BulkQueryIPEntity` instance with the same client and
+Create a new `BulkQueryIpEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

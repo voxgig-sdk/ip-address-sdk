@@ -19,15 +19,15 @@ make build
 export IP_ADDRESS_APIKEY=sk_live_xxx
 
 # 4. Each command line is ONE boru expression, run against the API:
-./ip-address-cli list bulk_query_i_p
+./ip-address-cli list bulk_query_ip
 ./ip-address-cli list get_current_ip
 
 # 5. Override the API base URL for a single call
-IP_ADDRESS_BASE=https://api.example.com ./ip-address-cli list bulk_query_i_p
+IP_ADDRESS_BASE=https://api.example.com ./ip-address-cli list bulk_query_ip
 
 # 6. No arguments -> interactive REPL
 ./ip-address-cli
-ip-address> list bulk_query_i_p
+ip-address> list bulk_query_ip
 ip-address> /quit
 ```
 
@@ -53,7 +53,7 @@ ip-address> /quit
    arguments to open the REPL):
 
    ```sh
-   ./dist/*/ip-address-cli list bulk_query_i_p
+   ./dist/*/ip-address-cli list bulk_query_ip
    ```
 
 4. **Go interactive.** Run the binary with no arguments to open the REPL, then
@@ -66,7 +66,7 @@ That is the whole loop: *build → set key → evaluate boru expressions*.
 ### List the records of an entity
 
 ```sh
-./ip-address-cli list bulk_query_i_p
+./ip-address-cli list bulk_query_ip
 ```
 
 `list <entity>` returns the first page of records. `<entity>` is a bareword —
@@ -79,7 +79,7 @@ Configuration is read from the environment — nothing is written to disk:
 ```sh
 export IP_ADDRESS_APIKEY=sk_live_xxx            # API key
 export IP_ADDRESS_BASE=https://api.example.com  # optional: override the API base URL
-./ip-address-cli list bulk_query_i_p
+./ip-address-cli list bulk_query_ip
 ```
 
 Both are injectable by a secrets vault, so the key never has to be typed inline.
@@ -91,7 +91,7 @@ evaluated as its own boru expression:
 
 ```text
 $ ./ip-address-cli
-ip-address> list bulk_query_i_p
+ip-address> list bulk_query_ip
 ip-address> /help
 ip-address> /quit
 ```
@@ -119,7 +119,7 @@ The CLI registers these boru words, each bound to the SDK:
 | `list`   | `list <entity>` · `list <query> <entity>`     | First page of records          |
 | `load`   | `load <entity>` · `load <query> <entity>`     | A single record                |
 
-- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `bulk_query_i_p`).
+- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `bulk_query_ip`).
 - `<query>` is either a **Map** (`{id:1}`) or a **Scalar** (`1`, treated as
   `{id:1}`). A scalar is always wrapped as `{id:<value>}`.
 
@@ -162,7 +162,7 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 The 3 entities this SDK exposes (any is valid as `<entity>`):
 
-bulk_query_i_p get_current_ip get_ip_intelligence
+bulk_query_ip get_current_ip get_ip_intelligence
 
 ## Explanation
 

@@ -1,11 +1,11 @@
 // Typed models for the IpAddress SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
-export interface BulkQueryIP {
+export interface BulkQueryIp {
   id?: string
   ip?: string
   isp?: string
@@ -13,7 +13,7 @@ export interface BulkQueryIP {
   risk?: Record<string, any>
 }
 
-export interface BulkQueryIPListMatch {
+export interface BulkQueryIpListMatch {
   id: string
   format?: string
 }

@@ -5,7 +5,7 @@
 The TypeScript SDK for the IpAddress API — a type-safe, entity-oriented client with full async/await support.
 
 The API is exposed as capitalised, semantic **Entities** — e.g.
-`client.BulkQueryIP()` — each with a small set of operations (`list`, `load`)
+`client.BulkQueryIp()` — each with a small set of operations (`list`, `load`)
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
@@ -35,12 +35,12 @@ const client = new IpAddressSDK()
 
 ### 2. List bulkqueryip records
 
-`list()` resolves to an array of BulkQueryIP ENTITIES — every operation
+`list()` resolves to an array of BulkQueryIp ENTITIES — every operation
 resolves to entities, not raw records. Iterate them directly, and call
 `.data()` on one for the record it holds:
 
 ```ts
-const bulkqueryips = await client.BulkQueryIP().list({ id: "example" })
+const bulkqueryips = await client.BulkQueryIp().list({ id: "example" })
 
 for (const bulkqueryip of bulkqueryips) {
   console.log(bulkqueryip)
@@ -54,7 +54,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const bulkqueryips = await client.BulkQueryIP().list()
+  const bulkqueryips = await client.BulkQueryIp().list()
   console.log(bulkqueryips)
 } catch (err) {
   console.error('list failed:', err)
@@ -121,7 +121,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = IpAddressSDK.test()
 
-const bulkqueryip = await client.BulkQueryIP().list()
+const bulkqueryip = await client.BulkQueryIp().list()
 // bulkqueryip is the entity, populated with mock response data
 // — call bulkqueryip.data() for the record itself
 console.log(bulkqueryip)
@@ -139,7 +139,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.BulkQueryIP()
+const entity = client.BulkQueryIp()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -222,7 +222,7 @@ new IpAddressSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `BulkQueryIP(data?)` | `BulkQueryIPEntity` | Create a BulkQueryIP entity instance. |
+| `BulkQueryIp(data?)` | `BulkQueryIpEntity` | Create a BulkQueryIp entity instance. |
 | `GetCurrentIp(data?)` | `GetCurrentIpEntity` | Create a GetCurrentIp entity instance. |
 | `GetIpIntelligence(data?)` | `GetIpIntelligenceEntity` | Create a GetIpIntelligence entity instance. |
 | `tester(testopts?, sdkopts?)` | `IpAddressSDK` | Create a test-mode client instance. |
@@ -292,7 +292,7 @@ The `prepare()` method returns:
 
 ### Entities
 
-#### BulkQueryIP
+#### BulkQueryIp
 
 | Field | Description |
 | --- | --- |
@@ -334,9 +334,9 @@ API path: `/{ip}`
 ## Entities
 
 
-### BulkQueryIP
+### BulkQueryIp
 
-Create an instance: `const bulk_query_i_p = client.BulkQueryIP()`
+Create an instance: `const bulk_query_ip = client.BulkQueryIp()`
 
 #### Operations
 
@@ -357,7 +357,7 @@ Create an instance: `const bulk_query_i_p = client.BulkQueryIP()`
 #### Example: List
 
 ```ts
-const bulk_query_i_ps = await client.BulkQueryIP().list({ id: "example" })
+const bulk_query_ips = await client.BulkQueryIp().list({ id: "example" })
 ```
 
 
@@ -558,7 +558,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const bulkqueryip = client.BulkQueryIP()
+const bulkqueryip = client.BulkQueryIp()
 await bulkqueryip.list()
 
 // bulkqueryip.data() now returns the bulkqueryip data from the last `list`

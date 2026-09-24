@@ -24,110 +24,180 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
-        "bulk_query_i_p": {
+        "bulk_query_ip": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "ip",
-              "req": false,
-              "short": "The queried IP address",
-              "type": "`$STRING`"
+            "ip": {
+              "a": true,
+              "h": "Ip",
+              "n": "ip",
+              "r": false,
+              "sh": "The queried IP address",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "isp",
-              "req": false,
-              "short": "Internet Service Provider name",
-              "type": "`$STRING`"
+            "isp": {
+              "a": true,
+              "h": "Isp",
+              "n": "isp",
+              "r": false,
+              "sh": "Internet Service Provider name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "location",
-              "req": false,
-              "short": "Location information for the IP address",
-              "type": "`$OBJECT`"
+            "location": {
+              "a": true,
+              "h": "Location",
+              "n": "location",
+              "r": false,
+              "sh": "Location information for the IP address",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "risk",
-              "req": false,
-              "short": "Risk assessment data for the IP address",
-              "type": "`$OBJECT`"
+            "risk": {
+              "a": true,
+              "h": "Risk",
+              "n": "risk",
+              "r": false,
+              "sh": "Risk assessment data for the IP address",
+              "t": "`$OBJECT`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
           },
-          "name": "bulk_query_i_p",
+          "name": "bulk_query_ip",
           "op": {
             "list": {
               "input": "data",
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /{ips}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "1.1.1.1,8.8.8.8,9.9.9.9",
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "ips",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "1.1.1.1,8.8.8.8,9.9.9.9",
+                        "k": "param",
+                        "n": "id",
+                        "or": "ips",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "json",
-                        "kind": "query",
-                        "name": "format",
-                        "orig": "format",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "json",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /{ips}",
-                    "json": "{\"operationId\":\"bulkQueryIPs\",\"parameters\":[{\"description\":\"Comma-separated list of IP addresses (max 10,000)\",\"in\":\"path\",\"name\":\"ips\",\"required\":true,\"schema\":{\"example\":\"1.1.1.1,8.8.8.8,9.9.9.9\",\"type\":\"string\"}},{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"xml\",\"yaml\",\"text\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"ip\":{\"description\":\"The queried IP address\",\"example\":\"1.1.1.1\",\"type\":\"string\"},\"isp\":{\"description\":\"Internet Service Provider name\",\"example\":\"Cloudflare, Inc.\",\"type\":\"string\"},\"location\":{\"description\":\"Location information for the IP address\",\"properties\":{\"city\":{\"description\":\"City name\",\"example\":\"Los Angeles\",\"type\":\"string\"},\"country\":{\"description\":\"Full name of the country\",\"example\":\"United States\",\"type\":\"string\"},\"country_code\":{\"description\":\"Two-letter ISO 3166-1 alpha-2 country code\",\"example\":\"US\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"example\":34.0522,\"format\":\"float\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"example\":-118.2437,\"format\":\"float\",\"type\":\"number\"},\"state\":{\"description\":\"Region or state name\",\"example\":\"California\",\"type\":\"string\"},\"timezone\":{\"description\":\"Timezone identifier\",\"example\":\"America/Los_Angeles\",\"type\":\"string\"},\"zipcode\":{\"description\":\"Postal code\",\"example\":\"90001\",\"type\":\"string\"}},\"type\":\"object\"},\"risk\":{\"description\":\"Risk assessment data for the IP address\",\"properties\":{\"is_mobile\":{\"description\":\"True if associated with cellular network\",\"example\":false,\"type\":\"boolean\"},\"is_proxy\":{\"description\":\"True if is a known public proxy\",\"example\":false,\"type\":\"boolean\"},\"is_tor\":{\"description\":\"True if is a known Tor exit node\",\"example\":false,\"type\":\"boolean\"},\"is_vpn\":{\"description\":\"True if belongs to a known VPN provider\",\"example\":false,\"type\":\"boolean\"},\"risk_score\":{\"description\":\"0-100 score indicating malicious activity likelihood\",\"example\":0,\"maximum\":100,\"minimum\":0,\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"}},\"application/xml\":{\"schema\":{\"items\":{\"properties\":{\"ip\":{\"description\":\"The queried IP address\",\"example\":\"1.1.1.1\",\"type\":\"string\"},\"isp\":{\"description\":\"Internet Service Provider name\",\"example\":\"Cloudflare, Inc.\",\"type\":\"string\"},\"location\":{\"description\":\"Location information for the IP address\",\"properties\":{\"city\":{\"description\":\"City name\",\"example\":\"Los Angeles\",\"type\":\"string\"},\"country\":{\"description\":\"Full name of the country\",\"example\":\"United States\",\"type\":\"string\"},\"country_code\":{\"description\":\"Two-letter ISO 3166-1 alpha-2 country code\",\"example\":\"US\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"example\":34.0522,\"format\":\"float\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"example\":-118.2437,\"format\":\"float\",\"type\":\"number\"},\"state\":{\"description\":\"Region or state name\",\"example\":\"California\",\"type\":\"string\"},\"timezone\":{\"description\":\"Timezone identifier\",\"example\":\"America/Los_Angeles\",\"type\":\"string\"},\"zipcode\":{\"description\":\"Postal code\",\"example\":\"90001\",\"type\":\"string\"}},\"type\":\"object\"},\"risk\":{\"description\":\"Risk assessment data for the IP address\",\"properties\":{\"is_mobile\":{\"description\":\"True if associated with cellular network\",\"example\":false,\"type\":\"boolean\"},\"is_proxy\":{\"description\":\"True if is a known public proxy\",\"example\":false,\"type\":\"boolean\"},\"is_tor\":{\"description\":\"True if is a known Tor exit node\",\"example\":false,\"type\":\"boolean\"},\"is_vpn\":{\"description\":\"True if belongs to a known VPN provider\",\"example\":false,\"type\":\"boolean\"},\"risk_score\":{\"description\":\"0-100 score indicating malicious activity likelihood\",\"example\":0,\"maximum\":100,\"minimum\":0,\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"}},\"application/yaml\":{\"schema\":{\"items\":{\"properties\":{\"ip\":{\"description\":\"The queried IP address\",\"example\":\"1.1.1.1\",\"type\":\"string\"},\"isp\":{\"description\":\"Internet Service Provider name\",\"example\":\"Cloudflare, Inc.\",\"type\":\"string\"},\"location\":{\"description\":\"Location information for the IP address\",\"properties\":{\"city\":{\"description\":\"City name\",\"example\":\"Los Angeles\",\"type\":\"string\"},\"country\":{\"description\":\"Full name of the country\",\"example\":\"United States\",\"type\":\"string\"},\"country_code\":{\"description\":\"Two-letter ISO 3166-1 alpha-2 country code\",\"example\":\"US\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"example\":34.0522,\"format\":\"float\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"example\":-118.2437,\"format\":\"float\",\"type\":\"number\"},\"state\":{\"description\":\"Region or state name\",\"example\":\"California\",\"type\":\"string\"},\"timezone\":{\"description\":\"Timezone identifier\",\"example\":\"America/Los_Angeles\",\"type\":\"string\"},\"zipcode\":{\"description\":\"Postal code\",\"example\":\"90001\",\"type\":\"string\"}},\"type\":\"object\"},\"risk\":{\"description\":\"Risk assessment data for the IP address\",\"properties\":{\"is_mobile\":{\"description\":\"True if associated with cellular network\",\"example\":false,\"type\":\"boolean\"},\"is_proxy\":{\"description\":\"True if is a known public proxy\",\"example\":false,\"type\":\"boolean\"},\"is_tor\":{\"description\":\"True if is a known Tor exit node\",\"example\":false,\"type\":\"boolean\"},\"is_vpn\":{\"description\":\"True if belongs to a known VPN provider\",\"example\":false,\"type\":\"boolean\"},\"risk_score\":{\"description\":\"0-100 score indicating malicious activity likelihood\",\"example\":0,\"maximum\":100,\"minimum\":0,\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response with bulk IP intelligence data\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"HTTP status code\",\"type\":\"integer\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad Request - Invalid IP format or query parameters\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"HTTP status code\",\"type\":\"integer\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Too Many Requests - You have exceeded the rate limit\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"HTTP status code\",\"type\":\"integer\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal Server Error - Something went wrong on our end\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/{ips}",
-                  "rename": {
-                    "param": {
-                      "ips": "id"
-                    }
-                  },
-                  "segments": [
-                    {
-                      "var": "id"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/{ips}",
+                  "q": {
                     "exist": [
                       "format",
                       "id"
                     ]
                   },
-                  "transform": {
+                  "r": {
+                    "param": {
+                      "ips": "id"
+                    }
+                  },
+                  "s": [
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -144,7 +214,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": {},
           "name": "get_current_ip",
           "op": {
             "load": {
@@ -152,36 +222,36 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "text",
-                        "kind": "query",
-                        "name": "format",
-                        "orig": "format",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "text",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /",
-                    "json": "{\"operationId\":\"getCurrentIP\",\"parameters\":[{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"text\",\"enum\":[\"json\",\"xml\",\"yaml\",\"text\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":\"1.1.1.1\",\"type\":\"string\"}},\"application/xml\":{\"schema\":{\"example\":\"1.1.1.1\",\"type\":\"string\"}},\"application/yaml\":{\"schema\":{\"example\":\"1.1.1.1\",\"type\":\"string\"}},\"text/plain\":{\"schema\":{\"example\":\"1.1.1.1\",\"type\":\"string\"}}},\"description\":\"Successful response\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"HTTP status code\",\"type\":\"integer\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad Request - Invalid IP format or query parameters\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"HTTP status code\",\"type\":\"integer\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Too Many Requests - You have exceeded the rate limit\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"HTTP status code\",\"type\":\"integer\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal Server Error - Something went wrong on our end\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/",
-                  "segments": [],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/",
+                  "q": {
                     "exist": [
                       "format"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -198,42 +268,47 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "ip",
-              "req": false,
-              "short": "The queried IP address",
-              "type": "`$STRING`"
+            "ip": {
+              "a": true,
+              "h": "Ip",
+              "n": "ip",
+              "r": false,
+              "sh": "The queried IP address",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "isp",
-              "req": false,
-              "short": "Internet Service Provider name",
-              "type": "`$STRING`"
+            "isp": {
+              "a": true,
+              "h": "Isp",
+              "n": "isp",
+              "r": false,
+              "sh": "Internet Service Provider name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "location",
-              "req": false,
-              "short": "Location information for the IP address",
-              "type": "`$OBJECT`"
+            "location": {
+              "a": true,
+              "h": "Location",
+              "n": "location",
+              "r": false,
+              "sh": "Location information for the IP address",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "risk",
-              "req": false,
-              "short": "Risk assessment data for the IP address",
-              "type": "`$OBJECT`"
+            "risk": {
+              "a": true,
+              "h": "Risk",
+              "n": "risk",
+              "r": false,
+              "sh": "Risk assessment data for the IP address",
+              "t": "`$OBJECT`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -245,57 +320,56 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /{ip}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "1.1.1.1",
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "ip",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "1.1.1.1",
+                        "k": "param",
+                        "n": "id",
+                        "or": "ip",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "json",
-                        "kind": "query",
-                        "name": "format",
-                        "orig": "format",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "json",
+                        "k": "query",
+                        "n": "format",
+                        "or": "format",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /{ip}",
-                    "json": "{\"operationId\":\"getIPIntelligence\",\"parameters\":[{\"description\":\"IP address to query\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"example\":\"1.1.1.1\",\"type\":\"string\"}},{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"xml\",\"yaml\",\"text\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"ip\":{\"description\":\"The queried IP address\",\"example\":\"1.1.1.1\",\"type\":\"string\"},\"isp\":{\"description\":\"Internet Service Provider name\",\"example\":\"Cloudflare, Inc.\",\"type\":\"string\"},\"location\":{\"description\":\"Location information for the IP address\",\"properties\":{\"city\":{\"description\":\"City name\",\"example\":\"Los Angeles\",\"type\":\"string\"},\"country\":{\"description\":\"Full name of the country\",\"example\":\"United States\",\"type\":\"string\"},\"country_code\":{\"description\":\"Two-letter ISO 3166-1 alpha-2 country code\",\"example\":\"US\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"example\":34.0522,\"format\":\"float\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"example\":-118.2437,\"format\":\"float\",\"type\":\"number\"},\"state\":{\"description\":\"Region or state name\",\"example\":\"California\",\"type\":\"string\"},\"timezone\":{\"description\":\"Timezone identifier\",\"example\":\"America/Los_Angeles\",\"type\":\"string\"},\"zipcode\":{\"description\":\"Postal code\",\"example\":\"90001\",\"type\":\"string\"}},\"type\":\"object\"},\"risk\":{\"description\":\"Risk assessment data for the IP address\",\"properties\":{\"is_mobile\":{\"description\":\"True if associated with cellular network\",\"example\":false,\"type\":\"boolean\"},\"is_proxy\":{\"description\":\"True if is a known public proxy\",\"example\":false,\"type\":\"boolean\"},\"is_tor\":{\"description\":\"True if is a known Tor exit node\",\"example\":false,\"type\":\"boolean\"},\"is_vpn\":{\"description\":\"True if belongs to a known VPN provider\",\"example\":false,\"type\":\"boolean\"},\"risk_score\":{\"description\":\"0-100 score indicating malicious activity likelihood\",\"example\":0,\"maximum\":100,\"minimum\":0,\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}},\"application/xml\":{\"schema\":{\"properties\":{\"ip\":{\"description\":\"The queried IP address\",\"example\":\"1.1.1.1\",\"type\":\"string\"},\"isp\":{\"description\":\"Internet Service Provider name\",\"example\":\"Cloudflare, Inc.\",\"type\":\"string\"},\"location\":{\"description\":\"Location information for the IP address\",\"properties\":{\"city\":{\"description\":\"City name\",\"example\":\"Los Angeles\",\"type\":\"string\"},\"country\":{\"description\":\"Full name of the country\",\"example\":\"United States\",\"type\":\"string\"},\"country_code\":{\"description\":\"Two-letter ISO 3166-1 alpha-2 country code\",\"example\":\"US\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"example\":34.0522,\"format\":\"float\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"example\":-118.2437,\"format\":\"float\",\"type\":\"number\"},\"state\":{\"description\":\"Region or state name\",\"example\":\"California\",\"type\":\"string\"},\"timezone\":{\"description\":\"Timezone identifier\",\"example\":\"America/Los_Angeles\",\"type\":\"string\"},\"zipcode\":{\"description\":\"Postal code\",\"example\":\"90001\",\"type\":\"string\"}},\"type\":\"object\"},\"risk\":{\"description\":\"Risk assessment data for the IP address\",\"properties\":{\"is_mobile\":{\"description\":\"True if associated with cellular network\",\"example\":false,\"type\":\"boolean\"},\"is_proxy\":{\"description\":\"True if is a known public proxy\",\"example\":false,\"type\":\"boolean\"},\"is_tor\":{\"description\":\"True if is a known Tor exit node\",\"example\":false,\"type\":\"boolean\"},\"is_vpn\":{\"description\":\"True if belongs to a known VPN provider\",\"example\":false,\"type\":\"boolean\"},\"risk_score\":{\"description\":\"0-100 score indicating malicious activity likelihood\",\"example\":0,\"maximum\":100,\"minimum\":0,\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}},\"application/yaml\":{\"schema\":{\"properties\":{\"ip\":{\"description\":\"The queried IP address\",\"example\":\"1.1.1.1\",\"type\":\"string\"},\"isp\":{\"description\":\"Internet Service Provider name\",\"example\":\"Cloudflare, Inc.\",\"type\":\"string\"},\"location\":{\"description\":\"Location information for the IP address\",\"properties\":{\"city\":{\"description\":\"City name\",\"example\":\"Los Angeles\",\"type\":\"string\"},\"country\":{\"description\":\"Full name of the country\",\"example\":\"United States\",\"type\":\"string\"},\"country_code\":{\"description\":\"Two-letter ISO 3166-1 alpha-2 country code\",\"example\":\"US\",\"type\":\"string\"},\"latitude\":{\"description\":\"Latitude coordinate\",\"example\":34.0522,\"format\":\"float\",\"type\":\"number\"},\"longitude\":{\"description\":\"Longitude coordinate\",\"example\":-118.2437,\"format\":\"float\",\"type\":\"number\"},\"state\":{\"description\":\"Region or state name\",\"example\":\"California\",\"type\":\"string\"},\"timezone\":{\"description\":\"Timezone identifier\",\"example\":\"America/Los_Angeles\",\"type\":\"string\"},\"zipcode\":{\"description\":\"Postal code\",\"example\":\"90001\",\"type\":\"string\"}},\"type\":\"object\"},\"risk\":{\"description\":\"Risk assessment data for the IP address\",\"properties\":{\"is_mobile\":{\"description\":\"True if associated with cellular network\",\"example\":false,\"type\":\"boolean\"},\"is_proxy\":{\"description\":\"True if is a known public proxy\",\"example\":false,\"type\":\"boolean\"},\"is_tor\":{\"description\":\"True if is a known Tor exit node\",\"example\":false,\"type\":\"boolean\"},\"is_vpn\":{\"description\":\"True if belongs to a known VPN provider\",\"example\":false,\"type\":\"boolean\"},\"risk_score\":{\"description\":\"0-100 score indicating malicious activity likelihood\",\"example\":0,\"maximum\":100,\"minimum\":0,\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response with IP intelligence data\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"HTTP status code\",\"type\":\"integer\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad Request - Invalid IP format or query parameters\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"HTTP status code\",\"type\":\"integer\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Too Many Requests - You have exceeded the rate limit\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"HTTP status code\",\"type\":\"integer\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal Server Error - Something went wrong on our end\"}},\"security\":[],\"securitySource\":\"definition\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/{ip}",
-                  "rename": {
-                    "param": {
-                      "ip": "id"
-                    }
-                  },
-                  "segments": [
-                    {
-                      "var": "id"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/{ip}",
+                  "q": {
                     "exist": [
                       "format",
                       "id"
                     ]
                   },
-                  "transform": {
+                  "r": {
+                    "param": {
+                      "ip": "id"
+                    }
+                  },
+                  "s": [
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -715,28 +789,28 @@
         }
       },
       "flow": {
-        "BasicBulkQueryIPFlow": {
+        "BasicBulkQueryIpFlow": {
           "active": true,
-          "entity": "bulk_query_i_p",
-          "key$": "BasicBulkQueryIPFlow",
+          "entity": "bulk_query_ip",
+          "key$": "BasicBulkQueryIpFlow",
           "kind": "basic",
-          "name": "BasicBulkQueryIPFlow",
+          "name": "BasicBulkQueryIpFlow",
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
                 "ips": "ips01"
               },
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
-                    "ref": "bulk_query_i_p_ref01"
+                    "ref": "bulk_query_ip_ref01"
                   }
                 }
               ]
@@ -752,17 +826,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "get_current_ip_ref01",
                 "srcdatavar": "get_current_ip_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -782,19 +856,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "get_ip_intelligence_ref01",
                 "srcdatavar": "get_ip_intelligence_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "get_ip_intelligence01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

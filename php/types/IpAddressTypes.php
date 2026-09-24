@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 // Typed models for the IpAddress SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 //
@@ -12,8 +12,8 @@ declare(strict_types=1);
 // registered on the composer classmap autoload. The SDK boundary exchanges
 // assoc-arrays; these classes name the shapes for tooling and typed callers.
 
-/** BulkQueryIP entity data model. */
-class BulkQueryIP
+/** BulkQueryIp entity data model. */
+class BulkQueryIp
 {
     public ?string $id = null;
     public ?string $ip = null;
@@ -22,8 +22,8 @@ class BulkQueryIP
     public ?array $risk = null;
 }
 
-/** Request payload for BulkQueryIP#list. */
-class BulkQueryIPListMatch
+/** Request payload for BulkQueryIp#list. */
+class BulkQueryIpListMatch
 {
     public string $id;
     public ?string $format = null;

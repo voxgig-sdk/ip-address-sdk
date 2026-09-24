@@ -27,8 +27,8 @@ Tool-call arguments (what an agent sends):
 
 ```jsonc
 // ip-address_list: first page of records
-{ "entity": "bulk_query_i_p" }
-{ "entity": "bulk_query_i_p", "query": { } }
+{ "entity": "bulk_query_ip" }
+{ "entity": "bulk_query_ip", "query": { } }
 
 // ip-address_load: one record by id
 { "entity": "get_current_ip", "query": { "id": 1 } }
@@ -60,8 +60,8 @@ Tool-call arguments (what an agent sends):
    ```
 
 4. **Restart Claude Code.** The `ip-address_list` and `ip-address_load` tools now appear
-   in new sessions. Ask the agent to *"list bulk_query_i_p using ip-address"*
-   and it calls `ip-address_list` with `{"entity":"bulk_query_i_p"}`.
+   in new sessions. Ask the agent to *"list bulk_query_ip using ip-address"*
+   and it calls `ip-address_list` with `{"entity":"bulk_query_ip"}`.
 
 ## How-to guides
 
@@ -92,7 +92,7 @@ Args: `entity` (required), `query` (optional filter map). Returns the first
 page of records as JSON:
 
 ```jsonc
-{ "entity": "bulk_query_i_p" }
+{ "entity": "bulk_query_ip" }
 ```
 
 ### Call the `ip-address_load` tool
@@ -153,7 +153,7 @@ JSON schemas are emitted by the SDK from the `Args` struct's `json` /
 
 The 3 entities valid as the `entity` argument:
 
-bulk_query_i_p | get_current_ip | get_ip_intelligence
+bulk_query_ip | get_current_ip | get_ip_intelligence
 
 ### Smoke test via HTTP (raw JSON-RPC)
 

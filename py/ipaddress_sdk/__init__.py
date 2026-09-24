@@ -307,10 +307,10 @@ class IpAddressSDK:
         return res
 
 
-    def BulkQueryIP(self, data=None) -> "BulkQueryIPEntity":
-        """Entity factory: client.BulkQueryIP().list() / client.BulkQueryIP().load({"id": ...})."""
-        from ipaddress_sdk.entity.bulk_query_i_p_entity import BulkQueryIPEntity
-        return BulkQueryIPEntity(self, data)
+    def BulkQueryIp(self, data=None) -> "BulkQueryIpEntity":
+        """Entity factory: client.BulkQueryIp().list() / client.BulkQueryIp().load({"id": ...})."""
+        from ipaddress_sdk.entity.bulk_query_ip_entity import BulkQueryIpEntity
+        return BulkQueryIpEntity(self, data)
 
 
     def GetCurrentIp(self, data=None) -> "GetCurrentIpEntity":
@@ -352,6 +352,6 @@ class IpAddressSDK:
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ipaddress_sdk.entity.bulk_query_i_p_entity import BulkQueryIPEntity
+    from ipaddress_sdk.entity.bulk_query_ip_entity import BulkQueryIpEntity
     from ipaddress_sdk.entity.get_current_ip_entity import GetCurrentIpEntity
     from ipaddress_sdk.entity.get_ip_intelligence_entity import GetIpIntelligenceEntity

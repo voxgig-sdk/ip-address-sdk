@@ -41,9 +41,9 @@ client = IpAddressSDK.test()
 
 ### Instance Methods
 
-#### `BulkQueryIP(data=None)`
+#### `BulkQueryIp(data=None)`
 
-Create a new `BulkQueryIPEntity` instance. Pass `None` for no initial data.
+Create a new `BulkQueryIpEntity` instance. Pass `None` for no initial data.
 
 #### `GetCurrentIp(data=None)`
 
@@ -85,10 +85,10 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 
 ---
 
-## BulkQueryIPEntity
+## BulkQueryIpEntity
 
 ```python
-bulk_query_i_p = client.BulkQueryIP()
+bulk_query_ip = client.BulkQueryIp()
 ```
 
 ### Fields
@@ -108,9 +108,9 @@ bulk_query_i_p = client.BulkQueryIP()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.BulkQueryIP().list({"id": "example"})
-for bulk_query_i_p in results:
-    print(bulk_query_i_p)
+results = client.BulkQueryIp().list({"id": "example"})
+for bulk_query_ip in results:
+    print(bulk_query_ip)
 ```
 
 ### Common Methods
@@ -133,7 +133,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `BulkQueryIPEntity` instance with the same options.
+Create a new `BulkQueryIpEntity` instance with the same options.
 
 #### `get_name() -> str`
 

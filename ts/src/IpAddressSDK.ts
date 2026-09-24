@@ -1,6 +1,6 @@
 // IpAddress Ts SDK
 
-import { BulkQueryIPEntity } from './entity/BulkQueryIPEntity'
+import { BulkQueryIpEntity } from './entity/BulkQueryIpEntity'
 import { GetCurrentIpEntity } from './entity/GetCurrentIpEntity'
 import { GetIpIntelligenceEntity } from './entity/GetIpIntelligenceEntity'
 
@@ -126,7 +126,6 @@ class IpAddressSDK {
 
     const options = this._options
 
-    // Build spec directly from SDK options + user-provided fetch args.
     const spec: any = {
       base: options.base,
       prefix: options.prefix,
@@ -142,7 +141,6 @@ class IpAddressSDK {
 
     ctx.spec = spec
 
-    // Merge user-provided headers over SDK defaults.
     if (fetchargs.headers) {
       const uheaders = fetchargs.headers
       for (let key in uheaders) {
@@ -152,7 +150,6 @@ class IpAddressSDK {
 
     
 
-    // Apply SDK auth (apikey, auth prefix, etc.)
     const authResult = prepareAuth(ctx)
     if (authResult instanceof Error) {
       return authResult
@@ -245,18 +242,6 @@ class IpAddressSDK {
 
 
 
-  // Raw GraphQL access: the pressure valve that makes the generated
-  // surface's deliberate omissions (per-call selection sets, typed filter
-  // builders, batching, subscriptions) livable — the whole schema stays
-  // reachable.
-  //
-  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
-  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
-  // HTTP 200 as a top-level `errors` array, so status alone would report a
-  // failed query as ok.
-  //
-  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
-  // ratelimit or paging features apply.
   async graphql(query: string, variables?: any, ctrl?: any) {
     const options = this._options
 
@@ -299,12 +284,12 @@ class IpAddressSDK {
 
 
 
-  // Entity access: `client.BulkQueryIP().list()` / `client.BulkQueryIP().load({ id })`.
+  // Entity access: `client.BulkQueryIp().list()` / `client.BulkQueryIp().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
-  BulkQueryIP(entopts?: Record<string, any>) {
+  BulkQueryIp(entopts?: Record<string, any>) {
     const self = this
-    return new BulkQueryIPEntity(self, entopts)
+    return new BulkQueryIpEntity(self, entopts)
   }
 
 

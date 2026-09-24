@@ -341,21 +341,21 @@ class IpAddressSDK
     }
 
 
-    private $_bulk_query_i_p = null;
+    private $_bulk_query_ip = null;
 
-    // Canonical facade: $client->BulkQueryIP()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->bulk_query_i_p()
+    // Canonical facade: $client->BulkQueryIp()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->bulk_query_ip()
     // resolves here too.
-    public function BulkQueryIP($data = null)
+    public function BulkQueryIp($data = null)
     {
-        require_once __DIR__ . '/entity/bulk_query_i_p_entity.php';
+        require_once __DIR__ . '/entity/bulk_query_ip_entity.php';
         if ($data === null) {
-            if ($this->_bulk_query_i_p === null) {
-                $this->_bulk_query_i_p = new BulkQueryIPEntity($this, null);
+            if ($this->_bulk_query_ip === null) {
+                $this->_bulk_query_ip = new BulkQueryIpEntity($this, null);
             }
-            return $this->_bulk_query_i_p;
+            return $this->_bulk_query_ip;
         }
-        return new BulkQueryIPEntity($this, $data);
+        return new BulkQueryIpEntity($this, $data);
     }
 
 

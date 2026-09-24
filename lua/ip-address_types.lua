@@ -1,19 +1,19 @@
 -- Typed models for the IpAddress SDK (LuaLS annotations).
 --
--- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
--- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+-- params (op.<name>.points[].g.params[]). Field/param types come from the
 -- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 -- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 -- edit by hand.
 
----@class BulkQueryIP
+---@class BulkQueryIp
 ---@field id? string
 ---@field ip? string
 ---@field isp? string
 ---@field location? table
 ---@field risk? table
 
----@class BulkQueryIPListMatch
+---@class BulkQueryIpListMatch
 ---@field id string
 ---@field format? string
 

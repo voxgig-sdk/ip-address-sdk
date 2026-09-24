@@ -41,9 +41,9 @@ client = IpAddressSDK.test
 
 ### Instance Methods
 
-#### `BulkQueryIP(data = nil)`
+#### `BulkQueryIp(data = nil)`
 
-Create a new `BulkQueryIP` entity instance. Pass `nil` for no initial data.
+Create a new `BulkQueryIp` entity instance. Pass `nil` for no initial data.
 
 #### `GetCurrentIp(data = nil)`
 
@@ -91,10 +91,10 @@ same parameters as `direct()`. Raises on error.
 
 ---
 
-## BulkQueryIPEntity
+## BulkQueryIpEntity
 
 ```ruby
-bulk_query_i_p = client.BulkQueryIP
+bulk_query_ip = client.BulkQueryIp
 ```
 
 ### Fields
@@ -114,7 +114,7 @@ bulk_query_i_p = client.BulkQueryIP
 List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.BulkQueryIP.list
+results = client.BulkQueryIp.list
 ```
 
 ### Common Methods
@@ -137,7 +137,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `BulkQueryIPEntity` instance with the same client and
+Create a new `BulkQueryIpEntity` instance with the same client and
 options.
 
 #### `get_name -> String`

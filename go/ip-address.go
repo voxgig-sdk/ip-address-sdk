@@ -41,8 +41,8 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewBulkQueryIPEntityFunc = func(client *core.IpAddressSDK, entopts map[string]any) core.IpAddressEntity {
-		return entity.NewBulkQueryIPEntity(client, entopts)
+	core.NewBulkQueryIpEntityFunc = func(client *core.IpAddressSDK, entopts map[string]any) core.IpAddressEntity {
+		return entity.NewBulkQueryIpEntity(client, entopts)
 	}
 	core.NewGetCurrentIpEntityFunc = func(client *core.IpAddressSDK, entopts map[string]any) core.IpAddressEntity {
 		return entity.NewGetCurrentIpEntity(client, entopts)

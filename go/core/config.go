@@ -83,82 +83,94 @@ func MakeConfig() map[string]any {
 				"content-type": "application/json",
 			},
 			"entity": map[string]any{
-				"bulk_query_i_p": map[string]any{},
+				"bulk_query_ip": map[string]any{},
 				"get_current_ip": map[string]any{},
 				"get_ip_intelligence": map[string]any{},
 			},
 		},
 		"entity": map[string]any{
-			"bulk_query_i_p": map[string]any{
+			"bulk_query_ip": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ip",
-						"short": "The queried IP address",
+						"title": "Ip",
 						"type": "`$STRING`",
+						"short": "The queried IP address",
 					},
 					map[string]any{
 						"name": "isp",
-						"short": "Internet Service Provider name",
+						"title": "Isp",
 						"type": "`$STRING`",
+						"short": "Internet Service Provider name",
 					},
 					map[string]any{
 						"name": "location",
-						"short": "Location information for the IP address",
+						"title": "Location",
 						"type": "`$OBJECT`",
+						"short": "Location information for the IP address",
 					},
 					map[string]any{
 						"name": "risk",
-						"short": "Risk assessment data for the IP address",
+						"title": "Risk",
 						"type": "`$OBJECT`",
+						"short": "Risk assessment data for the IP address",
 					},
 				},
 				"id": map[string]any{
 					"field": "id",
 					"name": "id",
 				},
-				"name": "bulk_query_i_p",
+				"name": "bulk_query_ip",
 				"op": map[string]any{
 					"list": map[string]any{
 						"input": "data",
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "1.1.1.1,8.8.8.8,9.9.9.9",
-											"kind": "param",
-											"name": "id",
-											"orig": "ips",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{ips}",
+								"segments": []any{
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"{id}",
+								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"ips": "id",
 									},
 								},
-								"segments": []any{
-									map[string]any{
-										"var": "id",
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "ips",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "1.1.1.1,8.8.8.8,9.9.9.9",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -166,13 +178,6 @@ func MakeConfig() map[string]any {
 										"format",
 										"id",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"{id}",
 								},
 							},
 						},
@@ -191,31 +196,32 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "text",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/",
 								"segments": []any{},
+								"parts": []any{},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "text",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"format",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{},
 							},
 						},
 					},
@@ -228,27 +234,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ip",
-						"short": "The queried IP address",
+						"title": "Ip",
 						"type": "`$STRING`",
+						"short": "The queried IP address",
 					},
 					map[string]any{
 						"name": "isp",
-						"short": "Internet Service Provider name",
+						"title": "Isp",
 						"type": "`$STRING`",
+						"short": "Internet Service Provider name",
 					},
 					map[string]any{
 						"name": "location",
-						"short": "Location information for the IP address",
+						"title": "Location",
 						"type": "`$OBJECT`",
+						"short": "Location information for the IP address",
 					},
 					map[string]any{
 						"name": "risk",
-						"short": "Risk assessment data for the IP address",
+						"title": "Risk",
 						"type": "`$OBJECT`",
+						"short": "Risk assessment data for the IP address",
 					},
 				},
 				"id": map[string]any{
@@ -262,38 +273,45 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "1.1.1.1",
-											"kind": "param",
-											"name": "id",
-											"orig": "ip",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{ip}",
+								"segments": []any{
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"{id}",
+								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"ip": "id",
 									},
 								},
-								"segments": []any{
-									map[string]any{
-										"var": "id",
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "ip",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "1.1.1.1",
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -301,13 +319,6 @@ func MakeConfig() map[string]any {
 										"format",
 										"id",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"{id}",
 								},
 							},
 						},

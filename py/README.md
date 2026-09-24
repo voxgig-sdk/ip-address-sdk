@@ -4,7 +4,7 @@
 
 The Python SDK for the IpAddress API — an entity-oriented client following Pythonic conventions.
 
-The SDK exposes the API as capitalised, semantic **Entities** — for example `client.BulkQueryIP()` — each
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.BulkQueryIp()` — each
 carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
 paths and query strings. You work with named resources and verbs, which
 keeps the cognitive load low.
@@ -43,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    bulkqueryips = client.BulkQueryIP().list({"id": "example"})
+    bulkqueryips = client.BulkQueryIp().list({"id": "example"})
     for bulkqueryip in bulkqueryips:
         print(bulkqueryip)
 except Exception as err:
@@ -57,7 +57,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    bulkqueryips = client.BulkQueryIP().list()
+    bulkqueryips = client.BulkQueryIp().list()
     print(bulkqueryips)
 except Exception as err:
     print(f"list failed: {err}")
@@ -126,7 +126,7 @@ client = IpAddressSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-bulkqueryip = client.BulkQueryIP().list()
+bulkqueryip = client.BulkQueryIp().list()
 # bulkqueryip contains the mock response record
 ```
 
@@ -203,7 +203,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `BulkQueryIP` | `(data) -> BulkQueryIPEntity` | Create a BulkQueryIP entity instance. |
+| `BulkQueryIp` | `(data) -> BulkQueryIpEntity` | Create a BulkQueryIp entity instance. |
 | `GetCurrentIp` | `(data) -> GetCurrentIpEntity` | Create a GetCurrentIp entity instance. |
 | `GetIpIntelligence` | `(data) -> GetIpIntelligenceEntity` | Create a GetIpIntelligence entity instance. |
 
@@ -242,7 +242,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 ### Entities
 
-#### BulkQueryIP
+#### BulkQueryIp
 
 | Field | Description |
 | --- | --- |
@@ -284,9 +284,9 @@ API path: `/{ip}`
 ## Entities
 
 
-### BulkQueryIP
+### BulkQueryIp
 
-Create an instance: `bulk_query_i_p = client.BulkQueryIP()`
+Create an instance: `bulk_query_ip = client.BulkQueryIp()`
 
 #### Operations
 
@@ -307,7 +307,7 @@ Create an instance: `bulk_query_i_p = client.BulkQueryIP()`
 #### Example: List
 
 ```python
-bulk_query_i_ps = client.BulkQueryIP().list({"id": "example"})
+bulk_query_ips = client.BulkQueryIp().list({"id": "example"})
 ```
 
 
@@ -515,7 +515,7 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-bulkqueryip = client.BulkQueryIP()
+bulkqueryip = client.BulkQueryIp()
 bulkqueryip.list()
 
 # bulkqueryip.data_get() now returns the bulkqueryip data from the last list

@@ -4,7 +4,7 @@
 
 The Ruby SDK for the IpAddress API — an entity-oriented client using idiomatic Ruby conventions.
 
-The SDK exposes the API as capitalised, semantic **Entities** — for example `client.BulkQueryIP` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.BulkQueryIp` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
 
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
@@ -34,8 +34,8 @@ client = IpAddressSDK.new
 
 ```ruby
 begin
-  # list returns an Array of BulkQueryIP records — iterate directly.
-  bulkqueryips = client.BulkQueryIP.list
+  # list returns an Array of BulkQueryIp records — iterate directly.
+  bulkqueryips = client.BulkQueryIp.list
   bulkqueryips.each do |item|
     puts "#{item["id"]} #{item["ip"]}"
   end
@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  bulkqueryips = client.BulkQueryIP.list()
+  bulkqueryips = client.BulkQueryIp.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -121,7 +121,7 @@ client = IpAddressSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-bulkqueryip = client.BulkQueryIP.list()
+bulkqueryip = client.BulkQueryIp.list()
 puts bulkqueryip
 ```
 
@@ -198,7 +198,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `BulkQueryIP` | `(data) -> BulkQueryIPEntity` | Create a BulkQueryIP entity instance. |
+| `BulkQueryIp` | `(data) -> BulkQueryIpEntity` | Create a BulkQueryIp entity instance. |
 | `GetCurrentIp` | `(data) -> GetCurrentIpEntity` | Create a GetCurrentIp entity instance. |
 | `GetIpIntelligence` | `(data) -> GetIpIntelligenceEntity` | Create a GetIpIntelligence entity instance. |
 
@@ -236,7 +236,7 @@ returns a result `Hash` with these keys:
 
 ### Entities
 
-#### BulkQueryIP
+#### BulkQueryIp
 
 | Field | Description |
 | --- | --- |
@@ -278,9 +278,9 @@ API path: `/{ip}`
 ## Entities
 
 
-### BulkQueryIP
+### BulkQueryIp
 
-Create an instance: `bulk_query_i_p = client.BulkQueryIP`
+Create an instance: `bulk_query_ip = client.BulkQueryIp`
 
 #### Operations
 
@@ -301,8 +301,8 @@ Create an instance: `bulk_query_i_p = client.BulkQueryIP`
 #### Example: List
 
 ```ruby
-# list returns an Array of BulkQueryIP records (raises on error).
-bulk_query_i_ps = client.BulkQueryIP.list
+# list returns an Array of BulkQueryIp records (raises on error).
+bulk_query_ips = client.BulkQueryIp.list
 ```
 
 
@@ -513,7 +513,7 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-bulkqueryip = client.BulkQueryIP
+bulkqueryip = client.BulkQueryIp
 bulkqueryip.list()
 
 # bulkqueryip.data_get now returns the bulkqueryip data from the last list

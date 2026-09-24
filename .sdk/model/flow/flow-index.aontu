@@ -1,0 +1,5 @@
+# Flows
+
+@"./BasicBulkQueryIpFlow.aontu"
+@"./BasicGetCurrentIpFlow.aontu"
+@"./BasicGetIpIntelligenceFlow.aontu"

@@ -1,11 +1,11 @@
-export interface BulkQueryIP {
+export interface BulkQueryIp {
     id?: string;
     ip?: string;
     isp?: string;
     location?: Record<string, any>;
     risk?: Record<string, any>;
 }
-export interface BulkQueryIPListMatch {
+export interface BulkQueryIpListMatch {
     id: string;
     format?: string;
 }

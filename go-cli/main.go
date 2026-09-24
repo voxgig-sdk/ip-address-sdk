@@ -20,7 +20,7 @@ import (
 const prompt = "ip-address"
 
 // entitiesHelp is the space-separated entity list shown by /help.
-const entitiesHelp = "bulk_query_i_p get_current_ip get_ip_intelligence"
+const entitiesHelp = "bulk_query_ip get_current_ip get_ip_intelligence"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

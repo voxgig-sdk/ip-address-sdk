@@ -1,7 +1,7 @@
 // Typed models for the IpAddress SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -12,17 +12,12 @@ import (
 	"github.com/voxgig-sdk/ip-address-sdk/go/core"
 )
 
-// BulkQueryIP is the typed data model for the bulk_query_i_p entity.
-type BulkQueryIP struct {
-	Id *string `json:"id,omitempty"`
-	Ip *string `json:"ip,omitempty"`
-	Isp *string `json:"isp,omitempty"`
-	Location *map[string]any `json:"location,omitempty"`
-	Risk *map[string]any `json:"risk,omitempty"`
+// BulkQueryIp is the typed data model for the bulk_query_ip entity.
+type BulkQueryIp struct {
 }
 
-// BulkQueryIPListMatch is the typed request payload for BulkQueryIP.ListTyped.
-type BulkQueryIPListMatch struct {
+// BulkQueryIpListMatch is the typed request payload for BulkQueryIp.ListTyped.
+type BulkQueryIpListMatch struct {
 	Id string `json:"id"`
 	Format *string `json:"format,omitempty"`
 }
@@ -38,11 +33,6 @@ type GetCurrentIpLoadMatch struct {
 
 // GetIpIntelligence is the typed data model for the get_ip_intelligence entity.
 type GetIpIntelligence struct {
-	Id *string `json:"id,omitempty"`
-	Ip *string `json:"ip,omitempty"`
-	Isp *string `json:"isp,omitempty"`
-	Location *map[string]any `json:"location,omitempty"`
-	Risk *map[string]any `json:"risk,omitempty"`
 }
 
 // GetIpIntelligenceLoadMatch is the typed request payload for GetIpIntelligence.LoadTyped.

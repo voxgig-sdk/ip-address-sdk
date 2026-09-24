@@ -349,15 +349,15 @@ end
 
 
 
--- Idiomatic facade: client:BulkQueryIP():list() / client:BulkQueryIP():load({ id = ... })
+-- Idiomatic facade: client:BulkQueryIp():list() / client:BulkQueryIp():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function IpAddressSDK:BulkQueryIP(data)
-  local EntityMod = require("entity.bulk_query_i_p_entity")
+function IpAddressSDK:BulkQueryIp(data)
+  local EntityMod = require("entity.bulk_query_ip_entity")
   if data == nil then
-    if self._bulk_query_i_p == nil then
-      self._bulk_query_i_p = EntityMod.new(self, nil)
+    if self._bulk_query_ip == nil then
+      self._bulk_query_ip = EntityMod.new(self, nil)
     end
-    return self._bulk_query_i_p
+    return self._bulk_query_ip
   end
   return EntityMod.new(self, data)
 end

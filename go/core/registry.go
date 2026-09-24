@@ -12,7 +12,7 @@ var NewTestFeatureFunc func() Feature
 
 var NewTimeoutFeatureFunc func() Feature
 
-var NewBulkQueryIPEntityFunc func(client *IpAddressSDK, entopts map[string]any) IpAddressEntity
+var NewBulkQueryIpEntityFunc func(client *IpAddressSDK, entopts map[string]any) IpAddressEntity
 
 var NewGetCurrentIpEntityFunc func(client *IpAddressSDK, entopts map[string]any) IpAddressEntity
 

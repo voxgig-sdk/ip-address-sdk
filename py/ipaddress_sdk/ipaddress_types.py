@@ -1,7 +1,7 @@
 # Typed models for the IpAddress SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Field/param types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
 #
@@ -16,7 +16,7 @@ from __future__ import annotations
 from typing import TypedDict, Any
 
 
-class BulkQueryIP(TypedDict, total=False):
+class BulkQueryIp(TypedDict, total=False):
     id: str
     ip: str
     isp: str
@@ -24,11 +24,11 @@ class BulkQueryIP(TypedDict, total=False):
     risk: dict
 
 
-class BulkQueryIPListMatchRequired(TypedDict):
+class BulkQueryIpListMatchRequired(TypedDict):
     id: str
 
 
-class BulkQueryIPListMatch(BulkQueryIPListMatchRequired, total=False):
+class BulkQueryIpListMatch(BulkQueryIpListMatchRequired, total=False):
     format: str
 
 

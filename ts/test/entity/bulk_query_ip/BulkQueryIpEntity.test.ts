@@ -1,0 +1,156 @@
+
+
+import Path from 'node:path'
+import * as Fs from 'node:fs'
+
+import { test, describe, afterEach } from 'node:test'
+import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
+
+
+import { IpAddressSDK, BaseFeature, stdutil } from '../../..'
+
+import {
+  envOverride,
+  liveClientOptions,
+  liveDelay,
+  loadEnvLocal,
+  makeCtrl,
+  makeMatch,
+  makeReqdata,
+  makeStepData,
+  makeValid,
+  maybeSkipControl,
+} from '../../utility'
+
+
+loadEnvLocal(__dirname + '/../../../.env.local')
+
+
+describe('BulkQueryIpEntity', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when IP_ADDRESS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('IP_ADDRESS_TEST_LIVE'))
+
+  test('instance', async () => {
+    const testsdk = IpAddressSDK.test()
+    const ent = testsdk.BulkQueryIp()
+    assert(null != ent)
+  })
+
+
+  test('basic', async (t) => {
+
+    const live = 'TRUE' === process.env.IP_ADDRESS_TEST_LIVE
+    for (const op of ['list']) {
+      if (!live && maybeSkipControl(t, 'entityOp', 'bulk_query_ip.' + op, live)) return
+    }
+
+    
+    const setup = basicSetup()
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":0},"ip":{"a":true,"h":"Ip","n":"ip","r":false,"sh":"The queried IP address","t":"`$STRING`","key$":"ip","index$":1},"isp":{"a":true,"h":"Isp","n":"isp","r":false,"sh":"Internet Service Provider name","t":"`$STRING`","key$":"isp","index$":2},"location":{"a":true,"h":"Location","n":"location","r":false,"sh":"Location information for the IP address","t":"`$OBJECT`","key$":"location","index$":3},"risk":{"a":true,"h":"Risk","n":"risk","r":false,"sh":"Risk assessment data for the IP address","t":"`$OBJECT`","key$":"risk","index$":4}},"id":{"field":"id","name":"id"},"name":"bulk_query_ip","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /{ips}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"1.1.1.1,8.8.8.8,9.9.9.9","k":"param","n":"id","or":"ips","r":true,"t":"`$STRING`","index$":0}],"query":[{"a":true,"ex":"json","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/{ips}","q":{"exist":["format","id"]},"r":{"param":{"ips":"id"}},"s":[{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"bulk_query_ip","name__orig":"bulk_query_ip","Name":"BulkQueryIp","name_":"bulk_query_ip","name-":"bulk-query-ip","NAME":"BULK_QUERY_IP","index$":0}, {"active":true,"entity":"bulk_query_ip","key$":"BasicBulkQueryIpFlow","kind":"basic","name":"BasicBulkQueryIpFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{"ips":"ips01"},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"bulk_query_ip_ref01"}}],"index$":0}]}, 'BulkQueryIp', {"GET /{ips}":{"protocol":"http","operationId":"bulkQueryIPs","responses":{"200":{"description":"Successful response with bulk IP intelligence data","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"ip":{"description":"The queried IP address","example":"1.1.1.1","key$":"ip","type":"string"},"isp":{"description":"Internet Service Provider name","example":"Cloudflare, Inc.","key$":"isp","type":"string"},"location":{"description":"Location information for the IP address","key$":"location","properties":{"city":{"description":"City name","example":"Los Angeles","type":"string"},"country":{"description":"Full name of the country","example":"United States","type":"string"},"country_code":{"description":"Two-letter ISO 3166-1 alpha-2 country code","example":"US","type":"string"},"latitude":{"description":"Latitude coordinate","example":34.0522,"format":"float","type":"number"},"longitude":{"description":"Longitude coordinate","example":-118.2437,"format":"float","type":"number"},"state":{"description":"Region or state name","example":"California","type":"string"},"timezone":{"description":"Timezone identifier","example":"America/Los_Angeles","type":"string"},"zipcode":{"description":"Postal code","example":"90001","type":"string"}},"type":"object","x-ref":"#/components/schemas/Location"},"risk":{"description":"Risk assessment data for the IP address","key$":"risk","properties":{"is_mobile":{"description":"True if associated with cellular network","example":false,"type":"boolean"},"is_proxy":{"description":"True if is a known public proxy","example":false,"type":"boolean"},"is_tor":{"description":"True if is a known Tor exit node","example":false,"type":"boolean"},"is_vpn":{"description":"True if belongs to a known VPN provider","example":false,"type":"boolean"},"risk_score":{"description":"0-100 score indicating malicious activity likelihood","example":0,"maximum":100,"minimum":0,"type":"integer"}},"type":"object","x-ref":"#/components/schemas/Risk"}},"x-ref":"#/components/schemas/IPIntelligence","index$":0}}},"application/xml":{"schema":{"type":"array","items":{"type":"object","properties":{"ip":{"description":"The queried IP address","example":"1.1.1.1","key$":"ip","type":"string"},"isp":{"description":"Internet Service Provider name","example":"Cloudflare, Inc.","key$":"isp","type":"string"},"location":{"description":"Location information for the IP address","key$":"location","properties":{"city":{"description":"City name","example":"Los Angeles","type":"string"},"country":{"description":"Full name of the country","example":"United States","type":"string"},"country_code":{"description":"Two-letter ISO 3166-1 alpha-2 country code","example":"US","type":"string"},"latitude":{"description":"Latitude coordinate","example":34.0522,"format":"float","type":"number"},"longitude":{"description":"Longitude coordinate","example":-118.2437,"format":"float","type":"number"},"state":{"description":"Region or state name","example":"California","type":"string"},"timezone":{"description":"Timezone identifier","example":"America/Los_Angeles","type":"string"},"zipcode":{"description":"Postal code","example":"90001","type":"string"}},"type":"object","x-ref":"#/components/schemas/Location"},"risk":{"description":"Risk assessment data for the IP address","key$":"risk","properties":{"is_mobile":{"description":"True if associated with cellular network","example":false,"type":"boolean"},"is_proxy":{"description":"True if is a known public proxy","example":false,"type":"boolean"},"is_tor":{"description":"True if is a known Tor exit node","example":false,"type":"boolean"},"is_vpn":{"description":"True if belongs to a known VPN provider","example":false,"type":"boolean"},"risk_score":{"description":"0-100 score indicating malicious activity likelihood","example":0,"maximum":100,"minimum":0,"type":"integer"}},"type":"object","x-ref":"#/components/schemas/Risk"}},"x-ref":"#/components/schemas/IPIntelligence"}}},"application/yaml":{"schema":{"type":"array","items":{"type":"object","properties":{"ip":{"description":"The queried IP address","example":"1.1.1.1","key$":"ip","type":"string"},"isp":{"description":"Internet Service Provider name","example":"Cloudflare, Inc.","key$":"isp","type":"string"},"location":{"description":"Location information for the IP address","key$":"location","properties":{"city":{"description":"City name","example":"Los Angeles","type":"string"},"country":{"description":"Full name of the country","example":"United States","type":"string"},"country_code":{"description":"Two-letter ISO 3166-1 alpha-2 country code","example":"US","type":"string"},"latitude":{"description":"Latitude coordinate","example":34.0522,"format":"float","type":"number"},"longitude":{"description":"Longitude coordinate","example":-118.2437,"format":"float","type":"number"},"state":{"description":"Region or state name","example":"California","type":"string"},"timezone":{"description":"Timezone identifier","example":"America/Los_Angeles","type":"string"},"zipcode":{"description":"Postal code","example":"90001","type":"string"}},"type":"object","x-ref":"#/components/schemas/Location"},"risk":{"description":"Risk assessment data for the IP address","key$":"risk","properties":{"is_mobile":{"description":"True if associated with cellular network","example":false,"type":"boolean"},"is_proxy":{"description":"True if is a known public proxy","example":false,"type":"boolean"},"is_tor":{"description":"True if is a known Tor exit node","example":false,"type":"boolean"},"is_vpn":{"description":"True if belongs to a known VPN provider","example":false,"type":"boolean"},"risk_score":{"description":"0-100 score indicating malicious activity likelihood","example":0,"maximum":100,"minimum":0,"type":"integer"}},"type":"object","x-ref":"#/components/schemas/Risk"}},"x-ref":"#/components/schemas/IPIntelligence"}}}}},"400":{"description":"Bad Request - Invalid IP format or query parameters","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error message"},"code":{"type":"integer","description":"HTTP status code"}},"x-ref":"#/components/schemas/Error"}}}},"429":{"description":"Too Many Requests - You have exceeded the rate limit","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error message"},"code":{"type":"integer","description":"HTTP status code"}},"x-ref":"#/components/schemas/Error"}}}},"500":{"description":"Internal Server Error - Something went wrong on our end","content":{"application/json":{"schema":{"type":"object","properties":{"error":{"type":"string","description":"Error message"},"code":{"type":"integer","description":"HTTP status code"}},"x-ref":"#/components/schemas/Error"}}}}},"parameters":[{"name":"ips","in":"path","description":"Comma-separated list of IP addresses (max 10,000)","required":true,"schema":{"type":"string","example":"1.1.1.1,8.8.8.8,9.9.9.9"},"index$":0},{"name":"format","in":"query","description":"Response format","required":false,"schema":{"type":"string","enum":["json","xml","yaml","text"],"default":"json"},"index$":1}],"security":[],"securitySource":"definition"}})
+    }
+    const client = setup.client
+    const struct = setup.struct
+
+    const isempty = struct.isempty
+    const select = struct.select
+
+    let bulk_query_ip_ref01_data = Object.values(setup.data.existing.bulk_query_ip)[0] as any
+
+    // LIST
+    const bulk_query_ip_ref01_ent = client.BulkQueryIp()
+    const bulk_query_ip_ref01_match: any = {}
+    bulk_query_ip_ref01_match['ips'] = setup.idmap['ips01']
+
+    const bulk_query_ip_ref01_list = (await bulk_query_ip_ref01_ent.list(bulk_query_ip_ref01_match)).map((e: any) => e.data())
+
+
+  })
+})
+
+
+
+function basicSetup(extra?: any) {
+  // TODO: fix test def options
+  const options: any = {} // null
+
+  // TODO: needs test utility to resolve path
+  const entityDataFile =
+    Path.resolve(__dirname, 
+      '../../../../.sdk/test/entity/bulk_query_ip/BulkQueryIpTestData.json')
+
+  // TODO: file ready util needed?
+  const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8')
+
+  // TODO: need a xlang JSON parse utility in voxgig/struct with better error msgs
+  const entityData = JSON.parse(entityDataSource)
+
+  options.entity = entityData.existing
+
+  let client = IpAddressSDK.test(options, extra)
+  const struct = client.utility().struct
+  const merge = struct.merge
+  const transform = struct.transform
+
+  let idmap = transform(
+    ['bulk_query_ip01','bulk_query_ip02','bulk_query_ip03','ips01'],
+    {
+      '`$PACK`': ['', {
+        '`$KEY`': '`$COPY`',
+        '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
+      }]
+    })
+
+  const env = envOverride({
+    'IP_ADDRESS_TEST_BULK_QUERY_IP_ENTID': idmap,
+    'IP_ADDRESS_TEST_LIVE': 'FALSE',
+    'IP_ADDRESS_TEST_EXPLAIN': 'FALSE',
+  })
+
+  idmap = env['IP_ADDRESS_TEST_BULK_QUERY_IP_ENTID']
+
+  const live = 'TRUE' === env.IP_ADDRESS_TEST_LIVE
+
+  const transport = createLiveTransport()
+  if (live) {
+    const rawIds = process.env['IP_ADDRESS_TEST_BULK_QUERY_IP_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
+    client = new IpAddressSDK(merge([
+      // FIRST, so the generated fields below win: sdk-test-control.json's
+      // test.client.options adds to the live client, it does not redirect it.
+      liveClientOptions(),
+      {
+      },
+      // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
+      // last entry is undefined, and basicSetup is normally called with no
+      // argument at all - so a bare 'extra' silently discarded the apikey
+      // and server values above and handed the SDK undefined. Harmless
+      // while there was nothing in that object; not harmless now.
+      extra || {},
+      { system: { fetch: transport.fetch } }
+    ]))
+  }
+
+  const setup = {
+    idmap,
+    env,
+    options,
+    client,
+    struct,
+    data: entityData,
+    explain: 'TRUE' === env.IP_ADDRESS_TEST_EXPLAIN,
+    live,
+    transport,
+    now: Date.now(),
+  }
+
+  return setup
+}
+  
