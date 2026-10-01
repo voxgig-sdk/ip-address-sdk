@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 IpAddressUtility::setRegistrar(function (IpAddressUtility $u): void {
     $u->clean = [IpAddressClean::class, 'call'];
+    $u->clean_add = [IpAddressClean::class, 'add'];
+    $u->clean_explain = [IpAddressDone::class, 'clean_explain'];
     $u->done = [IpAddressDone::class, 'call'];
     $u->make_error = [IpAddressMakeError::class, 'call'];
     $u->feature_add = [IpAddressFeatureAdd::class, 'call'];

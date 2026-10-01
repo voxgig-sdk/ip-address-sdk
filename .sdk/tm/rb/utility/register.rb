@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 IpAddressUtility.registrar = ->(u) {
   u.clean = IpAddressUtilities::Clean
+  u.clean_add = IpAddressUtilities::CleanAdd
+  u.clean_explain = IpAddressUtilities::CleanExplain
   u.done = IpAddressUtilities::Done
   u.make_error = IpAddressUtilities::MakeError
   u.feature_add = IpAddressUtilities::FeatureAdd
