@@ -12,6 +12,8 @@ type IpAddressError struct {
 	Ctx    *Context `json:"-"`
 	Result any
 	Spec   any
+	// The HTTP status, -1 when there was no response.
+	Status int
 }
 
 func NewIpAddressError(code string, msg string, ctx *Context) *IpAddressError {
@@ -21,7 +23,12 @@ func NewIpAddressError(code string, msg string, ctx *Context) *IpAddressError {
 		Code:               code,
 		Msg:                msg,
 		Ctx:                ctx,
+		Status:             -1,
 	}
+}
+
+func (e *IpAddressError) NotFound() bool {
+	return 404 == e.Status
 }
 
 func (e *IpAddressError) Error() string {
@@ -35,6 +42,7 @@ func (e *IpAddressError) Record() map[string]any {
 		"sdk":     e.Sdk,
 		"code":    e.Code,
 		"message": e.Msg,
+		"status":  e.Status,
 		"result":  e.Result,
 		"spec":    e.Spec,
 	}

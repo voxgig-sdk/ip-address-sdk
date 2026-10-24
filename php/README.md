@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/ip-address-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/ip-address-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -41,7 +41,7 @@ $client = new IpAddressSDK();
 ```php
 try {
     // list() returns entity instances; data_get() reads each record.
-    $bulkqueryips = $client->BulkQueryIp()->list();
+    $bulkqueryips = $client->BulkQueryIp()->list(["id" => "example"]);
     foreach ($bulkqueryips as $record) {
         $item = $record->data_get();
         echo $item["id"] . " " . $item["ip"] . "\n";
@@ -59,7 +59,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $bulkqueryips = $client->BulkQueryIp()->list();
+    $getcurrentip = $client->GetCurrentIp()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -131,7 +131,7 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = IpAddressSDK::test([
-    "entity" => ["getipintelligence" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["get_ip_intelligence" => ["test01" => ["id" => "test01"]]],
 ]);
 
 // Entity ops return the ENTITY (throws on error);
@@ -226,8 +226,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
+| `load` | `($reqmatch, $ctrl): mixed` | Load a single entity by match criteria, and return it. |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -237,9 +237,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -320,8 +320,8 @@ Create an instance: `$bulk_query_ip = $client->BulkQueryIp();`
 #### Example: List
 
 ```php
-// list() returns an array of BulkQueryIp records (throws on error).
-$bulk_query_ips = $client->BulkQueryIp()->list();
+// list() returns an array of BulkQueryIp entities, one per record (throws on error).
+$bulk_query_ips = $client->BulkQueryIp()->list(["id" => "example"]);
 ```
 
 
@@ -528,15 +528,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$bulkqueryip = $client->BulkQueryIp();
-$bulkqueryip->list();
+$getcurrentip = $client->GetCurrentIp();
+$getcurrentip->load();
 
-// $bulkqueryip->data_get() now returns the bulkqueryip data from the last list
-// $bulkqueryip->match_get() returns the last match criteria
+// $getcurrentip->data_get() now returns the getcurrentip data from the last load
+// $getcurrentip->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

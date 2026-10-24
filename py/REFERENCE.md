@@ -103,14 +103,14 @@ bulk_query_ip = client.BulkQueryIp()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[BulkQueryIpEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.BulkQueryIp().list({"id": "example"})
 for bulk_query_ip in results:
-    print(bulk_query_ip)
+    print(bulk_query_ip.data_get())
 ```
 
 ### Common Methods
@@ -150,9 +150,9 @@ get_current_ip = client.GetCurrentIp()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> GetCurrentIpEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.GetCurrentIp().load()
@@ -205,9 +205,9 @@ get_ip_intelligence = client.GetIpIntelligence()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> GetIpIntelligenceEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.GetIpIntelligence().load({"id": "get_ip_intelligence_id"})
@@ -399,6 +399,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

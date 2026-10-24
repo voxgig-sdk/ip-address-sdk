@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/ip-address-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/ip-address-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = IpAddressSDK.new
 
 ```ruby
 begin
-  # list returns an Array of BulkQueryIp records — iterate directly.
-  bulkqueryips = client.BulkQueryIp.list
+  # list returns an Array of BulkQueryIp entities, one per record; data_get reads the record.
+  bulkqueryips = client.BulkQueryIp.list({ "id" => "example" })
   bulkqueryips.each do |item|
-    puts "#{item["id"]} #{item["ip"]}"
+    record = item.data_get
+    puts "#{record["id"]} #{record["ip"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -60,9 +61,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  bulkqueryips = client.BulkQueryIp.list()
+  getcurrentip = client.GetCurrentIp.load()
 rescue => err
-  warn "list failed: #{err}"
+  warn "load failed: #{err}"
 end
 ```
 
@@ -129,9 +130,9 @@ Create a mock client for unit testing — no server required:
 client = IpAddressSDK.test
 
 # Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-bulkqueryip = client.BulkQueryIp.list()
-puts bulkqueryip
+# data_get reads its mock record.
+getcurrentip = client.GetCurrentIp.load()
+puts getcurrentip.data_get
 ```
 
 ### Use a custom fetch function
@@ -217,8 +218,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -228,9 +229,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `IpAddressError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`IpAddressError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -310,8 +312,9 @@ Create an instance: `bulk_query_ip = client.BulkQueryIp`
 #### Example: List
 
 ```ruby
-# list returns an Array of BulkQueryIp records (raises on error).
-bulk_query_ips = client.BulkQueryIp.list
+# list returns an Array of BulkQueryIp entities, one per record (raises on error).
+bulk_query_ips = client.BulkQueryIp.list({ "id" => "example" })
+bulk_query_ips.each { |item| puts item.data_get }
 ```
 
 
@@ -518,15 +521,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-bulkqueryip = client.BulkQueryIp
-bulkqueryip.list()
+getcurrentip = client.GetCurrentIp
+getcurrentip.load()
 
-# bulkqueryip.data_get now returns the bulkqueryip data from the last list
-# bulkqueryip.match_get returns the last match criteria
+# getcurrentip.data_get now returns the getcurrentip data from the last load
+# getcurrentip.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

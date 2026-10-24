@@ -22,11 +22,23 @@ const PLAN: any[] = [
       }
     ],
     "select": {
-      "format": "v1"
+      "format": "json"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json",
+      "application/xml",
+      "application/yaml"
+    ],
     "query": [
       "format"
+    ],
+    "queryArgs": [
+      {
+        "name": "format",
+        "wire": "format"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -35,20 +47,20 @@ const PLAN: any[] = [
         "ip": "1.1.1.1",
         "isp": "Cloudflare, Inc.",
         "location": {
-          "city": "Los Angeles",
           "country": "United States",
           "country_code": "US",
+          "city": "Los Angeles",
+          "state": "California",
+          "zipcode": "90001",
           "latitude": 34.0522,
           "longitude": -118.2437,
-          "state": "California",
-          "timezone": "America/Los_Angeles",
-          "zipcode": "90001"
+          "timezone": "America/Los_Angeles"
         },
         "risk": {
           "is_mobile": false,
-          "is_proxy": false,
-          "is_tor": false,
           "is_vpn": false,
+          "is_tor": false,
+          "is_proxy": false,
           "risk_score": 0
         }
       }
@@ -63,11 +75,24 @@ const PLAN: any[] = [
     "path": "/",
     "args": [],
     "select": {
-      "format": "v1"
+      "format": "text"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "text/plain",
+      "application/json",
+      "application/xml",
+      "application/yaml"
+    ],
     "query": [
       "format"
+    ],
+    "queryArgs": [
+      {
+        "name": "format",
+        "wire": "format"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -88,11 +113,23 @@ const PLAN: any[] = [
       }
     ],
     "select": {
-      "format": "v1"
+      "format": "json"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json",
+      "application/xml",
+      "application/yaml"
+    ],
     "query": [
       "format"
+    ],
+    "queryArgs": [
+      {
+        "name": "format",
+        "wire": "format"
+      }
     ],
     "auth": null,
     "status": 200,
@@ -100,20 +137,20 @@ const PLAN: any[] = [
       "ip": "1.1.1.1",
       "isp": "Cloudflare, Inc.",
       "location": {
-        "city": "Los Angeles",
         "country": "United States",
         "country_code": "US",
+        "city": "Los Angeles",
+        "state": "California",
+        "zipcode": "90001",
         "latitude": 34.0522,
         "longitude": -118.2437,
-        "state": "California",
-        "timezone": "America/Los_Angeles",
-        "zipcode": "90001"
+        "timezone": "America/Los_Angeles"
       },
       "risk": {
         "is_mobile": false,
-        "is_proxy": false,
-        "is_tor": false,
         "is_vpn": false,
+        "is_tor": false,
+        "is_proxy": false,
         "risk_score": 0
       }
     },

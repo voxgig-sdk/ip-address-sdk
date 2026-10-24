@@ -3,5 +3,18 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Internet Service Provider name",
+      "IpQuery is a versatile API that provides essential information about an IP address, including geolocation data and VPN detection capabilities. It is designed for developers, enabling them to filter and utilize data points critical for enhancing application security and personalization.",
+      "Location information for the IP address",
+      "Production server",
+      "Risk assessment data for the IP address",
+      "Successful response",
+      "Successful response with IP intelligence data",
+      "Successful response with bulk IP intelligence data",
+      "The queried IP address"
+    ]
+  }
 }

@@ -108,10 +108,10 @@ local bulk_query_ip = client:BulkQueryIp(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
-local results, err = client:BulkQueryIp():list()
+local results, err = client:BulkQueryIp():list({ id = "example" })
 ```
 
 ### Common Methods
@@ -154,7 +154,7 @@ local get_current_ip = client:GetCurrentIp(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:GetCurrentIp():load()
@@ -210,7 +210,7 @@ local get_ip_intelligence = client:GetIpIntelligence(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:GetIpIntelligence():load({ id = "get_ip_intelligence_id" })
@@ -403,6 +403,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

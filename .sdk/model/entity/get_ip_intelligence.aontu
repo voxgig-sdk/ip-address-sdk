@@ -83,7 +83,6 @@ main: kit: entity: get_ip_intelligence: {
           o: "/{ip}"
           q: {
             exist: [
-              "format"
               "id"
             ]
           }
@@ -91,6 +90,21 @@ main: kit: entity: get_ip_intelligence: {
             param: {
               ip: "id"
             }
+          }
+          rs: {
+            alternatives: [
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
+              {
+                binary: true
+                kind: "raw"
+                media: "application/yaml"
+              }
+            ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

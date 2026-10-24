@@ -29,10 +29,24 @@ main: kit: entity: get_current_ip: {
           }
           m: "GET"
           o: "/"
-          q: {
-            exist: [
-              "format"
+          rs: {
+            alternatives: [
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
+              {
+                binary: true
+                kind: "raw"
+                media: "application/yaml"
+              }
+              {
+                kind: "raw"
+                media: "text/plain"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           t: {
             req: "`reqdata`"

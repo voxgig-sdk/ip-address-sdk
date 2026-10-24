@@ -15,7 +15,7 @@ keeps the cognitive load low.
 
 ## Install
 This package is not yet published to PyPI. Install it from the GitHub
-release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/ip-address-sdk/releases)) or
+release tag (`py/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/ip-address-sdk/tags)) or
 from a source checkout:
 
 ```bash
@@ -38,14 +38,14 @@ client = IpAddressSDK()
 
 ### 2. List bulkqueryip records
 
-`list()` returns a `list` of records (each a `dict`) and raises on
-error — iterate it directly.
+`list()` returns a `list` of entities, one per record, and raises on
+error; an entity's `data_get()` reads its record (a `dict`).
 
 ```python
 try:
     bulkqueryips = client.BulkQueryIp().list({"id": "example"})
     for bulkqueryip in bulkqueryips:
-        print(bulkqueryip)
+        print(bulkqueryip.data_get())
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -57,10 +57,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    bulkqueryips = client.BulkQueryIp().list()
-    print(bulkqueryips)
+    getcurrentip = client.GetCurrentIp().load()
+    print(getcurrentip.data_get())
 except Exception as err:
-    print(f"list failed: {err}")
+    print(f"load failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -124,10 +124,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = IpAddressSDK.test()
 
-# Entity ops return the ENTITY and raises on error;
-# call data_get() for the record.
-bulkqueryip = client.BulkQueryIp().list()
-# bulkqueryip contains the mock response record
+# Entity ops return the entity, and list one per record; they raise on error.
+getcurrentip = client.GetCurrentIp().load()
+# data_get() on an entity reads its mock response record
 ```
 
 ### Use a custom fetch function
@@ -213,8 +212,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria, one per record. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -224,9 +223,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
-ops, a `list` for `list`) and raise on error. Wrap calls in
-`try`/`except` to handle failures.
+Entity operations return the entity, and `list` a `list` of entities, one
+per record; an entity's `data_get()` reads its record (a `dict`). They raise
+on error, so wrap calls in `try`/`except` to handle failures.
 
 The `direct()` escape hatch never raises — it returns a result `dict`
 you branch on via `result["ok"]`:
@@ -511,15 +510,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-bulkqueryip = client.BulkQueryIp()
-bulkqueryip.list()
+getcurrentip = client.GetCurrentIp()
+getcurrentip.load()
 
-# bulkqueryip.data_get() now returns the bulkqueryip data from the last list
-# bulkqueryip.match_get() returns the last match criteria
+# getcurrentip.data_get() now returns the getcurrentip data from the last load
+# getcurrentip.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -12,7 +12,7 @@ It exposes the API as capitalised, semantic **Entities** — e.g. `client:BulkQu
 
 ## Install
 This package is not yet published to LuaRocks. Install it from the
-GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/ip-address-sdk/releases)),
+GitHub release tag (`lua/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/ip-address-sdk/tags)),
 or add the source directory to your `LUA_PATH`:
 
 ```bash
@@ -35,15 +35,17 @@ local client = sdk.new()
 
 ### 2. List bulkqueryip records
 
-Entity operations return `(value, err)`. For `list`, `value` is the
-array of records itself — iterate it directly (there is no wrapper).
+Entity operations return `(value, err)`. For `list`, `value` is an
+array of entities, one per record — iterate it directly (there is no
+wrapper), and read each record with `data_get()`.
 
 ```lua
-local bulkqueryips, err = client:BulkQueryIp():list()
+local bulkqueryips, err = client:BulkQueryIp():list({ id = "example" })
 if err then error(err) end
 
 for _, item in ipairs(bulkqueryips) do
-  print(item["id"])
+  local rec = item:data_get()
+  print(rec["id"])
 end
 ```
 
@@ -54,7 +56,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local bulkqueryips, err = client:BulkQueryIp():list()
+local getcurrentip, err = client:GetCurrentIp():load()
 if err then error(err) end
 ```
 
@@ -112,8 +114,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:BulkQueryIp():list()
--- result is the returned data; err is set on failure
+local result, err = client:GetCurrentIp():load()
+-- result is the entity; data_get() reads its mock record; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -201,8 +203,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
+| `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria, and return it. |
+| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria, one per record. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -212,19 +214,19 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(value, err)`. The `value` is the operation's
-data **directly** — there is no wrapper:
+Entity operations return `(value, err)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` | the entity record (a `table`) |
-| `list` | an array (`table`) of entity records |
+| `load` | the entity, whose `data_get()` reads its record (a `table`) |
+| `list` | an array (`table`) of entities, one per record |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
     local get_current_ip, err = client:GetCurrentIp():load()
     if err then error(err) end
-    -- get_current_ip is the loaded record
+    -- get_current_ip is the loaded entity
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -296,7 +298,7 @@ Create an instance: `local bulk_query_ip = client:BulkQueryIp(nil)`
 #### Example: List
 
 ```lua
-local bulk_query_ips, err = client:BulkQueryIp():list()
+local bulk_query_ips, err = client:BulkQueryIp():list({ id = "example" })
 ```
 
 
@@ -501,15 +503,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local bulkqueryip = client:BulkQueryIp()
-bulkqueryip:list()
+local getcurrentip = client:GetCurrentIp()
+getcurrentip:load()
 
--- bulkqueryip:data_get() now returns the bulkqueryip data from the last list
--- bulkqueryip:match_get() returns the last match criteria
+-- getcurrentip:data_get() now returns the getcurrentip data from the last load
+-- getcurrentip:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

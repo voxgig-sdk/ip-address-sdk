@@ -93,6 +93,7 @@ class IpAddressConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -197,9 +198,23 @@ class IpAddressConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'format',
                       'id',
                     ],
+                  ],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'kind' => 'raw',
+                        'media' => 'application/xml',
+                      ],
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'application/yaml',
+                      ],
+                    ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -239,10 +254,25 @@ class IpAddressConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'format',
+                  'select' => [],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'kind' => 'raw',
+                        'media' => 'application/xml',
+                      ],
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'application/yaml',
+                      ],
+                      [
+                        'kind' => 'raw',
+                        'media' => 'text/plain',
+                      ],
                     ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -338,9 +368,23 @@ class IpAddressConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'format',
                       'id',
                     ],
+                  ],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'kind' => 'raw',
+                        'media' => 'application/xml',
+                      ],
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'application/yaml',
+                      ],
+                    ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

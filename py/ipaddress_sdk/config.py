@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -200,9 +201,23 @@ def make_config():
                 },
                 "select": {
                   "exist": [
-                    "format",
                     "id",
                   ],
+                },
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "raw",
+                      "media": "application/xml",
+                    },
+                    {
+                      "binary": True,
+                      "kind": "raw",
+                      "media": "application/yaml",
+                    },
+                  ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -242,10 +257,25 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "format",
+                "select": {},
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "raw",
+                      "media": "application/xml",
+                    },
+                    {
+                      "binary": True,
+                      "kind": "raw",
+                      "media": "application/yaml",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "text/plain",
+                    },
                   ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -341,9 +371,23 @@ def make_config():
                 },
                 "select": {
                   "exist": [
-                    "format",
                     "id",
                   ],
+                },
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "raw",
+                      "media": "application/xml",
+                    },
+                    {
+                      "binary": True,
+                      "kind": "raw",
+                      "media": "application/yaml",
+                    },
+                  ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],

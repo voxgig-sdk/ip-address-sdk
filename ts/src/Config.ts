@@ -102,6 +102,7 @@ class Config {
       },
       "optspec": {
         "clearTimer": "`$FUNCTION`",
+        "now": "`$FUNCTION`",
         "setTimer": "`$FUNCTION`"
       },
       "strict": false,
@@ -220,9 +221,23 @@ class Config {
               },
               "select": {
                 "exist": [
-                  "format",
                   "id"
                 ]
+              },
+              "response": {
+                "alternatives": [
+                  {
+                    "kind": "raw",
+                    "media": "application/xml"
+                  },
+                  {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/yaml"
+                  }
+                ],
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -262,10 +277,25 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "format"
-                ]
+              "select": {},
+              "response": {
+                "alternatives": [
+                  {
+                    "kind": "raw",
+                    "media": "application/xml"
+                  },
+                  {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/yaml"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "text/plain"
+                  }
+                ],
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -361,9 +391,23 @@ class Config {
               },
               "select": {
                 "exist": [
-                  "format",
                   "id"
                 ]
+              },
+              "response": {
+                "alternatives": [
+                  {
+                    "kind": "raw",
+                    "media": "application/xml"
+                  },
+                  {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/yaml"
+                  }
+                ],
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]

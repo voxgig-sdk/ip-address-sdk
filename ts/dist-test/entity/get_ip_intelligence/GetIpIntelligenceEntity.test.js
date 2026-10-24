@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.GetIpIntelligence();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.IpAddressSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.GetIpIntelligence().load({ "id": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.IP_ADDRESS_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 0 }, "ip": { "a": true, "h": "Ip", "n": "ip", "r": false, "sh": "The queried IP address", "t": "`$STRING`", "key$": "ip", "index$": 1 }, "isp": { "a": true, "h": "Isp", "n": "isp", "r": false, "sh": "Internet Service Provider name", "t": "`$STRING`", "key$": "isp", "index$": 2 }, "location": { "a": true, "h": "Location", "n": "location", "r": false, "sh": "Location information for the IP address", "t": "`$OBJECT`", "key$": "location", "index$": 3 }, "risk": { "a": true, "h": "Risk", "n": "risk", "r": false, "sh": "Risk assessment data for the IP address", "t": "`$OBJECT`", "key$": "risk", "index$": 4 } }, "id": { "field": "id", "name": "id" }, "name": "get_ip_intelligence", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /{ip}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "1.1.1.1", "k": "param", "n": "id", "or": "ip", "r": true, "t": "`$STRING`", "index$": 0 }], "query": [{ "a": true, "ex": "json", "k": "query", "n": "format", "or": "format", "r": false, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/{ip}", "q": { "exist": ["format", "id"] }, "r": { "param": { "ip": "id" } }, "s": [{ "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "get_ip_intelligence", "name__orig": "get_ip_intelligence", "Name": "GetIpIntelligence", "name_": "get_ip_intelligence", "name-": "get-ip-intelligence", "NAME": "GET_IP_INTELLIGENCE", "index$": 2 }, { "active": true, "entity": "get_ip_intelligence", "key$": "BasicGetIpIntelligenceFlow", "kind": "basic", "name": "BasicGetIpIntelligenceFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "get_ip_intelligence_ref01", "srcdatavar": "get_ip_intelligence_ref01_data", "suffix": "_dt0" }, "m": { "id": "get_ip_intelligence01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-get_ip_intelligence_ref01" } }], "index$": 0 }] }, 'GetIpIntelligence', { "GET /{ip}": { "protocol": "http", "parameters": [{ "name": "ip", "in": "path", "description": "IP address to query", "required": true, "schema": { "type": "string", "example": "1.1.1.1" }, "index$": 0 }, { "name": "format", "in": "query", "description": "Response format", "required": false, "schema": { "type": "string", "enum": ["json", "xml", "yaml", "text"], "default": "json" }, "index$": 1 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 0 }, "ip": { "a": true, "h": "Ip", "n": "ip", "r": false, "sh": "The queried IP address", "t": "`$STRING`", "key$": "ip", "index$": 1 }, "isp": { "a": true, "h": "Isp", "n": "isp", "r": false, "sh": "Internet Service Provider name", "t": "`$STRING`", "key$": "isp", "index$": 2 }, "location": { "a": true, "h": "Location", "n": "location", "r": false, "sh": "Location information for the IP address", "t": "`$OBJECT`", "key$": "location", "index$": 3 }, "risk": { "a": true, "h": "Risk", "n": "risk", "r": false, "sh": "Risk assessment data for the IP address", "t": "`$OBJECT`", "key$": "risk", "index$": 4 } }, "id": { "field": "id", "name": "id" }, "name": "get_ip_intelligence", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /{ip}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "1.1.1.1", "k": "param", "n": "id", "or": "ip", "r": true, "t": "`$STRING`", "index$": 0 }], "query": [{ "a": true, "ex": "json", "k": "query", "n": "format", "or": "format", "r": false, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/{ip}", "q": { "exist": ["id"] }, "r": { "param": { "ip": "id" } }, "rs": { "alternatives": [{ "kind": "raw", "media": "application/xml" }, { "binary": true, "kind": "raw", "media": "application/yaml" }], "kind": "json", "media": "application/json" }, "s": [{ "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "get_ip_intelligence", "name__orig": "get_ip_intelligence", "Name": "GetIpIntelligence", "name_": "get_ip_intelligence", "name-": "get-ip-intelligence", "NAME": "GET_IP_INTELLIGENCE", "index$": 2 }, { "active": true, "entity": "get_ip_intelligence", "key$": "BasicGetIpIntelligenceFlow", "kind": "basic", "name": "BasicGetIpIntelligenceFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "get_ip_intelligence_ref01", "srcdatavar": "get_ip_intelligence_ref01_data", "suffix": "_dt0" }, "m": { "id": "get_ip_intelligence01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-get_ip_intelligence_ref01" } }], "index$": 0 }] }, 'GetIpIntelligence', { "GET /{ip}": { "protocol": "http", "parameters": [{ "name": "ip", "in": "path", "description": "IP address to query", "required": true, "schema": { "type": "string", "example": "1.1.1.1" }, "index$": 0 }, { "name": "format", "in": "query", "description": "Response format", "required": false, "schema": { "type": "string", "enum": ["json", "xml", "yaml", "text"], "default": "json" }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -77,6 +85,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(get_ip_intelligence_ref01_data_dt0.id === get_ip_intelligence_ref01_data.id);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null
