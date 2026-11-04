@@ -115,7 +115,7 @@ class IpAddressContext
   end
 
   def make_error(code, msg)
-    IpAddressError.new(code, msg, self)
+    IpAddressError.new(msg, code: code, ctx: self)
   end
 
   # The serialised context leaves the pipeline (a logger, an error dump), so

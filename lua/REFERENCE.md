@@ -44,13 +44,13 @@ local client = sdk.test()
 
 Create a new `BulkQueryIp` entity instance. Pass `nil` for no initial data.
 
-#### `GetCurrentIp(data)`
+#### `CurrentIp(data)`
 
-Create a new `GetCurrentIp` entity instance. Pass `nil` for no initial data.
+Create a new `CurrentIp` entity instance. Pass `nil` for no initial data.
 
-#### `GetIpIntelligence(data)`
+#### `IpIntelligence(data)`
 
-Create a new `GetIpIntelligence` entity instance. Pass `nil` for no initial data.
+Create a new `IpIntelligence` entity instance. Pass `nil` for no initial data.
 
 #### `options_map() -> table`
 
@@ -98,7 +98,6 @@ local bulk_query_ip = client:BulkQueryIp(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `table` | No | Location information for the IP address |
@@ -111,7 +110,7 @@ local bulk_query_ip = client:BulkQueryIp(nil)
 List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
-local results, err = client:BulkQueryIp():list({ id = "example" })
+local results, err = client:BulkQueryIp():list({ ips = "example" })
 ```
 
 ### Common Methods
@@ -144,10 +143,10 @@ Return the entity name.
 
 ---
 
-## GetCurrentIpEntity
+## CurrentIpEntity
 
 ```lua
-local get_current_ip = client:GetCurrentIp(nil)
+local current_ip = client:CurrentIp(nil)
 ```
 
 ### Operations
@@ -157,7 +156,7 @@ local get_current_ip = client:GetCurrentIp(nil)
 Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
-local result, err = client:GetCurrentIp():load()
+local result, err = client:CurrentIp():load()
 ```
 
 ### Common Methods
@@ -180,7 +179,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `GetCurrentIpEntity` instance with the same client and
+Create a new `CurrentIpEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -190,17 +189,16 @@ Return the entity name.
 
 ---
 
-## GetIpIntelligenceEntity
+## IpIntelligenceEntity
 
 ```lua
-local get_ip_intelligence = client:GetIpIntelligence(nil)
+local ip_intelligence = client:IpIntelligence(nil)
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `table` | No | Location information for the IP address |
@@ -213,7 +211,7 @@ local get_ip_intelligence = client:GetIpIntelligence(nil)
 Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
-local result, err = client:GetIpIntelligence():load({ id = "get_ip_intelligence_id" })
+local result, err = client:IpIntelligence():load({ id = "ip_intelligence_id" })
 ```
 
 ### Common Methods
@@ -236,7 +234,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `GetIpIntelligenceEntity` instance with the same client and
+Create a new `IpIntelligenceEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

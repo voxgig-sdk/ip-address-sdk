@@ -1,0 +1,32 @@
+# BasicIpIntelligenceFlow
+
+main: kit: flow: BasicIpIntelligenceFlow:
+{
+  entity: "ip_intelligence",
+  kind: "basic",
+  name: "BasicIpIntelligenceFlow",
+  step: [
+    {
+      i: {
+        ref: "ip_intelligence_ref01",
+        srcdatavar: "ip_intelligence_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "ip_intelligence01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ip_intelligence_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicIpIntelligenceFlow"
+}

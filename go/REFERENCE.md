@@ -47,17 +47,17 @@ client := sdk.TestSDK(testopts, sdkopts)
 
 ### Instance Methods
 
-#### `BulkQueryIp(data map[string]any) IpAddressEntity`
+#### `BulkQueryIp(data map[string]any) IpAddressEntityBase`
 
 Create a new `BulkQueryIp` entity instance. Pass `nil` for no initial data.
 
-#### `GetCurrentIp(data map[string]any) IpAddressEntity`
+#### `CurrentIp(data map[string]any) IpAddressEntityBase`
 
-Create a new `GetCurrentIp` entity instance. Pass `nil` for no initial data.
+Create a new `CurrentIp` entity instance. Pass `nil` for no initial data.
 
-#### `GetIpIntelligence(data map[string]any) IpAddressEntity`
+#### `IpIntelligence(data map[string]any) IpAddressEntityBase`
 
-Create a new `GetIpIntelligence` entity instance. Pass `nil` for no initial data.
+Create a new `IpIntelligence` entity instance. Pass `nil` for no initial data.
 
 #### `OptionsMap() map[string]any`
 
@@ -106,7 +106,6 @@ fmt.Println(bulkQueryIp.GetName()) // "bulk_query_ip"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `map[string]any` | No | Location information for the IP address |
@@ -119,7 +118,7 @@ fmt.Println(bulkQueryIp.GetName()) // "bulk_query_ip"
 List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
 
 ```go
-results, err := client.BulkQueryIp(nil).List(map[string]any{"id": "example"}, nil)
+results, err := client.BulkQueryIp(nil).List(map[string]any{"ips": "example"}, nil)
 if err != nil {
     panic(err)
 }
@@ -160,11 +159,11 @@ Return the entity name.
 
 ---
 
-## GetCurrentIpEntity
+## CurrentIpEntity
 
 ```go
-getCurrentIp := client.GetCurrentIp(nil)
-fmt.Println(getCurrentIp.GetName()) // "get_current_ip"
+currentIp := client.CurrentIp(nil)
+fmt.Println(currentIp.GetName()) // "current_ip"
 ```
 
 ### Operations
@@ -174,7 +173,7 @@ fmt.Println(getCurrentIp.GetName()) // "get_current_ip"
 Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
 
 ```go
-result, err := client.GetCurrentIp(nil).Load(nil, nil)
+result, err := client.CurrentIp(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -195,7 +194,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `GetCurrentIpEntity` instance with the same client and
+Create a new `CurrentIpEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
@@ -213,18 +212,17 @@ Return the entity name.
 
 ---
 
-## GetIpIntelligenceEntity
+## IpIntelligenceEntity
 
 ```go
-getIpIntelligence := client.GetIpIntelligence(nil)
-fmt.Println(getIpIntelligence.GetName()) // "get_ip_intelligence"
+ipIntelligence := client.IpIntelligence(nil)
+fmt.Println(ipIntelligence.GetName()) // "ip_intelligence"
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `map[string]any` | No | Location information for the IP address |
@@ -237,7 +235,7 @@ fmt.Println(getIpIntelligence.GetName()) // "get_ip_intelligence"
 Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
 
 ```go
-result, err := client.GetIpIntelligence(nil).Load(map[string]any{"id": "get_ip_intelligence_id"}, nil)
+result, err := client.IpIntelligence(nil).Load(map[string]any{"id": "ip_intelligence_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -258,7 +256,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `GetIpIntelligenceEntity` instance with the same client and
+Create a new `IpIntelligenceEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`

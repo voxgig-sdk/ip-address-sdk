@@ -1,6 +1,7 @@
 # BulkQueryIp direct test
 
 import json
+import os
 import pytest
 
 from ipaddress_sdk.utility.voxgig_struct import voxgig_struct as vs
@@ -33,22 +34,26 @@ class TestBulkQueryIpDirect:
             pytest.skip(_reason or "skipped via sdk-test-control.json")
             return
         if setup["live"]:
-            for _live_key in ["bulk_query_ip01"]:
+            for _live_key in ["ips01"]:
                 if setup["idmap"].get(_live_key) is None:
                     runner.live_miss(LIVE_STRICT, f"Live test blocked: needs {_live_key} via IP_ADDRESS_TEST_BULK_QUERY_IP_ENTID")
 
+        if setup["live"]:
+            runner.live_pace()
         client = setup["client"]
 
         params = {}
+        query = {}
         if setup["live"]:
-            params["id"] = setup["idmap"].get("bulk_query_ip01")
+            params["ips"] = setup["idmap"].get("ips01")
         else:
-            params["id"] = "direct01"
+            params["ips"] = "direct01"
 
         result = client.direct({
-            "path": "{id}",
+            "path": "{ips}",
             "method": "GET",
             "params": params,
+            "query": query,
         })
         if setup["live"]:
             if not _live_ok(result):
@@ -84,6 +89,9 @@ def _bulk_query_ip_direct_setup(mockres):
         })
         client = IpAddressSDK(merged_opts)
         idmap = env.get("IP_ADDRESS_TEST_BULK_QUERY_IP_ENTID")
+        # A path parameter's example stands in for an id *_ENTID does not give.
+        idmap = {"ips01": "1.1.1.1,8.8.8.8,9.9.9.9",
+                 **(idmap if isinstance(idmap, dict) else {})}
         return {
             "client": client,
             "calls": calls,

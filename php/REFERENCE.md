@@ -45,13 +45,13 @@ $client = IpAddressSDK::test();
 
 Create a new `BulkQueryIpEntity` instance. Pass `null` for no initial data.
 
-#### `GetCurrentIp($data = null)`
+#### `CurrentIp($data = null)`
 
-Create a new `GetCurrentIpEntity` instance. Pass `null` for no initial data.
+Create a new `CurrentIpEntity` instance. Pass `null` for no initial data.
 
-#### `GetIpIntelligence($data = null)`
+#### `IpIntelligence($data = null)`
 
-Create a new `GetIpIntelligenceEntity` instance. Pass `null` for no initial data.
+Create a new `IpIntelligenceEntity` instance. Pass `null` for no initial data.
 
 #### `options_map(): array`
 
@@ -100,7 +100,6 @@ $bulk_query_ip = $client->BulkQueryIp();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `array` | No | Location information for the IP address |
@@ -113,7 +112,7 @@ $bulk_query_ip = $client->BulkQueryIp();
 List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
-$results = $client->BulkQueryIp()->list(["id" => "example"]);
+$results = $client->BulkQueryIp()->list(["ips" => "example"]);
 ```
 
 ### Common Methods
@@ -146,10 +145,10 @@ Return the entity name.
 
 ---
 
-## GetCurrentIpEntity
+## CurrentIpEntity
 
 ```php
-$get_current_ip = $client->GetCurrentIp();
+$current_ip = $client->CurrentIp();
 ```
 
 ### Operations
@@ -159,7 +158,7 @@ $get_current_ip = $client->GetCurrentIp();
 Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
-$result = $client->GetCurrentIp()->load();
+$result = $client->CurrentIp()->load();
 ```
 
 ### Common Methods
@@ -180,9 +179,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): GetCurrentIpEntity`
+#### `make(): CurrentIpEntity`
 
-Create a new `GetCurrentIpEntity` instance with the same client and
+Create a new `CurrentIpEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -192,17 +191,16 @@ Return the entity name.
 
 ---
 
-## GetIpIntelligenceEntity
+## IpIntelligenceEntity
 
 ```php
-$get_ip_intelligence = $client->GetIpIntelligence();
+$ip_intelligence = $client->IpIntelligence();
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `array` | No | Location information for the IP address |
@@ -215,7 +213,7 @@ $get_ip_intelligence = $client->GetIpIntelligence();
 Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and throws on error.
 
 ```php
-$result = $client->GetIpIntelligence()->load(["id" => "get_ip_intelligence_id"]);
+$result = $client->IpIntelligence()->load(["id" => "ip_intelligence_id"]);
 ```
 
 ### Common Methods
@@ -236,9 +234,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): GetIpIntelligenceEntity`
+#### `make(): IpIntelligenceEntity`
 
-Create a new `GetIpIntelligenceEntity` instance with the same client and
+Create a new `IpIntelligenceEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

@@ -241,6 +241,20 @@ function IpAddressSDK:prepare(fetchargs)
     end
   end
 
+  -- A raw request has no point to declare its response type, so it asks
+  -- for the JSON it reads: an API that negotiates on Accept otherwise
+  -- answers in its own default format. A caller's own accept wins.
+  local has_accept = false
+  for k, _ in pairs(ctx.spec.headers) do
+    if string.lower(tostring(k)) == "accept" then
+      has_accept = true
+      break
+    end
+  end
+  if not has_accept then
+    ctx.spec.headers["accept"] = "application/json"
+  end
+
   local _, err = utility.prepare_auth(ctx)
   if err ~= nil then
     return nil, err
@@ -432,29 +446,29 @@ function IpAddressSDK:BulkQueryIp(data)
 end
 
 
--- Idiomatic facade: client:GetCurrentIp():list() / client:GetCurrentIp():load({ id = ... })
+-- Idiomatic facade: client:CurrentIp():list() / client:CurrentIp():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function IpAddressSDK:GetCurrentIp(data)
-  local EntityMod = require("entity.get_current_ip_entity")
+function IpAddressSDK:CurrentIp(data)
+  local EntityMod = require("entity.current_ip_entity")
   if data == nil then
-    if self._get_current_ip == nil then
-      self._get_current_ip = EntityMod.new(self, nil)
+    if self._current_ip == nil then
+      self._current_ip = EntityMod.new(self, nil)
     end
-    return self._get_current_ip
+    return self._current_ip
   end
   return EntityMod.new(self, data)
 end
 
 
--- Idiomatic facade: client:GetIpIntelligence():list() / client:GetIpIntelligence():load({ id = ... })
+-- Idiomatic facade: client:IpIntelligence():list() / client:IpIntelligence():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function IpAddressSDK:GetIpIntelligence(data)
-  local EntityMod = require("entity.get_ip_intelligence_entity")
+function IpAddressSDK:IpIntelligence(data)
+  local EntityMod = require("entity.ip_intelligence_entity")
   if data == nil then
-    if self._get_ip_intelligence == nil then
-      self._get_ip_intelligence = EntityMod.new(self, nil)
+    if self._ip_intelligence == nil then
+      self._ip_intelligence = EntityMod.new(self, nil)
     end
-    return self._get_ip_intelligence
+    return self._ip_intelligence
   end
   return EntityMod.new(self, data)
 end

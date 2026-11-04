@@ -60,21 +60,9 @@ Create a new `BulkQueryIp` entity instance.
 
 **Returns:** `BulkQueryIpEntity` instance.
 
-#### `GetCurrentIp(data?: object)`
+#### `CurrentIp(data?: object)`
 
-Create a new `GetCurrentIp` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `GetCurrentIpEntity` instance.
-
-#### `GetIpIntelligence(data?: object)`
-
-Create a new `GetIpIntelligence` entity instance.
+Create a new `CurrentIp` entity instance.
 
 **Parameters:**
 
@@ -82,7 +70,19 @@ Create a new `GetIpIntelligence` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `GetIpIntelligenceEntity` instance.
+**Returns:** `CurrentIpEntity` instance.
+
+#### `IpIntelligence(data?: object)`
+
+Create a new `IpIntelligence` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `IpIntelligenceEntity` instance.
 
 #### `options()`
 
@@ -151,7 +151,6 @@ const bulk_query_ip = client.BulkQueryIp()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `Record<string, any>` | No | Location information for the IP address |
@@ -164,7 +163,7 @@ const bulk_query_ip = client.BulkQueryIp()
 List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
-const results = await client.BulkQueryIp().list({ id: "example" })
+const results = await client.BulkQueryIp().list({ ips: "example" })
 ```
 
 ### Common Methods
@@ -195,10 +194,10 @@ Return a copy of the entity options.
 
 ---
 
-## GetCurrentIpEntity
+## CurrentIpEntity
 
 ```ts
-const get_current_ip = client.GetCurrentIp()
+const current_ip = client.CurrentIp()
 ```
 
 ### Operations
@@ -208,7 +207,7 @@ const get_current_ip = client.GetCurrentIp()
 Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
-const result = await client.GetCurrentIp().load()
+const result = await client.CurrentIp().load()
 ```
 
 ### Common Methods
@@ -225,7 +224,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `GetCurrentIpEntity` instance with the same client and
+Create a new `CurrentIpEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -239,17 +238,16 @@ Return a copy of the entity options.
 
 ---
 
-## GetIpIntelligenceEntity
+## IpIntelligenceEntity
 
 ```ts
-const get_ip_intelligence = client.GetIpIntelligence()
+const ip_intelligence = client.IpIntelligence()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
 | `ip` | `string` | No | The queried IP address |
 | `isp` | `string` | No | Internet Service Provider name |
 | `location` | `Record<string, any>` | No | Location information for the IP address |
@@ -262,7 +260,7 @@ const get_ip_intelligence = client.GetIpIntelligence()
 Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
-const result = await client.GetIpIntelligence().load({ id: 'get_ip_intelligence_id' })
+const result = await client.IpIntelligence().load({ id: 'ip_intelligence_id' })
 ```
 
 ### Common Methods
@@ -279,7 +277,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `GetIpIntelligenceEntity` instance with the same client and
+Create a new `IpIntelligenceEntity` instance with the same client and
 options.
 
 #### `client()`

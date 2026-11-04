@@ -81,18 +81,13 @@ local function make_config()
       },
       entity = {
         ["bulk_query_ip"] = {},
-        ["get_current_ip"] = {},
-        ["get_ip_intelligence"] = {},
+        ["current_ip"] = {},
+        ["ip_intelligence"] = {},
       },
     },
     entity = {
       ["bulk_query_ip"] = {
         ["fields"] = {
-          {
-            ["name"] = "id",
-            ["title"] = "Id",
-            ["type"] = "`$STRING`",
-          },
           {
             ["name"] = "ip",
             ["title"] = "Ip",
@@ -118,10 +113,6 @@ local function make_config()
             ["short"] = "Risk assessment data for the IP address",
           },
         },
-        ["id"] = {
-          ["field"] = "id",
-          ["name"] = "id",
-        },
         ["name"] = "bulk_query_ip",
         ["op"] = {
           ["list"] = {
@@ -134,17 +125,13 @@ local function make_config()
                 ["orig"] = "/{ips}",
                 ["segments"] = {
                   {
-                    ["var"] = "id",
+                    ["var"] = "ips",
                   },
                 },
                 ["parts"] = {
-                  "{id}",
+                  "{ips}",
                 },
-                ["rename"] = {
-                  ["param"] = {
-                    ["ips"] = "id",
-                  },
-                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
@@ -152,7 +139,7 @@ local function make_config()
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["name"] = "id",
+                      ["name"] = "ips",
                       ["orig"] = "ips",
                       ["type"] = "`$STRING`",
                       ["kind"] = "param",
@@ -172,7 +159,7 @@ local function make_config()
                 },
                 ["select"] = {
                   ["exist"] = {
-                    "id",
+                    "ips",
                   },
                 },
                 ["response"] = {
@@ -198,9 +185,9 @@ local function make_config()
           ["ancestors"] = {},
         },
       },
-      ["get_current_ip"] = {
+      ["current_ip"] = {
         ["fields"] = {},
-        ["name"] = "get_current_ip",
+        ["name"] = "current_ip",
         ["op"] = {
           ["load"] = {
             ["input"] = "data",
@@ -256,13 +243,8 @@ local function make_config()
           ["ancestors"] = {},
         },
       },
-      ["get_ip_intelligence"] = {
+      ["ip_intelligence"] = {
         ["fields"] = {
-          {
-            ["name"] = "id",
-            ["title"] = "Id",
-            ["type"] = "`$STRING`",
-          },
           {
             ["name"] = "ip",
             ["title"] = "Ip",
@@ -289,10 +271,10 @@ local function make_config()
           },
         },
         ["id"] = {
-          ["field"] = "id",
+          ["field"] = "ip",
           ["name"] = "id",
         },
-        ["name"] = "get_ip_intelligence",
+        ["name"] = "ip_intelligence",
         ["op"] = {
           ["load"] = {
             ["input"] = "data",
@@ -359,6 +341,9 @@ local function make_config()
                   },
                   ["kind"] = "json",
                   ["media"] = "application/json",
+                },
+                ["alias"] = {
+                  ["id"] = "ip",
                 },
               },
             },

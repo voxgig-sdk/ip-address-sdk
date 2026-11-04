@@ -10,18 +10,17 @@ guide: {
 
   entity: bulk_query_ip: {
     path: "/{ips}": {
-      rename: param: "ips": *"id"
       op: list: method: *GET
     }
   }
 
-  entity: get_current_ip: {
+  entity: current_ip: {
     path: "/": {
       op: load: method: *GET
     }
   }
 
-  entity: get_ip_intelligence: {
+  entity: ip_intelligence: {
     path: "/{ip}": {
       rename: param: "ip": *"id"
       op: load: method: *GET

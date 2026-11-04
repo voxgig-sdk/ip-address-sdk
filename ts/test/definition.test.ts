@@ -16,7 +16,7 @@ const PLAN: any[] = [
     "path": "/{ips}",
     "args": [
       {
-        "name": "id",
+        "name": "ips",
         "wire": "ips",
         "value": "1.1.1.1,8.8.8.8,9.9.9.9"
       }
@@ -68,8 +68,8 @@ const PLAN: any[] = [
     "idField": "id"
   },
   {
-    "entity": "get_current_ip",
-    "accessor": "GetCurrentIp",
+    "entity": "current_ip",
+    "accessor": "CurrentIp",
     "op": "load",
     "method": "GET",
     "path": "/",
@@ -100,8 +100,8 @@ const PLAN: any[] = [
     "idField": "id"
   },
   {
-    "entity": "get_ip_intelligence",
-    "accessor": "GetIpIntelligence",
+    "entity": "ip_intelligence",
+    "accessor": "IpIntelligence",
     "op": "load",
     "method": "GET",
     "path": "/{ip}",
@@ -154,7 +154,7 @@ const PLAN: any[] = [
         "risk_score": 0
       }
     },
-    "idField": "id"
+    "idField": "ip"
   }
 ]
 

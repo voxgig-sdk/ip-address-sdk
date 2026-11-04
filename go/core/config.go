@@ -85,18 +85,13 @@ func MakeConfig() map[string]any {
 			},
 			"entity": map[string]any{
 				"bulk_query_ip": map[string]any{},
-				"get_current_ip": map[string]any{},
-				"get_ip_intelligence": map[string]any{},
+				"current_ip": map[string]any{},
+				"ip_intelligence": map[string]any{},
 			},
 		},
 		"entity": map[string]any{
 			"bulk_query_ip": map[string]any{
 				"fields": []any{
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-					},
 					map[string]any{
 						"name": "ip",
 						"title": "Ip",
@@ -122,10 +117,6 @@ func MakeConfig() map[string]any {
 						"short": "Risk assessment data for the IP address",
 					},
 				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
 				"name": "bulk_query_ip",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -138,17 +129,13 @@ func MakeConfig() map[string]any {
 								"orig": "/{ips}",
 								"segments": []any{
 									map[string]any{
-										"var": "id",
+										"var": "ips",
 									},
 								},
 								"parts": []any{
-									"{id}",
+									"{ips}",
 								},
-								"rename": map[string]any{
-									"param": map[string]any{
-										"ips": "id",
-									},
-								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
@@ -156,7 +143,7 @@ func MakeConfig() map[string]any {
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
-											"name": "id",
+											"name": "ips",
 											"orig": "ips",
 											"type": "`$STRING`",
 											"kind": "param",
@@ -176,7 +163,7 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"id",
+										"ips",
 									},
 								},
 								"response": map[string]any{
@@ -202,9 +189,9 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"get_current_ip": map[string]any{
+			"current_ip": map[string]any{
 				"fields": []any{},
-				"name": "get_current_ip",
+				"name": "current_ip",
 				"op": map[string]any{
 					"load": map[string]any{
 						"input": "data",
@@ -260,13 +247,8 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"get_ip_intelligence": map[string]any{
+			"ip_intelligence": map[string]any{
 				"fields": []any{
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-					},
 					map[string]any{
 						"name": "ip",
 						"title": "Ip",
@@ -293,10 +275,10 @@ func MakeConfig() map[string]any {
 					},
 				},
 				"id": map[string]any{
-					"field": "id",
+					"field": "ip",
 					"name": "id",
 				},
-				"name": "get_ip_intelligence",
+				"name": "ip_intelligence",
 				"op": map[string]any{
 					"load": map[string]any{
 						"input": "data",
@@ -363,6 +345,9 @@ func MakeConfig() map[string]any {
 									},
 									"kind": "json",
 									"media": "application/json",
+								},
+								"alias": map[string]any{
+									"id": "ip",
 								},
 							},
 						},

@@ -6,7 +6,7 @@ import (
 )
 
 // UnsupportedOp is returned by entity stub methods for operations the
-// underlying API spec doesn't define. The static IpAddressEntity interface
+// underlying API spec doesn't define. The static IpAddressEntityBase interface
 // requires every CRUD method on every entity, so absent ops must still be
 // callable — they error at runtime instead of failing to compile.
 func UnsupportedOp(opname, entityname string) (any, error) {

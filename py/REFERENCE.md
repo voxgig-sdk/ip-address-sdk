@@ -45,13 +45,13 @@ client = IpAddressSDK.test()
 
 Create a new `BulkQueryIpEntity` instance. Pass `None` for no initial data.
 
-#### `GetCurrentIp(data=None)`
+#### `CurrentIp(data=None)`
 
-Create a new `GetCurrentIpEntity` instance. Pass `None` for no initial data.
+Create a new `CurrentIpEntity` instance. Pass `None` for no initial data.
 
-#### `GetIpIntelligence(data=None)`
+#### `IpIntelligence(data=None)`
 
-Create a new `GetIpIntelligenceEntity` instance. Pass `None` for no initial data.
+Create a new `IpIntelligenceEntity` instance. Pass `None` for no initial data.
 
 #### `options_map() -> dict`
 
@@ -95,7 +95,6 @@ bulk_query_ip = client.BulkQueryIp()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `str` | No |  |
 | `ip` | `str` | No | The queried IP address |
 | `isp` | `str` | No | Internet Service Provider name |
 | `location` | `dict` | No | Location information for the IP address |
@@ -108,7 +107,7 @@ bulk_query_ip = client.BulkQueryIp()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
-results = client.BulkQueryIp().list({"id": "example"})
+results = client.BulkQueryIp().list({"ips": "example"})
 for bulk_query_ip in results:
     print(bulk_query_ip.data_get())
 ```
@@ -142,20 +141,20 @@ Return the entity name.
 
 ---
 
-## GetCurrentIpEntity
+## CurrentIpEntity
 
 ```python
-get_current_ip = client.GetCurrentIp()
+current_ip = client.CurrentIp()
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> GetCurrentIpEntity`
+#### `load(reqmatch, ctrl=None) -> CurrentIpEntity`
 
 Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
-result = client.GetCurrentIp().load()
+result = client.CurrentIp().load()
 ```
 
 ### Common Methods
@@ -178,7 +177,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `GetCurrentIpEntity` instance with the same options.
+Create a new `CurrentIpEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -187,17 +186,16 @@ Return the entity name.
 
 ---
 
-## GetIpIntelligenceEntity
+## IpIntelligenceEntity
 
 ```python
-get_ip_intelligence = client.GetIpIntelligence()
+ip_intelligence = client.IpIntelligence()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `str` | No |  |
 | `ip` | `str` | No | The queried IP address |
 | `isp` | `str` | No | Internet Service Provider name |
 | `location` | `dict` | No | Location information for the IP address |
@@ -205,12 +203,12 @@ get_ip_intelligence = client.GetIpIntelligence()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> GetIpIntelligenceEntity`
+#### `load(reqmatch, ctrl=None) -> IpIntelligenceEntity`
 
 Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
-result = client.GetIpIntelligence().load({"id": "get_ip_intelligence_id"})
+result = client.IpIntelligence().load({"id": "ip_intelligence_id"})
 ```
 
 ### Common Methods
@@ -233,7 +231,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `GetIpIntelligenceEntity` instance with the same options.
+Create a new `IpIntelligenceEntity` instance with the same options.
 
 #### `get_name() -> str`
 

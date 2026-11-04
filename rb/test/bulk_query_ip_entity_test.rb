@@ -25,7 +25,7 @@ class BulkQueryIpEntityTest < Minitest::Test
     end
     client = IpAddressSDK.test(nil, { "feature" => { "validate" => { "active" => true } } })
     err = assert_raises(StandardError) do
-      client.BulkQueryIp(nil).list({ "id" => 1 }, nil)
+      client.BulkQueryIp(nil).list({ "ips" => 1 }, nil)
     end
     assert_equal "validate_failed", err.code
   end
@@ -34,11 +34,18 @@ class BulkQueryIpEntityTest < Minitest::Test
     setup = bulk_query_ip_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
     _live = setup[:live] || false
-    [].each do |_op|
+    ["list"].each do |_op|
       _should_skip, _reason = Runner.is_control_skipped("entityOp", "bulk_query_ip." + _op, _live ? "live" : "unit")
       if _should_skip
         skip(_reason || "skipped via sdk-test-control.json")
         return
+      end
+    end
+    if setup[:live]
+      { "ips01" => "1.1.1.1,8.8.8.8,9.9.9.9" }.each do |_live_key, _live_ex|
+        if setup[:synthetic_only] || setup[:idmap][_live_key].nil?
+          setup[:idmap][_live_key] = _live_ex
+        end
       end
     end
     client = setup[:client]
@@ -50,6 +57,16 @@ class BulkQueryIpEntityTest < Minitest::Test
     if bulk_query_ip_ref01_data_raw.length > 0
       bulk_query_ip_ref01_data = Helpers.to_map(bulk_query_ip_ref01_data_raw[0][1])
     end
+
+    Runner.live_pace if setup[:live]
+    # LIST
+    bulk_query_ip_ref01_ent = client.BulkQueryIp(nil)
+    bulk_query_ip_ref01_match = {
+      "ips" => setup[:idmap]["ips01"],
+    }
+
+    bulk_query_ip_ref01_list_result = bulk_query_ip_ref01_ent.list(bulk_query_ip_ref01_match, nil)
+    assert bulk_query_ip_ref01_list_result.is_a?(Array)
 
   end
 end
@@ -68,7 +85,7 @@ def bulk_query_ip_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["bulk_query_ip01", "bulk_query_ip02", "bulk_query_ip03"],
+    ["bulk_query_ip01", "bulk_query_ip02", "bulk_query_ip03", "ips01"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

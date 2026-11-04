@@ -15,7 +15,6 @@ declare(strict_types=1);
 /** BulkQueryIp entity data model. */
 class BulkQueryIp
 {
-    public ?string $id = null;
     public ?string $ip = null;
     public ?string $isp = null;
     public ?array $location = null;
@@ -25,33 +24,32 @@ class BulkQueryIp
 /** Request payload for BulkQueryIp#list. */
 class BulkQueryIpListMatch
 {
-    public string $id;
+    public string $ips;
     public ?string $format = null;
 }
 
-/** GetCurrentIp entity data model. */
-class GetCurrentIp
+/** CurrentIp entity data model. */
+class CurrentIp
 {
 }
 
-/** Request payload for GetCurrentIp#load. */
-class GetCurrentIpLoadMatch
+/** Request payload for CurrentIp#load. */
+class CurrentIpLoadMatch
 {
     public ?string $format = null;
 }
 
-/** GetIpIntelligence entity data model. */
-class GetIpIntelligence
+/** IpIntelligence entity data model. */
+class IpIntelligence
 {
-    public ?string $id = null;
     public ?string $ip = null;
     public ?string $isp = null;
     public ?array $location = null;
     public ?array $risk = null;
 }
 
-/** Request payload for GetIpIntelligence#load. */
-class GetIpIntelligenceLoadMatch
+/** Request payload for IpIntelligence#load. */
+class IpIntelligenceLoadMatch
 {
     public string $id;
     public ?string $format = null;

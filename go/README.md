@@ -52,7 +52,7 @@ func main() {
     client := sdk.New()
 
     // List bulkQueryIp records — the value is a []any of entities, one per record.
-    bulkQueryIps, err := client.BulkQueryIp(nil).List(map[string]any{"id": "example"}, nil)
+    bulkQueryIps, err := client.BulkQueryIp(nil).List(map[string]any{"ips": "example"}, nil)
     if err != nil {
         panic(err)
     }
@@ -69,12 +69,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-getcurrentip, err := client.GetCurrentIp(nil).Load(nil, nil)
+currentip, err := client.CurrentIp(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = getcurrentip
+_ = currentip
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-getCurrentIp, err := client.GetCurrentIp(nil).Load(
+currentIp, err := client.CurrentIp(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(getCurrentIp.(sdk.Entity).Data()) // the entity's mock record
+fmt.Println(currentIp.(sdk.Entity).Data()) // the entity's mock record
 ```
 
 ### Use a custom fetch function
@@ -221,13 +221,13 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `BulkQueryIp` | `(data map[string]any) IpAddressEntity` | Create a BulkQueryIp entity instance. |
-| `GetCurrentIp` | `(data map[string]any) IpAddressEntity` | Create a GetCurrentIp entity instance. |
-| `GetIpIntelligence` | `(data map[string]any) IpAddressEntity` | Create a GetIpIntelligence entity instance. |
+| `BulkQueryIp` | `(data map[string]any) IpAddressEntityBase` | Create a BulkQueryIp entity instance. |
+| `CurrentIp` | `(data map[string]any) IpAddressEntityBase` | Create a CurrentIp entity instance. |
+| `IpIntelligence` | `(data map[string]any) IpAddressEntityBase` | Create an IpIntelligence entity instance. |
 
-### Entity interface (IpAddressEntity)
+### Entity interface (IpAddressEntityBase)
 
-All entities implement the `IpAddressEntity` interface.
+All entities implement the `IpAddressEntityBase` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
@@ -252,7 +252,7 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    bulkQueryIp, err := client.BulkQueryIp(nil).List(map[string]any{"id": "example"}, nil)
+    bulkQueryIp, err := client.BulkQueryIp(nil).List(map[string]any{"ips": "example"}, nil)
     if err != nil { /* handle */ }
     // bulkQueryIp is a []any of entities, one per record
 
@@ -265,7 +265,6 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"id"` |  |
 | `"ip"` | The queried IP address |
 | `"isp"` | Internet Service Provider name |
 | `"location"` | Location information for the IP address |
@@ -275,7 +274,7 @@ Operations: List.
 
 API path: `/{ips}`
 
-#### GetCurrentIp
+#### CurrentIp
 
 | Field | Description |
 | --- | --- |
@@ -284,11 +283,10 @@ Operations: Load.
 
 API path: `/`
 
-#### GetIpIntelligence
+#### IpIntelligence
 
 | Field | Description |
 | --- | --- |
-| `"id"` |  |
 | `"ip"` | The queried IP address |
 | `"isp"` | Internet Service Provider name |
 | `"location"` | Location information for the IP address |
@@ -317,7 +315,6 @@ Create an instance: `bulkQueryIp := client.BulkQueryIp(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `map[string]any` | Location information for the IP address |
@@ -326,7 +323,7 @@ Create an instance: `bulkQueryIp := client.BulkQueryIp(nil)`
 #### Example: List
 
 ```go
-bulkQueryIps, err := client.BulkQueryIp(nil).List(map[string]any{"id": "example"}, nil)
+bulkQueryIps, err := client.BulkQueryIp(nil).List(map[string]any{"ips": "example"}, nil)
 if err != nil {
     panic(err)
 }
@@ -337,9 +334,9 @@ for _, item := range bulkQueryIps.([]any) {
 ```
 
 
-### GetCurrentIp
+### CurrentIp
 
-Create an instance: `getCurrentIp := client.GetCurrentIp(nil)`
+Create an instance: `currentIp := client.CurrentIp(nil)`
 
 #### Operations
 
@@ -350,17 +347,17 @@ Create an instance: `getCurrentIp := client.GetCurrentIp(nil)`
 #### Example: Load
 
 ```go
-getCurrentIp, err := client.GetCurrentIp(nil).Load(nil, nil)
+currentIp, err := client.CurrentIp(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(getCurrentIp.(sdk.Entity).Data()) // the loaded entity's record
+fmt.Println(currentIp.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
-### GetIpIntelligence
+### IpIntelligence
 
-Create an instance: `getIpIntelligence := client.GetIpIntelligence(nil)`
+Create an instance: `ipIntelligence := client.IpIntelligence(nil)`
 
 #### Operations
 
@@ -372,7 +369,6 @@ Create an instance: `getIpIntelligence := client.GetIpIntelligence(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `map[string]any` | Location information for the IP address |
@@ -381,11 +377,11 @@ Create an instance: `getIpIntelligence := client.GetIpIntelligence(nil)`
 #### Example: Load
 
 ```go
-getIpIntelligence, err := client.GetIpIntelligence(nil).Load(map[string]any{"id": "get_ip_intelligence_id"}, nil)
+ipIntelligence, err := client.IpIntelligence(nil).Load(map[string]any{"id": "ip_intelligence_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(getIpIntelligence.(sdk.Entity).Data()) // the loaded entity's record
+fmt.Println(ipIntelligence.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 ## Features
@@ -548,11 +544,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-getcurrentip := client.GetCurrentIp(nil)
-getcurrentip.Load(nil, nil)
+currentip := client.CurrentIp(nil)
+currentip.Load(nil, nil)
 
-// getcurrentip.Data() now returns the getcurrentip data from the last load
-// getcurrentip.Match() returns the last match criteria
+// currentip.Data() now returns the currentip data from the last load
+// currentip.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

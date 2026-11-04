@@ -1,0 +1,27 @@
+{
+  "existing": {
+    "current_ip": {
+      "CURRENT_IP00": {
+        "id": "CURRENT_IP00"
+      },
+      "CURRENT_IP01": {
+        "id": "CURRENT_IP01"
+      },
+      "CURRENT_IP02": {
+        "id": "CURRENT_IP02"
+      }
+    }
+  },
+  "new": {
+    "current_ip": {
+      "current_ip_ref01": {}
+    }
+  },
+  "requests": {
+    "GET /": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

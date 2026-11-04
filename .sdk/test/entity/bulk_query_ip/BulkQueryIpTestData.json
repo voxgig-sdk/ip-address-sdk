@@ -2,33 +2,33 @@
   "existing": {
     "bulk_query_ip": {
       "BULK_QUERY_IP00": {
-        "id": "BULK_QUERY_IP00",
-        "ip": "s33",
-        "isp": "s34",
+        "ip": "s28",
+        "isp": "s29",
         "location": {},
-        "risk": {}
+        "risk": {},
+        "ips": "IPS01"
       },
       "BULK_QUERY_IP01": {
-        "id": "BULK_QUERY_IP01",
-        "ip": "s65",
-        "isp": "s66",
+        "ip": "s50",
+        "isp": "s51",
         "location": {},
-        "risk": {}
+        "risk": {},
+        "ips": "IPS01"
       },
       "BULK_QUERY_IP02": {
-        "id": "BULK_QUERY_IP02",
-        "ip": "s97",
-        "isp": "s98",
+        "ip": "s78",
+        "isp": "s79",
         "location": {},
-        "risk": {}
+        "risk": {},
+        "ips": "IPS01"
       }
     }
   },
   "new": {
     "bulk_query_ip": {
       "bulk_query_ip_ref01": {
-        "ip": "sc9",
-        "isp": "sca",
+        "ip": "sa0",
+        "isp": "sa1",
         "location": {},
         "risk": {}
       }

@@ -43,19 +43,19 @@ describe('BulkQueryIpDirect', async () => {
     if (liveScenariosActive()) { t.skip('Covered by live operation scenarios'); return }
     const setup = directSetup([{ id: 'direct01' }, { id: 'direct02' }])
     if (maybeSkipControl(t, 'direct', 'direct-list-bulk_query_ip', setup.live)) return
-    if (skipIfMissingIds(t, setup, ["bulk_query_ip01"], LIVE_STRICT)) return
+    if (skipIfMissingIds(t, setup, ["ips01"], LIVE_STRICT)) return
     const { client, calls } = setup
 
     const params: any = {}
     const query: any = {}
     if (setup.live) {
-      params.id = setup.idmap['bulk_query_ip01']
+      params.ips = setup.idmap['ips01']
     } else {
-      params.id = 'direct01'
+      params.ips = 'direct01'
     }
 
     const result: any = await client.direct({
-      path: '{id}',
+      path: '{ips}',
       method: 'GET',
       params,
       query,
@@ -114,6 +114,9 @@ function directSetup(mockres?: any) {
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }
+    // A path parameter's example stands in for an id *_ENTID does not give.
+    idmap = Object.assign({ ips01: '1.1.1.1,8.8.8.8,9.9.9.9' },
+      'object' === typeof idmap ? idmap : {})
 
     return { client, calls, live, idmap, transport }
   }

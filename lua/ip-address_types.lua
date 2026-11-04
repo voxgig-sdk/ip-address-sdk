@@ -7,29 +7,27 @@
 -- edit by hand.
 
 ---@class BulkQueryIp
----@field id? string
 ---@field ip? string
 ---@field isp? string
 ---@field location? table
 ---@field risk? table
 
 ---@class BulkQueryIpListMatch
----@field id string
+---@field ips string
 ---@field format? string
 
----@class GetCurrentIp
+---@class CurrentIp
 
----@class GetCurrentIpLoadMatch
+---@class CurrentIpLoadMatch
 ---@field format? string
 
----@class GetIpIntelligence
----@field id? string
+---@class IpIntelligence
 ---@field ip? string
 ---@field isp? string
 ---@field location? table
 ---@field risk? table
 
----@class GetIpIntelligenceLoadMatch
+---@class IpIntelligenceLoadMatch
 ---@field id string
 ---@field format? string
 

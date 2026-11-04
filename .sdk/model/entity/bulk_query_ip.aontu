@@ -5,12 +5,6 @@ main: kit: entity: bulk_query_ip: {
   alias: field: {}
 
   fields: {
-    id: {
-      h: "Id"
-      n: "id"
-      r: false
-      t: "`$STRING`"
-    }
     ip: {
       h: "Ip"
       n: "ip"
@@ -41,11 +35,6 @@ main: kit: entity: bulk_query_ip: {
     }
   }
 
-  id: {
-    field: "id"
-    name: "id"
-  }
-
   name: "bulk_query_ip"
   op: {
     list: {
@@ -62,7 +51,7 @@ main: kit: entity: bulk_query_ip: {
               {
                 ex: "1.1.1.1,8.8.8.8,9.9.9.9"
                 k: "param"
-                n: "id"
+                n: "ips"
                 or: "ips"
                 r: true
                 t: "`$STRING`"
@@ -83,13 +72,8 @@ main: kit: entity: bulk_query_ip: {
           o: "/{ips}"
           q: {
             exist: [
-              "id"
+              "ips"
             ]
-          }
-          r: {
-            param: {
-              ips: "id"
-            }
           }
           rs: {
             alternatives: [
@@ -108,7 +92,7 @@ main: kit: entity: bulk_query_ip: {
           }
           s: [
             {
-              var: "id"
+              var: "ips"
             }
           ]
           t: {

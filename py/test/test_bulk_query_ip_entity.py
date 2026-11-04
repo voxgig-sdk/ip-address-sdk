@@ -37,7 +37,7 @@ class TestBulkQueryIpEntity:
         client = IpAddressSDK.test(
             None, {"feature": {"validate": {"active": True}}})
         with pytest.raises(Exception) as err:
-            client.BulkQueryIp(None).list({"id": 1}, None)
+            client.BulkQueryIp(None).list({"ips": 1}, None)
         assert "validate_failed" == getattr(err.value, "code", None)
 
     def test_should_run_basic_flow(self):
@@ -46,11 +46,15 @@ class TestBulkQueryIpEntity:
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in []:
+        for _op in ["list"]:
             _skip, _reason = runner.is_control_skipped("entityOp", "bulk_query_ip." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
                 return
+        if setup["live"]:
+            for _live_key, _live_ex in {"ips01": "1.1.1.1,8.8.8.8,9.9.9.9"}.items():
+                if setup.get("synthetic_only") or setup["idmap"].get(_live_key) is None:
+                    setup["idmap"][_live_key] = _live_ex
         client = setup["client"]
 
         # Bootstrap entity data from existing test data.
@@ -59,6 +63,17 @@ class TestBulkQueryIpEntity:
         bulk_query_ip_ref01_data = None
         if len(bulk_query_ip_ref01_data_raw) > 0:
             bulk_query_ip_ref01_data = helpers.to_map(bulk_query_ip_ref01_data_raw[0][1])
+
+        if setup["live"]:
+            runner.live_pace()
+        # LIST
+        bulk_query_ip_ref01_ent = client.BulkQueryIp(None)
+        bulk_query_ip_ref01_match = {
+            "ips": setup["idmap"]["ips01"],
+        }
+
+        bulk_query_ip_ref01_list_result = bulk_query_ip_ref01_ent.list(bulk_query_ip_ref01_match, None)
+        assert isinstance(bulk_query_ip_ref01_list_result, list)
 
 
 
@@ -78,7 +93,7 @@ def _bulk_query_ip_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["bulk_query_ip01", "bulk_query_ip02", "bulk_query_ip03"],
+        ["bulk_query_ip01", "bulk_query_ip02", "bulk_query_ip03", "ips01"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

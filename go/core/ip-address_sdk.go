@@ -192,6 +192,20 @@ func (sdk *IpAddressSDK) Prepare(fetchargs map[string]any) (map[string]any, erro
 		}
 	}
 
+	// A raw request has no point to declare its response type, so it asks
+	// for the JSON it reads: an API that negotiates on Accept otherwise
+	// answers in its own default format. A caller's own accept wins.
+	hasAccept := false
+	for k := range ctx.Spec.Headers {
+		if strings.ToLower(k) == "accept" {
+			hasAccept = true
+			break
+		}
+	}
+	if !hasAccept {
+		ctx.Spec.Headers["accept"] = "application/json"
+	}
+
 	_, err := utility.PrepareAuth(ctx)
 	if err != nil {
 		return nil, err
@@ -375,24 +389,24 @@ func (sdk *IpAddressSDK) Graphql(
 // BulkQueryIp returns a BulkQueryIp entity bound to this client.
 // Idiomatic usage: client.BulkQueryIp(nil).List(nil, nil) or
 // client.BulkQueryIp(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *IpAddressSDK) BulkQueryIp(data map[string]any) IpAddressEntity {
+func (sdk *IpAddressSDK) BulkQueryIp(data map[string]any) IpAddressEntityBase {
 	return NewBulkQueryIpEntityFunc(sdk, data)
 }
 
 
-// GetCurrentIp returns a GetCurrentIp entity bound to this client.
-// Idiomatic usage: client.GetCurrentIp(nil).List(nil, nil) or
-// client.GetCurrentIp(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *IpAddressSDK) GetCurrentIp(data map[string]any) IpAddressEntity {
-	return NewGetCurrentIpEntityFunc(sdk, data)
+// CurrentIp returns a CurrentIp entity bound to this client.
+// Idiomatic usage: client.CurrentIp(nil).List(nil, nil) or
+// client.CurrentIp(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *IpAddressSDK) CurrentIp(data map[string]any) IpAddressEntityBase {
+	return NewCurrentIpEntityFunc(sdk, data)
 }
 
 
-// GetIpIntelligence returns a GetIpIntelligence entity bound to this client.
-// Idiomatic usage: client.GetIpIntelligence(nil).List(nil, nil) or
-// client.GetIpIntelligence(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *IpAddressSDK) GetIpIntelligence(data map[string]any) IpAddressEntity {
-	return NewGetIpIntelligenceEntityFunc(sdk, data)
+// IpIntelligence returns a IpIntelligence entity bound to this client.
+// Idiomatic usage: client.IpIntelligence(nil).List(nil, nil) or
+// client.IpIntelligence(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *IpAddressSDK) IpIntelligence(data map[string]any) IpAddressEntityBase {
+	return NewIpIntelligenceEntityFunc(sdk, data)
 }
 
 

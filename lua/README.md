@@ -40,12 +40,11 @@ array of entities, one per record — iterate it directly (there is no
 wrapper), and read each record with `data_get()`.
 
 ```lua
-local bulkqueryips, err = client:BulkQueryIp():list({ id = "example" })
+local bulkqueryips, err = client:BulkQueryIp():list({ ips = "example" })
 if err then error(err) end
 
 for _, item in ipairs(bulkqueryips) do
-  local rec = item:data_get()
-  print(rec["id"])
+  for k, val in pairs(item:data_get()) do print(k, val) end
 end
 ```
 
@@ -56,7 +55,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local getcurrentip, err = client:GetCurrentIp():load()
+local currentip, err = client:CurrentIp():load()
 if err then error(err) end
 ```
 
@@ -114,9 +113,21 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:GetCurrentIp():load()
+local result, err = client:CurrentIp():load()
 -- result is the entity; data_get() reads its mock record; err is set on failure
 ```
+
+### Verify the server over HTTPS
+
+An `https://` request goes through LuaSocket and LuaSec, and the SDK checks
+the server itself before any of the request is sent: its certificate against
+the system's trust store, and its name against the host (an address against
+the certificate's addresses). Nothing turns that off. `SSL_CERT_FILE` or
+`SSL_CERT_DIR` names the trust store, as for OpenSSL; with neither set and no
+system store found, an `https://` request fails rather than going unverified.
+`IP_ADDRESS_CA_BUNDLE` names a PEM file of roots added to the store,
+for a local service with its own certificate authority or a self-signed
+certificate. A different policy is a custom fetch function, described next.
 
 ### Use a custom fetch function
 
@@ -194,8 +205,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
 | `BulkQueryIp` | `(data) -> BulkQueryIpEntity` | Create a BulkQueryIp entity instance. |
-| `GetCurrentIp` | `(data) -> GetCurrentIpEntity` | Create a GetCurrentIp entity instance. |
-| `GetIpIntelligence` | `(data) -> GetIpIntelligenceEntity` | Create a GetIpIntelligence entity instance. |
+| `CurrentIp` | `(data) -> CurrentIpEntity` | Create a CurrentIp entity instance. |
+| `IpIntelligence` | `(data) -> IpIntelligenceEntity` | Create an IpIntelligence entity instance. |
 
 ### Entity interface
 
@@ -224,9 +235,9 @@ itself — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local get_current_ip, err = client:GetCurrentIp():load()
+    local current_ip, err = client:CurrentIp():load()
     if err then error(err) end
-    -- get_current_ip is the loaded entity
+    -- current_ip is the loaded entity
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -237,7 +248,6 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -247,7 +257,7 @@ Operations: List.
 
 API path: `/{ips}`
 
-#### GetCurrentIp
+#### CurrentIp
 
 | Field | Description |
 | --- | --- |
@@ -256,11 +266,10 @@ Operations: Load.
 
 API path: `/`
 
-#### GetIpIntelligence
+#### IpIntelligence
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -289,7 +298,6 @@ Create an instance: `local bulk_query_ip = client:BulkQueryIp(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `table` | Location information for the IP address |
@@ -298,13 +306,13 @@ Create an instance: `local bulk_query_ip = client:BulkQueryIp(nil)`
 #### Example: List
 
 ```lua
-local bulk_query_ips, err = client:BulkQueryIp():list({ id = "example" })
+local bulk_query_ips, err = client:BulkQueryIp():list({ ips = "example" })
 ```
 
 
-### GetCurrentIp
+### CurrentIp
 
-Create an instance: `local get_current_ip = client:GetCurrentIp(nil)`
+Create an instance: `local current_ip = client:CurrentIp(nil)`
 
 #### Operations
 
@@ -315,13 +323,13 @@ Create an instance: `local get_current_ip = client:GetCurrentIp(nil)`
 #### Example: Load
 
 ```lua
-local get_current_ip, err = client:GetCurrentIp():load()
+local current_ip, err = client:CurrentIp():load()
 ```
 
 
-### GetIpIntelligence
+### IpIntelligence
 
-Create an instance: `local get_ip_intelligence = client:GetIpIntelligence(nil)`
+Create an instance: `local ip_intelligence = client:IpIntelligence(nil)`
 
 #### Operations
 
@@ -333,7 +341,6 @@ Create an instance: `local get_ip_intelligence = client:GetIpIntelligence(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `table` | Location information for the IP address |
@@ -342,7 +349,7 @@ Create an instance: `local get_ip_intelligence = client:GetIpIntelligence(nil)`
 #### Example: Load
 
 ```lua
-local get_ip_intelligence, err = client:GetIpIntelligence():load({ id = "get_ip_intelligence_id" })
+local ip_intelligence, err = client:IpIntelligence():load({ id = "ip_intelligence_id" })
 ```
 
 ## Features
@@ -507,11 +514,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local getcurrentip = client:GetCurrentIp()
-getcurrentip:load()
+local currentip = client:CurrentIp()
+currentip:load()
 
--- getcurrentip:data_get() now returns the getcurrentip data from the last load
--- getcurrentip:match_get() returns the last match criteria
+-- currentip:data_get() now returns the currentip data from the last load
+-- currentip:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

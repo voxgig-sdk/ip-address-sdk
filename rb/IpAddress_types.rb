@@ -10,9 +10,6 @@
 
 # BulkQueryIp entity data model.
 #
-# @!attribute [rw] id
-#   @return [String, nil]
-#
 # @!attribute [rw] ip
 #   @return [String, nil]
 #
@@ -25,7 +22,6 @@
 # @!attribute [rw] risk
 #   @return [Hash, nil]
 BulkQueryIp = Struct.new(
-  :id,
   :ip,
   :isp,
   :location,
@@ -35,34 +31,31 @@ BulkQueryIp = Struct.new(
 
 # Request payload for BulkQueryIp#list.
 #
-# @!attribute [rw] id
+# @!attribute [rw] ips
 #   @return [String]
 #
 # @!attribute [rw] format
 #   @return [String, nil]
 BulkQueryIpListMatch = Struct.new(
-  :id,
+  :ips,
   :format,
   keyword_init: true
 )
 
-# GetCurrentIp entity data model.
-class GetCurrentIp
+# CurrentIp entity data model.
+class CurrentIp
 end
 
-# Request payload for GetCurrentIp#load.
+# Request payload for CurrentIp#load.
 #
 # @!attribute [rw] format
 #   @return [String, nil]
-GetCurrentIpLoadMatch = Struct.new(
+CurrentIpLoadMatch = Struct.new(
   :format,
   keyword_init: true
 )
 
-# GetIpIntelligence entity data model.
-#
-# @!attribute [rw] id
-#   @return [String, nil]
+# IpIntelligence entity data model.
 #
 # @!attribute [rw] ip
 #   @return [String, nil]
@@ -75,8 +68,7 @@ GetCurrentIpLoadMatch = Struct.new(
 #
 # @!attribute [rw] risk
 #   @return [Hash, nil]
-GetIpIntelligence = Struct.new(
-  :id,
+IpIntelligence = Struct.new(
   :ip,
   :isp,
   :location,
@@ -84,14 +76,14 @@ GetIpIntelligence = Struct.new(
   keyword_init: true
 )
 
-# Request payload for GetIpIntelligence#load.
+# Request payload for IpIntelligence#load.
 #
 # @!attribute [rw] id
 #   @return [String]
 #
 # @!attribute [rw] format
 #   @return [String, nil]
-GetIpIntelligenceLoadMatch = Struct.new(
+IpIntelligenceLoadMatch = Struct.new(
   :id,
   :format,
   keyword_init: true

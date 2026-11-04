@@ -153,6 +153,13 @@ class IpAddressSDK
       uh.each { |k, v| ctx.spec.headers[k] = v }
     end
 
+    # A raw request has no point to declare its response type, so it asks
+    # for the JSON it reads: an API that negotiates on Accept otherwise
+    # answers in its own default format. A caller's own accept wins.
+    unless ctx.spec.headers.keys.any? { |k| k.to_s.downcase == "accept" }
+      ctx.spec.headers["accept"] = "application/json"
+    end
+
     _, err = utility.prepare_auth.call(ctx)
     raise err if err
 
@@ -185,9 +192,9 @@ class IpAddressSDK
     {
       "ok" => false,
       "err" => IpAddressError.new(
-        "#{op}_allow",
         "IpAddressSDK: #{op}: operation not allowed by" \
-        " SDK option allow.op value: \"#{allow_op}\""),
+        " SDK option allow.op value: \"#{allow_op}\"",
+        code: "#{op}_allow"),
     }
   end
 
@@ -306,7 +313,7 @@ class IpAddressSDK
       msg = "graphql error" if msg.nil? || msg.to_s.empty?
       res["ok"] = false
       res["err"] = IpAddressError.new(
-        "graphql_error", "IpAddressSDK: graphql: #{msg}")
+        "IpAddressSDK: graphql: #{msg}", code: "graphql_error")
       res["graphql"] = errors
     end
 
@@ -321,17 +328,17 @@ class IpAddressSDK
   end
 
 
-  # Canonical facade: client.GetCurrentIp.list / client.GetCurrentIp.load({ "id" => ... })
-  def GetCurrentIp(data = nil)
-    require_relative 'entity/get_current_ip_entity'
-    GetCurrentIpEntity.new(self, data)
+  # Canonical facade: client.CurrentIp.list / client.CurrentIp.load({ "id" => ... })
+  def CurrentIp(data = nil)
+    require_relative 'entity/current_ip_entity'
+    CurrentIpEntity.new(self, data)
   end
 
 
-  # Canonical facade: client.GetIpIntelligence.list / client.GetIpIntelligence.load({ "id" => ... })
-  def GetIpIntelligence(data = nil)
-    require_relative 'entity/get_ip_intelligence_entity'
-    GetIpIntelligenceEntity.new(self, data)
+  # Canonical facade: client.IpIntelligence.list / client.IpIntelligence.load({ "id" => ... })
+  def IpIntelligence(data = nil)
+    require_relative 'entity/ip_intelligence_entity'
+    IpIntelligenceEntity.new(self, data)
   end
 
 

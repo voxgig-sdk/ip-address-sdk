@@ -44,10 +44,10 @@ client = IpAddressSDK.new
 ```ruby
 begin
   # list returns an Array of BulkQueryIp entities, one per record; data_get reads the record.
-  bulkqueryips = client.BulkQueryIp.list({ "id" => "example" })
+  bulkqueryips = client.BulkQueryIp.list({ "ips" => "example" })
   bulkqueryips.each do |item|
     record = item.data_get
-    puts "#{record["id"]} #{record["ip"]}"
+    puts "#{record["ip"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -61,7 +61,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  getcurrentip = client.GetCurrentIp.load()
+  currentip = client.CurrentIp.load()
 rescue => err
   warn "load failed: #{err}"
 end
@@ -131,8 +131,8 @@ client = IpAddressSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # data_get reads its mock record.
-getcurrentip = client.GetCurrentIp.load()
-puts getcurrentip.data_get
+currentip = client.CurrentIp.load()
+puts currentip.data_get
 ```
 
 ### Use a custom fetch function
@@ -209,8 +209,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `BulkQueryIp` | `(data) -> BulkQueryIpEntity` | Create a BulkQueryIp entity instance. |
-| `GetCurrentIp` | `(data) -> GetCurrentIpEntity` | Create a GetCurrentIp entity instance. |
-| `GetIpIntelligence` | `(data) -> GetIpIntelligenceEntity` | Create a GetIpIntelligence entity instance. |
+| `CurrentIp` | `(data) -> CurrentIpEntity` | Create a CurrentIp entity instance. |
+| `IpIntelligence` | `(data) -> IpIntelligenceEntity` | Create an IpIntelligence entity instance. |
 
 ### Entity interface
 
@@ -251,7 +251,6 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -261,7 +260,7 @@ Operations: List.
 
 API path: `/{ips}`
 
-#### GetCurrentIp
+#### CurrentIp
 
 | Field | Description |
 | --- | --- |
@@ -270,11 +269,10 @@ Operations: Load.
 
 API path: `/`
 
-#### GetIpIntelligence
+#### IpIntelligence
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -303,7 +301,6 @@ Create an instance: `bulk_query_ip = client.BulkQueryIp`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `String` |  |
 | `ip` | `String` | The queried IP address |
 | `isp` | `String` | Internet Service Provider name |
 | `location` | `Hash` | Location information for the IP address |
@@ -313,14 +310,14 @@ Create an instance: `bulk_query_ip = client.BulkQueryIp`
 
 ```ruby
 # list returns an Array of BulkQueryIp entities, one per record (raises on error).
-bulk_query_ips = client.BulkQueryIp.list({ "id" => "example" })
+bulk_query_ips = client.BulkQueryIp.list({ "ips" => "example" })
 bulk_query_ips.each { |item| puts item.data_get }
 ```
 
 
-### GetCurrentIp
+### CurrentIp
 
-Create an instance: `get_current_ip = client.GetCurrentIp`
+Create an instance: `current_ip = client.CurrentIp`
 
 #### Operations
 
@@ -331,14 +328,14 @@ Create an instance: `get_current_ip = client.GetCurrentIp`
 #### Example: Load
 
 ```ruby
-# load returns the ENTITY — call data_get for the GetCurrentIp record (raises on error).
-get_current_ip = client.GetCurrentIp.load()
+# load returns the ENTITY — call data_get for the CurrentIp record (raises on error).
+current_ip = client.CurrentIp.load()
 ```
 
 
-### GetIpIntelligence
+### IpIntelligence
 
-Create an instance: `get_ip_intelligence = client.GetIpIntelligence`
+Create an instance: `ip_intelligence = client.IpIntelligence`
 
 #### Operations
 
@@ -350,7 +347,6 @@ Create an instance: `get_ip_intelligence = client.GetIpIntelligence`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `String` |  |
 | `ip` | `String` | The queried IP address |
 | `isp` | `String` | Internet Service Provider name |
 | `location` | `Hash` | Location information for the IP address |
@@ -359,8 +355,8 @@ Create an instance: `get_ip_intelligence = client.GetIpIntelligence`
 #### Example: Load
 
 ```ruby
-# load returns the ENTITY — call data_get for the GetIpIntelligence record (raises on error).
-get_ip_intelligence = client.GetIpIntelligence.load({ "id" => "get_ip_intelligence_id" })
+# load returns the ENTITY — call data_get for the IpIntelligence record (raises on error).
+ip_intelligence = client.IpIntelligence.load({ "id" => "ip_intelligence_id" })
 ```
 
 ## Features
@@ -525,11 +521,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-getcurrentip = client.GetCurrentIp
-getcurrentip.load()
+currentip = client.CurrentIp
+currentip.load()
 
-# getcurrentip.data_get now returns the getcurrentip data from the last load
-# getcurrentip.match_get returns the last match criteria
+# currentip.data_get now returns the currentip data from the last load
+# currentip.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

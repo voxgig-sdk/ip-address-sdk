@@ -38,7 +38,7 @@ func TestBulkQueryIpEntity(t *testing.T) {
 		client := sdk.TestSDK(nil, map[string]any{
 			"feature": map[string]any{"validate": map[string]any{"active": true}},
 		})
-		_, err := client.BulkQueryIp(nil).List(map[string]any{"id": 1}, nil)
+		_, err := client.BulkQueryIp(nil).List(map[string]any{"ips": 1}, nil)
 		if sdkerr, ok := err.(*core.IpAddressError); !ok || "validate_failed" != sdkerr.Code {
 			t.Fatalf("expected validate_failed, got %v", err)
 		}
@@ -53,7 +53,7 @@ func TestBulkQueryIpEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{} {
+		for _, _op := range []string{"list"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "bulk_query_ip." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -62,6 +62,16 @@ func TestBulkQueryIpEntity(t *testing.T) {
 				return
 			}
 		}
+		if setup.live {
+			for _liveKey, _liveEx := range map[string]any{"ips01": "1.1.1.1,8.8.8.8,9.9.9.9"} {
+				if setup.syntheticOnly || setup.idmap[_liveKey] == nil {
+					setup.idmap[_liveKey] = _liveEx
+				}
+			}
+		}
+		client := setup.client
+		_ = client
+
 		// Bootstrap entity data from existing test data (no create step in flow).
 		bulkQueryIpRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.bulk_query_ip")))
 		var bulkQueryIpRef01Data map[string]any
@@ -71,6 +81,24 @@ func TestBulkQueryIpEntity(t *testing.T) {
 		// Discard guards against Go's unused-var check when the flow's steps
 		// happen not to consume the bootstrap data (e.g. list-only flows).
 		_ = bulkQueryIpRef01Data
+
+		if setup.live {
+			livePace()
+		}
+		// LIST
+		bulkQueryIpRef01Ent := client.BulkQueryIp(nil)
+		bulkQueryIpRef01Match := map[string]any{
+			"ips": setup.idmap["ips01"],
+		}
+
+		bulkQueryIpRef01ListResult, err := bulkQueryIpRef01Ent.List(bulkQueryIpRef01Match, nil)
+		if err != nil {
+			t.Fatalf("list failed: %v", err)
+		}
+		_, bulkQueryIpRef01ListOk := bulkQueryIpRef01ListResult.([]any)
+		if !bulkQueryIpRef01ListOk {
+			t.Fatalf("expected list result to be an array, got %T", bulkQueryIpRef01ListResult)
+		}
 
 	})
 }
@@ -100,7 +128,7 @@ func bulk_query_ipBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"bulk_query_ip01", "bulk_query_ip02", "bulk_query_ip03"},
+		[]any{"bulk_query_ip01", "bulk_query_ip02", "bulk_query_ip03", "ips01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

@@ -45,13 +45,13 @@ client = IpAddressSDK.test
 
 Create a new `BulkQueryIp` entity instance. Pass `nil` for no initial data.
 
-#### `GetCurrentIp(data = nil)`
+#### `CurrentIp(data = nil)`
 
-Create a new `GetCurrentIp` entity instance. Pass `nil` for no initial data.
+Create a new `CurrentIp` entity instance. Pass `nil` for no initial data.
 
-#### `GetIpIntelligence(data = nil)`
+#### `IpIntelligence(data = nil)`
 
-Create a new `GetIpIntelligence` entity instance. Pass `nil` for no initial data.
+Create a new `IpIntelligence` entity instance. Pass `nil` for no initial data.
 
 #### `options_map -> Hash`
 
@@ -101,7 +101,6 @@ bulk_query_ip = client.BulkQueryIp
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `String` | No |  |
 | `ip` | `String` | No | The queried IP address |
 | `isp` | `String` | No | Internet Service Provider name |
 | `location` | `Hash` | No | Location information for the IP address |
@@ -114,7 +113,7 @@ bulk_query_ip = client.BulkQueryIp
 List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
-results = client.BulkQueryIp.list({ "id" => "example" })
+results = client.BulkQueryIp.list({ "ips" => "example" })
 results.each { |item| puts item.data_get }
 ```
 
@@ -148,10 +147,10 @@ Return the entity name.
 
 ---
 
-## GetCurrentIpEntity
+## CurrentIpEntity
 
 ```ruby
-get_current_ip = client.GetCurrentIp
+current_ip = client.CurrentIp
 ```
 
 ### Operations
@@ -161,7 +160,7 @@ get_current_ip = client.GetCurrentIp
 Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
-result = client.GetCurrentIp.load()
+result = client.CurrentIp.load()
 ```
 
 ### Common Methods
@@ -184,7 +183,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `GetCurrentIpEntity` instance with the same client and
+Create a new `CurrentIpEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -194,17 +193,16 @@ Return the entity name.
 
 ---
 
-## GetIpIntelligenceEntity
+## IpIntelligenceEntity
 
 ```ruby
-get_ip_intelligence = client.GetIpIntelligence
+ip_intelligence = client.IpIntelligence
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `String` | No |  |
 | `ip` | `String` | No | The queried IP address |
 | `isp` | `String` | No | Internet Service Provider name |
 | `location` | `Hash` | No | Location information for the IP address |
@@ -217,7 +215,7 @@ get_ip_intelligence = client.GetIpIntelligence
 Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
-result = client.GetIpIntelligence.load({ "id" => "get_ip_intelligence_id" })
+result = client.IpIntelligence.load({ "id" => "ip_intelligence_id" })
 ```
 
 ### Common Methods
@@ -240,7 +238,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `GetIpIntelligenceEntity` instance with the same client and
+Create a new `IpIntelligenceEntity` instance with the same client and
 options.
 
 #### `get_name -> String`

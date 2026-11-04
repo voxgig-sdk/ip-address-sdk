@@ -186,6 +186,12 @@ class IpAddressSDK:
             for k, v in uh.items():
                 ctx.spec.headers[k] = v
 
+        # A raw request has no point to declare its response type, so it asks
+        # for the JSON it reads: an API that negotiates on Accept otherwise
+        # answers in its own default format. A caller's own accept wins.
+        if not any(str(k).lower() == "accept" for k in ctx.spec.headers):
+            ctx.spec.headers["accept"] = "application/json"
+
         _, err = utility.prepare_auth(ctx)
         if err is not None:
             raise err
@@ -347,16 +353,16 @@ class IpAddressSDK:
         return BulkQueryIpEntity(self, data)
 
 
-    def GetCurrentIp(self, data=None) -> "GetCurrentIpEntity":
-        """Entity factory: client.GetCurrentIp().list() / client.GetCurrentIp().load({"id": ...})."""
-        from ipaddress_sdk.entity.get_current_ip_entity import GetCurrentIpEntity
-        return GetCurrentIpEntity(self, data)
+    def CurrentIp(self, data=None) -> "CurrentIpEntity":
+        """Entity factory: client.CurrentIp().list() / client.CurrentIp().load({"id": ...})."""
+        from ipaddress_sdk.entity.current_ip_entity import CurrentIpEntity
+        return CurrentIpEntity(self, data)
 
 
-    def GetIpIntelligence(self, data=None) -> "GetIpIntelligenceEntity":
-        """Entity factory: client.GetIpIntelligence().list() / client.GetIpIntelligence().load({"id": ...})."""
-        from ipaddress_sdk.entity.get_ip_intelligence_entity import GetIpIntelligenceEntity
-        return GetIpIntelligenceEntity(self, data)
+    def IpIntelligence(self, data=None) -> "IpIntelligenceEntity":
+        """Entity factory: client.IpIntelligence().list() / client.IpIntelligence().load({"id": ...})."""
+        from ipaddress_sdk.entity.ip_intelligence_entity import IpIntelligenceEntity
+        return IpIntelligenceEntity(self, data)
 
 
 
@@ -387,5 +393,5 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ipaddress_sdk.entity.bulk_query_ip_entity import BulkQueryIpEntity
-    from ipaddress_sdk.entity.get_current_ip_entity import GetCurrentIpEntity
-    from ipaddress_sdk.entity.get_ip_intelligence_entity import GetIpIntelligenceEntity
+    from ipaddress_sdk.entity.current_ip_entity import CurrentIpEntity
+    from ipaddress_sdk.entity.ip_intelligence_entity import IpIntelligenceEntity

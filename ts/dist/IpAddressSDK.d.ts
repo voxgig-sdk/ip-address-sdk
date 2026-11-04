@@ -1,6 +1,6 @@
 import { BulkQueryIpEntity } from './entity/BulkQueryIpEntity';
-import { GetCurrentIpEntity } from './entity/GetCurrentIpEntity';
-import { GetIpIntelligenceEntity } from './entity/GetIpIntelligenceEntity';
+import { CurrentIpEntity } from './entity/CurrentIpEntity';
+import { IpIntelligenceEntity } from './entity/IpIntelligenceEntity';
 export type * from './IpAddressTypes';
 import { inspect } from 'node:util';
 import type { Context, Feature } from './types';
@@ -36,8 +36,8 @@ declare class IpAddressSDK {
     _rawRequest(fetchargs?: any): Promise<DirectResult>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     BulkQueryIp(entopts?: Record<string, any>): BulkQueryIpEntity;
-    GetCurrentIp(entopts?: Record<string, any>): GetCurrentIpEntity;
-    GetIpIntelligence(entopts?: Record<string, any>): GetIpIntelligenceEntity;
+    CurrentIp(entopts?: Record<string, any>): CurrentIpEntity;
+    IpIntelligence(entopts?: Record<string, any>): IpIntelligenceEntity;
     static test(testoptsarg?: any, sdkoptsarg?: any): IpAddressSDK;
     tester(testopts?: any, sdkopts?: any): IpAddressSDK;
     toJSON(): {

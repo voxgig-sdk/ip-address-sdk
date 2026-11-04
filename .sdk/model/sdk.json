@@ -24,6 +24,7 @@
         "repr": "auto"
       },
       "contributor": {},
+      "copies": "merge",
       "doc": {
         "active": true,
         "assets": {
@@ -97,13 +98,6 @@
             "field": {}
           },
           "fields": {
-            "id": {
-              "a": true,
-              "h": "Id",
-              "n": "id",
-              "r": false,
-              "t": "`$STRING`"
-            },
             "ip": {
               "a": true,
               "h": "Ip",
@@ -137,10 +131,6 @@
               "t": "`$OBJECT`"
             }
           },
-          "id": {
-            "field": "id",
-            "name": "id"
-          },
           "name": "bulk_query_ip",
           "op": {
             "list": {
@@ -160,7 +150,7 @@
                         "a": true,
                         "ex": "1.1.1.1,8.8.8.8,9.9.9.9",
                         "k": "param",
-                        "n": "id",
+                        "n": "ips",
                         "or": "ips",
                         "r": true,
                         "t": "`$STRING`"
@@ -183,14 +173,10 @@
                   "o": "/{ips}",
                   "q": {
                     "exist": [
-                      "id"
+                      "ips"
                     ]
                   },
-                  "r": {
-                    "param": {
-                      "ips": "id"
-                    }
-                  },
+                  "r": {},
                   "rs": {
                     "alternatives": [
                       {
@@ -208,7 +194,7 @@
                   },
                   "s": [
                     {
-                      "var": "id"
+                      "var": "ips"
                     }
                   ],
                   "t": {
@@ -223,13 +209,13 @@
             "ancestors": []
           }
         },
-        "get_current_ip": {
+        "current_ip": {
           "active": true,
           "alias": {
             "field": {}
           },
           "fields": {},
-          "name": "get_current_ip",
+          "name": "current_ip",
           "op": {
             "load": {
               "input": "data",
@@ -292,19 +278,12 @@
             "ancestors": []
           }
         },
-        "get_ip_intelligence": {
+        "ip_intelligence": {
           "active": true,
           "alias": {
             "field": {}
           },
           "fields": {
-            "id": {
-              "a": true,
-              "h": "Id",
-              "n": "id",
-              "r": false,
-              "t": "`$STRING`"
-            },
             "ip": {
               "a": true,
               "h": "Ip",
@@ -339,10 +318,10 @@
             }
           },
           "id": {
-            "field": "id",
+            "field": "ip",
             "name": "id"
           },
-          "name": "get_ip_intelligence",
+          "name": "ip_intelligence",
           "op": {
             "load": {
               "input": "data",
@@ -865,20 +844,20 @@
             }
           ]
         },
-        "BasicGetCurrentIpFlow": {
+        "BasicCurrentIpFlow": {
           "active": true,
-          "entity": "get_current_ip",
-          "key$": "BasicGetCurrentIpFlow",
+          "entity": "current_ip",
+          "key$": "BasicCurrentIpFlow",
           "kind": "basic",
-          "name": "BasicGetCurrentIpFlow",
+          "name": "BasicCurrentIpFlow",
           "param": {},
           "step": [
             {
               "a": true,
               "d": {},
               "i": {
-                "ref": "get_current_ip_ref01",
-                "srcdatavar": "get_current_ip_ref01_data",
+                "ref": "current_ip_ref01",
+                "srcdatavar": "current_ip_ref01_data",
                 "suffix": "_dt0"
               },
               "m": {},
@@ -888,31 +867,31 @@
                 {
                   "apply": "TextFieldMark",
                   "def": {
-                    "mark": "Mark01-get_current_ip_ref01"
+                    "mark": "Mark01-current_ip_ref01"
                   }
                 }
               ]
             }
           ]
         },
-        "BasicGetIpIntelligenceFlow": {
+        "BasicIpIntelligenceFlow": {
           "active": true,
-          "entity": "get_ip_intelligence",
-          "key$": "BasicGetIpIntelligenceFlow",
+          "entity": "ip_intelligence",
+          "key$": "BasicIpIntelligenceFlow",
           "kind": "basic",
-          "name": "BasicGetIpIntelligenceFlow",
+          "name": "BasicIpIntelligenceFlow",
           "param": {},
           "step": [
             {
               "a": true,
               "d": {},
               "i": {
-                "ref": "get_ip_intelligence_ref01",
-                "srcdatavar": "get_ip_intelligence_ref01_data",
+                "ref": "ip_intelligence_ref01",
+                "srcdatavar": "ip_intelligence_ref01_data",
                 "suffix": "_dt0"
               },
               "m": {
-                "id": "get_ip_intelligence01"
+                "id": "ip_intelligence01"
               },
               "o": "load",
               "s": [],
@@ -920,13 +899,16 @@
                 {
                   "apply": "TextFieldMark",
                   "def": {
-                    "mark": "Mark01-get_ip_intelligence_ref01"
+                    "mark": "Mark01-ip_intelligence_ref01"
                   }
                 }
               ]
             }
           ]
         }
+      },
+      "http": {
+        "useragent": ""
       },
       "info": {
         "auth": false,

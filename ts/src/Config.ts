@@ -124,10 +124,10 @@ class Config {
         bulk_query_ip: {
         },
   
-        get_current_ip: {
+        current_ip: {
         },
   
-        get_ip_intelligence: {
+        ip_intelligence: {
         },
   
     }
@@ -137,11 +137,6 @@ class Config {
   entity = {
     "bulk_query_ip": {
       "fields": [
-        {
-          "name": "id",
-          "title": "Id",
-          "type": "`$STRING`"
-        },
         {
           "name": "ip",
           "title": "Ip",
@@ -167,10 +162,6 @@ class Config {
           "short": "Risk assessment data for the IP address"
         }
       ],
-      "id": {
-        "field": "id",
-        "name": "id"
-      },
       "name": "bulk_query_ip",
       "op": {
         "list": {
@@ -183,17 +174,13 @@ class Config {
               "orig": "/{ips}",
               "segments": [
                 {
-                  "var": "id"
+                  "var": "ips"
                 }
               ],
               "parts": [
-                "{id}"
+                "{ips}"
               ],
-              "rename": {
-                "param": {
-                  "ips": "id"
-                }
-              },
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
@@ -201,7 +188,7 @@ class Config {
               "args": {
                 "params": [
                   {
-                    "name": "id",
+                    "name": "ips",
                     "orig": "ips",
                     "type": "`$STRING`",
                     "kind": "param",
@@ -221,7 +208,7 @@ class Config {
               },
               "select": {
                 "exist": [
-                  "id"
+                  "ips"
                 ]
               },
               "response": {
@@ -247,9 +234,9 @@ class Config {
         "ancestors": []
       }
     },
-    "get_current_ip": {
+    "current_ip": {
       "fields": [],
-      "name": "get_current_ip",
+      "name": "current_ip",
       "op": {
         "load": {
           "input": "data",
@@ -305,13 +292,8 @@ class Config {
         "ancestors": []
       }
     },
-    "get_ip_intelligence": {
+    "ip_intelligence": {
       "fields": [
-        {
-          "name": "id",
-          "title": "Id",
-          "type": "`$STRING`"
-        },
         {
           "name": "ip",
           "title": "Ip",
@@ -338,10 +320,10 @@ class Config {
         }
       ],
       "id": {
-        "field": "id",
+        "field": "ip",
         "name": "id"
       },
-      "name": "get_ip_intelligence",
+      "name": "ip_intelligence",
       "op": {
         "load": {
           "input": "data",
@@ -408,6 +390,9 @@ class Config {
                 ],
                 "kind": "json",
                 "media": "application/json"
+              },
+              "alias": {
+                "id": "ip"
               }
             }
           ]

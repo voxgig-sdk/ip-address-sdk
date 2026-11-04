@@ -29,7 +29,7 @@ describe("BulkQueryIpEntity", function()
       return
     end
     local client = sdk.test(nil, { feature = { validate = { active = true } } })
-    local _, err = client:BulkQueryIp(nil):list({ ["id"] = 1 }, nil)
+    local _, err = client:BulkQueryIp(nil):list({ ["ips"] = 1 }, nil)
     assert.are.equal("validate_failed", type(err) == "table" and err.code or nil)
   end)
 
@@ -37,11 +37,18 @@ describe("BulkQueryIpEntity", function()
     local setup = bulk_query_ip_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({}) do
+    for _, _op in ipairs({"list"}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "bulk_query_ip." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
         return
+      end
+    end
+    if setup.live then
+      for _live_key, _live_ex in pairs({["ips01"] = "1.1.1.1,8.8.8.8,9.9.9.9"}) do
+        if setup.synthetic_only or setup.idmap[_live_key] == nil then
+          setup.idmap[_live_key] = _live_ex
+        end
       end
     end
     local client = setup.client
@@ -53,6 +60,19 @@ describe("BulkQueryIpEntity", function()
     if #bulk_query_ip_ref01_data_raw > 0 then
       bulk_query_ip_ref01_data = helpers.to_map(bulk_query_ip_ref01_data_raw[1][2])
     end
+
+    if setup.live then
+      runner.live_pace()
+    end
+    -- LIST
+    local bulk_query_ip_ref01_ent = client:BulkQueryIp(nil)
+    local bulk_query_ip_ref01_match = {
+      ["ips"] = setup.idmap["ips01"],
+    }
+
+    local bulk_query_ip_ref01_list_result, err = bulk_query_ip_ref01_ent:list(bulk_query_ip_ref01_match, nil)
+    assert.is_nil(err)
+    assert.is_table(bulk_query_ip_ref01_list_result)
 
   end)
 end)
@@ -77,7 +97,7 @@ function bulk_query_ip_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "bulk_query_ip01", "bulk_query_ip02", "bulk_query_ip03" },
+    { "bulk_query_ip01", "bulk_query_ip02", "bulk_query_ip03", "ips01" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

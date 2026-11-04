@@ -71,27 +71,18 @@ declare class Config {
         };
         entity: {
             bulk_query_ip: {};
-            get_current_ip: {};
-            get_ip_intelligence: {};
+            current_ip: {};
+            ip_intelligence: {};
         };
     };
     entity: {
         bulk_query_ip: {
-            fields: ({
-                name: string;
-                title: string;
-                type: string;
-                short?: undefined;
-            } | {
+            fields: {
                 name: string;
                 title: string;
                 type: string;
                 short: string;
-            })[];
-            id: {
-                field: string;
-                name: string;
-            };
+            }[];
             name: string;
             op: {
                 list: {
@@ -105,11 +96,7 @@ declare class Config {
                             var: string;
                         }[];
                         parts: string[];
-                        rename: {
-                            param: {
-                                ips: string;
-                            };
-                        };
+                        rename: {};
                         transform: {
                             req: string;
                             res: string;
@@ -154,7 +141,7 @@ declare class Config {
                 ancestors: never[];
             };
         };
-        get_current_ip: {
+        current_ip: {
             fields: never[];
             name: string;
             op: {
@@ -202,18 +189,13 @@ declare class Config {
                 ancestors: never[];
             };
         };
-        get_ip_intelligence: {
-            fields: ({
-                name: string;
-                title: string;
-                type: string;
-                short?: undefined;
-            } | {
+        ip_intelligence: {
+            fields: {
                 name: string;
                 title: string;
                 type: string;
                 short: string;
-            })[];
+            }[];
             id: {
                 field: string;
                 name: string;
@@ -272,6 +254,9 @@ declare class Config {
                             })[];
                             kind: string;
                             media: string;
+                        };
+                        alias: {
+                            id: string;
                         };
                     }[];
                 };

@@ -161,7 +161,7 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 The 3 entities this SDK exposes (any is valid as `<entity>`):
 
-bulk_query_ip get_current_ip get_ip_intelligence
+bulk_query_ip current_ip ip_intelligence
 
 ## Explanation
 

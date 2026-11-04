@@ -190,6 +190,20 @@ class IpAddressSDK implements \JsonSerializable
             }
         }
 
+        // A raw request has no point to declare its response type, so it asks
+        // for the JSON it reads: an API that negotiates on Accept otherwise
+        // answers in its own default format. A caller's own accept wins.
+        $has_accept = false;
+        foreach (array_keys($ctx->spec->headers) as $k) {
+            if (strtolower((string)$k) === 'accept') {
+                $has_accept = true;
+                break;
+            }
+        }
+        if (!$has_accept) {
+            $ctx->spec->headers['accept'] = 'application/json';
+        }
+
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
             return ($utility->make_error)($ctx, $err);
@@ -393,39 +407,39 @@ class IpAddressSDK implements \JsonSerializable
     }
 
 
-    private $_get_current_ip = null;
+    private $_current_ip = null;
 
-    // Canonical facade: $client->GetCurrentIp()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->get_current_ip()
+    // Canonical facade: $client->CurrentIp()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->current_ip()
     // resolves here too.
-    public function GetCurrentIp($data = null)
+    public function CurrentIp($data = null)
     {
-        require_once __DIR__ . '/entity/get_current_ip_entity.php';
+        require_once __DIR__ . '/entity/current_ip_entity.php';
         if ($data === null) {
-            if ($this->_get_current_ip === null) {
-                $this->_get_current_ip = new GetCurrentIpEntity($this, null);
+            if ($this->_current_ip === null) {
+                $this->_current_ip = new CurrentIpEntity($this, null);
             }
-            return $this->_get_current_ip;
+            return $this->_current_ip;
         }
-        return new GetCurrentIpEntity($this, $data);
+        return new CurrentIpEntity($this, $data);
     }
 
 
-    private $_get_ip_intelligence = null;
+    private $_ip_intelligence = null;
 
-    // Canonical facade: $client->GetIpIntelligence()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->get_ip_intelligence()
+    // Canonical facade: $client->IpIntelligence()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ip_intelligence()
     // resolves here too.
-    public function GetIpIntelligence($data = null)
+    public function IpIntelligence($data = null)
     {
-        require_once __DIR__ . '/entity/get_ip_intelligence_entity.php';
+        require_once __DIR__ . '/entity/ip_intelligence_entity.php';
         if ($data === null) {
-            if ($this->_get_ip_intelligence === null) {
-                $this->_get_ip_intelligence = new GetIpIntelligenceEntity($this, null);
+            if ($this->_ip_intelligence === null) {
+                $this->_ip_intelligence = new IpIntelligenceEntity($this, null);
             }
-            return $this->_get_ip_intelligence;
+            return $this->_ip_intelligence;
         }
-        return new GetIpIntelligenceEntity($this, $data);
+        return new IpIntelligenceEntity($this, $data);
     }
 
 

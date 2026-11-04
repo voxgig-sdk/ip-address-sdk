@@ -107,18 +107,13 @@ class IpAddressConfig
         ],
                 "entity" => [
                     "bulk_query_ip" => [],
-                    "get_current_ip" => [],
-                    "get_ip_intelligence" => [],
+                    "current_ip" => [],
+                    "ip_intelligence" => [],
                 ],
             ],
             "entity" => [
         'bulk_query_ip' => [
           'fields' => [
-            [
-              'name' => 'id',
-              'title' => 'Id',
-              'type' => '`$STRING`',
-            ],
             [
               'name' => 'ip',
               'title' => 'Ip',
@@ -144,10 +139,6 @@ class IpAddressConfig
               'short' => 'Risk assessment data for the IP address',
             ],
           ],
-          'id' => [
-            'field' => 'id',
-            'name' => 'id',
-          ],
           'name' => 'bulk_query_ip',
           'op' => [
             'list' => [
@@ -160,17 +151,13 @@ class IpAddressConfig
                   'orig' => '/{ips}',
                   'segments' => [
                     [
-                      'var' => 'id',
+                      'var' => 'ips',
                     ],
                   ],
                   'parts' => [
-                    '{id}',
+                    '{ips}',
                   ],
-                  'rename' => [
-                    'param' => [
-                      'ips' => 'id',
-                    ],
-                  ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
@@ -178,7 +165,7 @@ class IpAddressConfig
                   'args' => [
                     'params' => [
                       [
-                        'name' => 'id',
+                        'name' => 'ips',
                         'orig' => 'ips',
                         'type' => '`$STRING`',
                         'kind' => 'param',
@@ -198,7 +185,7 @@ class IpAddressConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'id',
+                      'ips',
                     ],
                   ],
                   'response' => [
@@ -224,9 +211,9 @@ class IpAddressConfig
             'ancestors' => [],
           ],
         ],
-        'get_current_ip' => [
+        'current_ip' => [
           'fields' => [],
-          'name' => 'get_current_ip',
+          'name' => 'current_ip',
           'op' => [
             'load' => [
               'input' => 'data',
@@ -282,13 +269,8 @@ class IpAddressConfig
             'ancestors' => [],
           ],
         ],
-        'get_ip_intelligence' => [
+        'ip_intelligence' => [
           'fields' => [
-            [
-              'name' => 'id',
-              'title' => 'Id',
-              'type' => '`$STRING`',
-            ],
             [
               'name' => 'ip',
               'title' => 'Ip',
@@ -315,10 +297,10 @@ class IpAddressConfig
             ],
           ],
           'id' => [
-            'field' => 'id',
+            'field' => 'ip',
             'name' => 'id',
           ],
-          'name' => 'get_ip_intelligence',
+          'name' => 'ip_intelligence',
           'op' => [
             'load' => [
               'input' => 'data',
@@ -385,6 +367,9 @@ class IpAddressConfig
                     ],
                     'kind' => 'json',
                     'media' => 'application/json',
+                  ],
+                  'alias' => [
+                    'id' => 'ip',
                   ],
                 ],
               ],

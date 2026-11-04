@@ -13,7 +13,11 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type IpAddressEntity = core.IpAddressEntity
+type IpAddressEntityBase = core.IpAddressEntityBase
+
+// Deprecated: use IpAddressEntityBase.
+type IpAddressEntity = core.IpAddressEntityBase
+
 type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
@@ -42,14 +46,14 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewBulkQueryIpEntityFunc = func(client *core.IpAddressSDK, entopts map[string]any) core.IpAddressEntity {
+	core.NewBulkQueryIpEntityFunc = func(client *core.IpAddressSDK, entopts map[string]any) core.IpAddressEntityBase {
 		return entity.NewBulkQueryIpEntity(client, entopts)
 	}
-	core.NewGetCurrentIpEntityFunc = func(client *core.IpAddressSDK, entopts map[string]any) core.IpAddressEntity {
-		return entity.NewGetCurrentIpEntity(client, entopts)
+	core.NewCurrentIpEntityFunc = func(client *core.IpAddressSDK, entopts map[string]any) core.IpAddressEntityBase {
+		return entity.NewCurrentIpEntity(client, entopts)
 	}
-	core.NewGetIpIntelligenceEntityFunc = func(client *core.IpAddressSDK, entopts map[string]any) core.IpAddressEntity {
-		return entity.NewGetIpIntelligenceEntity(client, entopts)
+	core.NewIpIntelligenceEntityFunc = func(client *core.IpAddressSDK, entopts map[string]any) core.IpAddressEntityBase {
+		return entity.NewIpIntelligenceEntity(client, entopts)
 	}
 }
 

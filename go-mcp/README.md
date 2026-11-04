@@ -31,10 +31,10 @@ Tool-call arguments (what an agent sends):
 
 ```jsonc
 // ip-address_list: first page of records
-{ "entity": "bulk_query_ip", "query": { "id": "example" } }
+{ "entity": "bulk_query_ip", "query": { "ips": "example" } }
 
 // ip-address_load: one record
-{ "entity": "get_current_ip", "query": {} }
+{ "entity": "current_ip", "query": {} }
 ```
 
 > The rest of this guide follows the [Diátaxis](https://diataxis.fr) framework:
@@ -64,7 +64,7 @@ Tool-call arguments (what an agent sends):
 
 4. **Restart Claude Code.** The `ip-address_list` and `ip-address_load` tools now appear in new
    sessions. Ask the agent to *"list bulk_query_ip using ip-address"*
-   and it calls `ip-address_list` with `{"entity":"bulk_query_ip","query":{"id":"example"}}`.
+   and it calls `ip-address_list` with `{"entity":"bulk_query_ip","query":{"ips":"example"}}`.
 
 ## How-to guides
 
@@ -95,7 +95,7 @@ Args: `entity` (required), `query` (optional: optional filter map; omit it for t
 Returns the first page of records as JSON:
 
 ```jsonc
-{ "entity": "bulk_query_ip", "query": { "id": "example" } }
+{ "entity": "bulk_query_ip", "query": { "ips": "example" } }
 ```
 
 ### Call the `ip-address_load` tool
@@ -104,7 +104,7 @@ Args: `entity` (required), `query` (required: match map naming the record, such 
 Returns the record as JSON:
 
 ```jsonc
-{ "entity": "get_current_ip", "query": {} }
+{ "entity": "current_ip", "query": {} }
 ```
 
 ### Turn on the write tools
@@ -142,7 +142,7 @@ operation, of the 3 the SDK has:
 | Tool | Entities |
 |------|----------|
 | `ip-address_list` | bulk_query_ip |
-| `ip-address_load` | get_current_ip, get_ip_intelligence |
+| `ip-address_load` | current_ip, ip_intelligence |
 
 JSON schemas are emitted by the SDK from each tool's argument struct's
 `json` / `jsonschema` tags — no schema is hand-written. Each tool's
@@ -181,7 +181,7 @@ curl -sN -X POST http://localhost:18080 \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json, text/event-stream' \
   -H "Mcp-Session-Id: $SESSION" \
-  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"ip-address_list","arguments":{"entity":"bulk_query_ip","query":{"id":"example"}}}}'
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"ip-address_list","arguments":{"entity":"bulk_query_ip","query":{"ips":"example"}}}}'
 ```
 
 ## Explanation

@@ -28,21 +28,24 @@ class BulkQueryIpDirectTest < Minitest::Test
       return
     end
     if setup[:live]
-      ["bulk_query_ip01"].each do |_live_key|
+      ["ips01"].each do |_live_key|
         if setup[:idmap][_live_key].nil?
           Runner.live_miss(LIVE_STRICT, "Live test blocked: needs #{_live_key} via IP_ADDRESS_TEST_BULK_QUERY_IP_ENTID")
         end
       end
     end
+    Runner.live_pace if setup[:live]
     client = setup[:client]
 
     params = {}
-    params["id"] = setup[:live] ? setup[:idmap]["bulk_query_ip01"] : "direct01"
+    query = {}
+    params["ips"] = setup[:live] ? setup[:idmap]["ips01"] : "direct01"
 
     result = client.direct({
-      "path" => "{id}",
+      "path" => "{ips}",
       "method" => "GET",
       "params" => params,
+      "query" => query,
     })
     if setup[:live]
       unless live_ok(result)
@@ -84,6 +87,9 @@ def bulk_query_ip_direct_setup(mockres)
     })
     client = IpAddressSDK.new(merged_opts)
     idmap = env["IP_ADDRESS_TEST_BULK_QUERY_IP_ENTID"]
+    # A path parameter's example stands in for an id *_ENTID does not give.
+    idmap = { "ips01" => "1.1.1.1,8.8.8.8,9.9.9.9" }
+      .merge(idmap.is_a?(Hash) ? idmap : {})
     return {
       client: client,
       calls: calls,

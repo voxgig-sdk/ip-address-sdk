@@ -19,7 +19,7 @@ type ListArgs struct {
 
 // LoadArgs is what an agent sends to ip-address_load.
 type LoadArgs struct {
-	Entity string         `json:"entity" jsonschema:"one of: get_current_ip | get_ip_intelligence"`
+	Entity string         `json:"entity" jsonschema:"one of: current_ip | ip_intelligence"`
 	Query  map[string]any `json:"query" jsonschema:"match map naming the record, such as {\"id\":1}"`
 }
 
@@ -36,7 +36,7 @@ func registerTools(server *mcp.Server, client *sdk.IpAddressSDK) {
 		Name:        "ip-address_load",
 		Description: "Load one record from IpAddress. Args: entity, query (match map naming the record, such as {\"id\":1}). Returns the record as JSON.",
 		Annotations: &mcp.ToolAnnotations{ReadOnlyHint: true},
-		InputSchema: entitySchema[LoadArgs]("get_current_ip", "get_ip_intelligence"),
+		InputSchema: entitySchema[LoadArgs]("current_ip", "ip_intelligence"),
 	}, func(ctx context.Context, req *mcp.CallToolRequest, args LoadArgs) (*mcp.CallToolResult, any, error) {
 		return runOp(ctx, client, "load", args.Entity, args.Query)
 	})
@@ -101,14 +101,14 @@ func runOp(_ context.Context, client *sdk.IpAddressSDK, op string, entity string
 
 // entityFor dispatches on the lowercase entity name. The generator
 // emits one `case "<name>":` per entity defined in the SDK model.
-func entityFor(client *sdk.IpAddressSDK, name string) (sdk.IpAddressEntity, error) {
+func entityFor(client *sdk.IpAddressSDK, name string) (sdk.IpAddressEntityBase, error) {
 	switch strings.ToLower(name) {
 	case "bulk_query_ip":
 		return client.BulkQueryIp(nil), nil
-	case "get_current_ip":
-		return client.GetCurrentIp(nil), nil
-	case "get_ip_intelligence":
-		return client.GetIpIntelligence(nil), nil
+	case "current_ip":
+		return client.CurrentIp(nil), nil
+	case "ip_intelligence":
+		return client.IpIntelligence(nil), nil
 	}
 	return nil, fmt.Errorf("unknown entity %q", name)
 }

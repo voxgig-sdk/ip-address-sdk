@@ -25,13 +25,13 @@ Key fields to recognise:
 - `location`: Location information for the IP address
 - `risk`: Risk assessment data for the IP address
 
-### GetCurrentIp
+### CurrentIp
 
 Results: Successful response.
 
 SDK operations: `load`.
 
-### GetIpIntelligence
+### IpIntelligence
 
 Results: Successful response with IP intelligence data.
 
@@ -51,8 +51,8 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | Entity | SDK operation | HTTP route | Authentication |
 | --- | --- | --- | --- |
 | BulkQueryIp | `list` | `GET /{ips}` | Not required |
-| GetCurrentIp | `load` | `GET /` | Not required |
-| GetIpIntelligence | `load` | `GET /{ip}` | Not required |
+| CurrentIp | `load` | `GET /` | Not required |
+| IpIntelligence | `load` | `GET /{ip}` | Not required |
 
 ## Connect to the API
 
@@ -72,7 +72,7 @@ A read request without required parameters or authentication is `GET /`. For exa
 curl --fail-with-body --silent --show-error 'https://api.ipquery.io/'
 ```
 
-Inspect the response using the GetCurrentIp reference. This checks the public route; authenticated operations need their own credentials and request data.
+Inspect the response using the CurrentIp reference. This checks the public route; authenticated operations need their own credentials and request data.
 
 For an SDK call, install or build the chosen client, create a client instance with its documented configuration, and call the required entity operation. Language references describe the argument shape, asynchronous behaviour, and returned values.
 
@@ -109,7 +109,7 @@ Use the MCP server to expose supported API operations to an MCP client.
 Repository directory: `go-mcp/`. Not published. Build from the go-mcp directory.
 
 - `ip-address_list`: List records for an entity. Supported entities: `bulk_query_ip`.
-- `ip-address_load`: Load one record for an entity. Supported entities: `get_current_ip`, `get_ip_intelligence`.
+- `ip-address_load`: Load one record for an entity. Supported entities: `current_ip`, `ip_intelligence`.
 
 ## Operational features
 

@@ -18,25 +18,25 @@ type BulkQueryIp struct {
 
 // BulkQueryIpListMatch is the typed request payload for BulkQueryIp.ListTyped.
 type BulkQueryIpListMatch struct {
-	Id string `json:"id"`
+	Ips string `json:"ips"`
 	Format *string `json:"format,omitempty"`
 }
 
-// GetCurrentIp is the typed data model for the get_current_ip entity.
-type GetCurrentIp struct {
+// CurrentIp is the typed data model for the current_ip entity.
+type CurrentIp struct {
 }
 
-// GetCurrentIpLoadMatch is the typed request payload for GetCurrentIp.LoadTyped.
-type GetCurrentIpLoadMatch struct {
+// CurrentIpLoadMatch is the typed request payload for CurrentIp.LoadTyped.
+type CurrentIpLoadMatch struct {
 	Format *string `json:"format,omitempty"`
 }
 
-// GetIpIntelligence is the typed data model for the get_ip_intelligence entity.
-type GetIpIntelligence struct {
+// IpIntelligence is the typed data model for the ip_intelligence entity.
+type IpIntelligence struct {
 }
 
-// GetIpIntelligenceLoadMatch is the typed request payload for GetIpIntelligence.LoadTyped.
-type GetIpIntelligenceLoadMatch struct {
+// IpIntelligenceLoadMatch is the typed request payload for IpIntelligence.LoadTyped.
+type IpIntelligenceLoadMatch struct {
 	Id string `json:"id"`
 	Format *string `json:"format,omitempty"`
 }

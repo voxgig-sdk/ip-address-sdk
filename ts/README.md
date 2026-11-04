@@ -44,7 +44,7 @@ resolves to entities, not raw records. Iterate them directly, and call
 `.data()` on one for the record it holds:
 
 ```ts
-const bulkqueryips = await client.BulkQueryIp().list({ id: "example" })
+const bulkqueryips = await client.BulkQueryIp().list({ ips: "example" })
 
 for (const bulkqueryip of bulkqueryips) {
   console.log(bulkqueryip.data())
@@ -58,8 +58,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const getcurrentip = await client.GetCurrentIp().load()
-  console.log(getcurrentip.data())
+  const currentip = await client.CurrentIp().load()
+  console.log(currentip.data())
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -123,9 +123,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = IpAddressSDK.test()
 
-const getcurrentip = await client.GetCurrentIp().load()
-// getcurrentip is the GetCurrentIp entity; .data() reads its mock record
-console.log(getcurrentip.data())
+const currentip = await client.CurrentIp().load()
+// currentip is the CurrentIp entity; .data() reads its mock record
+console.log(currentip.data())
 ```
 
 You can also use the instance method:
@@ -140,7 +140,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.GetCurrentIp()
+const entity = client.CurrentIp()
 
 // First call runs the operation and stores its result
 await entity.load()
@@ -224,8 +224,8 @@ new IpAddressSDK(options?: {
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
 | `BulkQueryIp(data?)` | `BulkQueryIpEntity` | Create a BulkQueryIp entity instance. |
-| `GetCurrentIp(data?)` | `GetCurrentIpEntity` | Create a GetCurrentIp entity instance. |
-| `GetIpIntelligence(data?)` | `GetIpIntelligenceEntity` | Create a GetIpIntelligence entity instance. |
+| `CurrentIp(data?)` | `CurrentIpEntity` | Create a CurrentIp entity instance. |
+| `IpIntelligence(data?)` | `IpIntelligenceEntity` | Create an IpIntelligence entity instance. |
 | `tester(testopts?, sdkopts?)` | `IpAddressSDK` | Create a test-mode client instance. |
 
 #### Static methods
@@ -297,7 +297,6 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -307,7 +306,7 @@ Operations: list.
 
 API path: `/{ips}`
 
-#### GetCurrentIp
+#### CurrentIp
 
 | Field | Description |
 | --- | --- |
@@ -316,11 +315,10 @@ Operations: load.
 
 API path: `/`
 
-#### GetIpIntelligence
+#### IpIntelligence
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -349,7 +347,6 @@ Create an instance: `const bulk_query_ip = client.BulkQueryIp()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `Record<string, any>` | Location information for the IP address |
@@ -358,13 +355,13 @@ Create an instance: `const bulk_query_ip = client.BulkQueryIp()`
 #### Example: List
 
 ```ts
-const bulk_query_ips = await client.BulkQueryIp().list({ id: "example" })
+const bulk_query_ips = await client.BulkQueryIp().list({ ips: "example" })
 ```
 
 
-### GetCurrentIp
+### CurrentIp
 
-Create an instance: `const get_current_ip = client.GetCurrentIp()`
+Create an instance: `const current_ip = client.CurrentIp()`
 
 #### Operations
 
@@ -375,13 +372,13 @@ Create an instance: `const get_current_ip = client.GetCurrentIp()`
 #### Example: Load
 
 ```ts
-const get_current_ip = await client.GetCurrentIp().load()
+const current_ip = await client.CurrentIp().load()
 ```
 
 
-### GetIpIntelligence
+### IpIntelligence
 
-Create an instance: `const get_ip_intelligence = client.GetIpIntelligence()`
+Create an instance: `const ip_intelligence = client.IpIntelligence()`
 
 #### Operations
 
@@ -393,7 +390,6 @@ Create an instance: `const get_ip_intelligence = client.GetIpIntelligence()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `Record<string, any>` | Location information for the IP address |
@@ -402,7 +398,7 @@ Create an instance: `const get_ip_intelligence = client.GetIpIntelligence()`
 #### Example: Load
 
 ```ts
-const get_ip_intelligence = await client.GetIpIntelligence().load({ id: 'get_ip_intelligence_id' })
+const ip_intelligence = await client.IpIntelligence().load({ id: 'ip_intelligence_id' })
 ```
 
 ## Features
@@ -559,11 +555,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const getcurrentip = client.GetCurrentIp()
-await getcurrentip.load()
+const currentip = client.CurrentIp()
+await currentip.load()
 
-// getcurrentip.data() now returns the getcurrentip data from the last `load`
-// getcurrentip.match() returns the last match criteria
+// currentip.data() now returns the currentip data from the last `load`
+// currentip.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

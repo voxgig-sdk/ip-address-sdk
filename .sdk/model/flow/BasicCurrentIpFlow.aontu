@@ -1,0 +1,28 @@
+# BasicCurrentIpFlow
+
+main: kit: flow: BasicCurrentIpFlow:
+{
+  entity: "current_ip",
+  kind: "basic",
+  name: "BasicCurrentIpFlow",
+  step: [
+    {
+      i: {
+        ref: "current_ip_ref01",
+        srcdatavar: "current_ip_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-current_ip_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCurrentIpFlow"
+}

@@ -3,8 +3,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SDK = exports.IpAddressSDK = exports.IpAddressEntityBase = exports.BaseFeature = exports.config = exports.stdutil = void 0;
 const BulkQueryIpEntity_1 = require("./entity/BulkQueryIpEntity");
-const GetCurrentIpEntity_1 = require("./entity/GetCurrentIpEntity");
-const GetIpIntelligenceEntity_1 = require("./entity/GetIpIntelligenceEntity");
+const CurrentIpEntity_1 = require("./entity/CurrentIpEntity");
+const IpIntelligenceEntity_1 = require("./entity/IpIntelligenceEntity");
 const node_util_1 = require("node:util");
 const Config_1 = require("./Config");
 Object.defineProperty(exports, "config", { enumerable: true, get: function () { return Config_1.config; } });
@@ -117,6 +117,12 @@ class IpAddressSDK {
             for (let key in uheaders) {
                 spec.headers[key] = uheaders[key];
             }
+        }
+        // A raw request has no point to declare its response type, so it asks
+        // for the JSON it reads: an API that negotiates on Accept otherwise
+        // answers in its own default format. A caller's own accept wins.
+        if (!Object.keys(spec.headers).some((key) => 'accept' === key.toLowerCase())) {
+            spec.headers.accept = 'application/json';
         }
         const authResult = prepareAuth(ctx);
         if (authResult instanceof Error) {
@@ -247,19 +253,19 @@ class IpAddressSDK {
         const self = this;
         return new BulkQueryIpEntity_1.BulkQueryIpEntity(self, entopts);
     }
-    // Entity access: `client.GetCurrentIp().list()` / `client.GetCurrentIp().load({ id })`.
+    // Entity access: `client.CurrentIp().list()` / `client.CurrentIp().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    GetCurrentIp(entopts) {
+    CurrentIp(entopts) {
         const self = this;
-        return new GetCurrentIpEntity_1.GetCurrentIpEntity(self, entopts);
+        return new CurrentIpEntity_1.CurrentIpEntity(self, entopts);
     }
-    // Entity access: `client.GetIpIntelligence().list()` / `client.GetIpIntelligence().load({ id })`.
+    // Entity access: `client.IpIntelligence().list()` / `client.IpIntelligence().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    GetIpIntelligence(entopts) {
+    IpIntelligence(entopts) {
         const self = this;
-        return new GetIpIntelligenceEntity_1.GetIpIntelligenceEntity(self, entopts);
+        return new IpIntelligenceEntity_1.IpIntelligenceEntity(self, entopts);
     }
     static test(testoptsarg, sdkoptsarg) {
         const struct = stdutil.struct;

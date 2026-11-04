@@ -34,26 +34,31 @@ func TestBulkQueryIpDirect(t *testing.T) {
 			return
 		}
 		if setup.live {
-			for _, _liveKey := range []string{"bulk_query_ip01"} {
+			for _, _liveKey := range []string{"ips01"} {
 				if v := setup.idmap[_liveKey]; v == nil {
 					liveMiss(t, bulk_query_ipDirectLiveStrict, "Live test blocked: needs %s via IP_ADDRESS_TEST_BULK_QUERY_IP_ENTID", _liveKey)
 					return
 				}
 			}
 		}
+		if setup.live {
+			livePace()
+		}
 		client := setup.client
 
 		params := map[string]any{}
+		query := map[string]any{}
 		if setup.live {
-			params["id"] = setup.idmap["bulk_query_ip01"]
+			params["ips"] = setup.idmap["ips01"]
 		} else {
-			params["id"] = "direct01"
+			params["ips"] = "direct01"
 		}
 
 		result, err := client.Direct(map[string]any{
-			"path":   "{id}",
+			"path":   "{ips}",
 			"method": "GET",
 			"params": params,
+			"query":  query,
 		})
 		if setup.live {
 			if err != nil {
@@ -143,6 +148,12 @@ func bulk_query_ipDirectSetup(mockres any) *bulk_query_ipDirectSetupResult {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {
 				idmap = entidMap
+			}
+		}
+		// A path parameter's example stands in for an id *_ENTID does not give.
+		for k, v := range map[string]any{"ips01": "1.1.1.1,8.8.8.8,9.9.9.9"} {
+			if idmap[k] == nil {
+				idmap[k] = v
 			}
 		}
 

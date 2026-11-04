@@ -43,7 +43,7 @@ error; an entity's `data_get()` reads its record (a `dict`).
 
 ```python
 try:
-    bulkqueryips = client.BulkQueryIp().list({"id": "example"})
+    bulkqueryips = client.BulkQueryIp().list({"ips": "example"})
     for bulkqueryip in bulkqueryips:
         print(bulkqueryip.data_get())
 except Exception as err:
@@ -57,8 +57,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    getcurrentip = client.GetCurrentIp().load()
-    print(getcurrentip.data_get())
+    currentip = client.CurrentIp().load()
+    print(currentip.data_get())
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -125,7 +125,7 @@ Create a mock client for unit testing — no server required:
 client = IpAddressSDK.test()
 
 # Entity ops return the entity, and list one per record; they raise on error.
-getcurrentip = client.GetCurrentIp().load()
+currentip = client.CurrentIp().load()
 # data_get() on an entity reads its mock response record
 ```
 
@@ -203,8 +203,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `BulkQueryIp` | `(data) -> BulkQueryIpEntity` | Create a BulkQueryIp entity instance. |
-| `GetCurrentIp` | `(data) -> GetCurrentIpEntity` | Create a GetCurrentIp entity instance. |
-| `GetIpIntelligence` | `(data) -> GetIpIntelligenceEntity` | Create a GetIpIntelligence entity instance. |
+| `CurrentIp` | `(data) -> CurrentIpEntity` | Create a CurrentIp entity instance. |
+| `IpIntelligence` | `(data) -> IpIntelligenceEntity` | Create an IpIntelligence entity instance. |
 
 ### Entity interface
 
@@ -245,7 +245,6 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -255,7 +254,7 @@ Operations: List.
 
 API path: `/{ips}`
 
-#### GetCurrentIp
+#### CurrentIp
 
 | Field | Description |
 | --- | --- |
@@ -264,11 +263,10 @@ Operations: Load.
 
 API path: `/`
 
-#### GetIpIntelligence
+#### IpIntelligence
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -297,7 +295,6 @@ Create an instance: `bulk_query_ip = client.BulkQueryIp()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `str` |  |
 | `ip` | `str` | The queried IP address |
 | `isp` | `str` | Internet Service Provider name |
 | `location` | `dict` | Location information for the IP address |
@@ -306,13 +303,13 @@ Create an instance: `bulk_query_ip = client.BulkQueryIp()`
 #### Example: List
 
 ```python
-bulk_query_ips = client.BulkQueryIp().list({"id": "example"})
+bulk_query_ips = client.BulkQueryIp().list({"ips": "example"})
 ```
 
 
-### GetCurrentIp
+### CurrentIp
 
-Create an instance: `get_current_ip = client.GetCurrentIp()`
+Create an instance: `current_ip = client.CurrentIp()`
 
 #### Operations
 
@@ -323,13 +320,13 @@ Create an instance: `get_current_ip = client.GetCurrentIp()`
 #### Example: Load
 
 ```python
-get_current_ip = client.GetCurrentIp().load()
+current_ip = client.CurrentIp().load()
 ```
 
 
-### GetIpIntelligence
+### IpIntelligence
 
-Create an instance: `get_ip_intelligence = client.GetIpIntelligence()`
+Create an instance: `ip_intelligence = client.IpIntelligence()`
 
 #### Operations
 
@@ -341,7 +338,6 @@ Create an instance: `get_ip_intelligence = client.GetIpIntelligence()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `str` |  |
 | `ip` | `str` | The queried IP address |
 | `isp` | `str` | Internet Service Provider name |
 | `location` | `dict` | Location information for the IP address |
@@ -350,7 +346,7 @@ Create an instance: `get_ip_intelligence = client.GetIpIntelligence()`
 #### Example: Load
 
 ```python
-get_ip_intelligence = client.GetIpIntelligence().load({"id": "get_ip_intelligence_id"})
+ip_intelligence = client.IpIntelligence().load({"id": "ip_intelligence_id"})
 ```
 
 ## Features
@@ -514,11 +510,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-getcurrentip = client.GetCurrentIp()
-getcurrentip.load()
+currentip = client.CurrentIp()
+currentip.load()
 
-# getcurrentip.data_get() now returns the getcurrentip data from the last load
-# getcurrentip.match_get() returns the last match criteria
+# currentip.data_get() now returns the currentip data from the last load
+# currentip.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

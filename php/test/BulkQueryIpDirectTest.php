@@ -34,21 +34,26 @@ class BulkQueryIpDirectTest extends TestCase
             return;
         }
         if ($setup["live"]) {
-            foreach (["bulk_query_ip01"] as $_liveKey) {
+            foreach (["ips01"] as $_liveKey) {
                 if (null === ($setup["idmap"][$_liveKey] ?? null)) {
                     Runner::live_miss(self::LIVE_STRICT, "Live test blocked: needs " . $_liveKey . " via IP_ADDRESS_TEST_BULK_QUERY_IP_ENTID");
                 }
             }
         }
+        if (!empty($setup["live"])) {
+            Runner::live_pace();
+        }
         $client = $setup["client"];
 
         $params = [];
-        $params["id"] = $setup["live"] ? ($setup["idmap"]["bulk_query_ip01"] ?? null) : "direct01";
+        $query = [];
+        $params["ips"] = $setup["live"] ? ($setup["idmap"]["ips01"] ?? null) : "direct01";
 
         $result = $client->direct([
-            "path" => "{id}",
+            "path" => "{ips}",
             "method" => "GET",
             "params" => $params,
+            "query" => $query,
         ]);
         if ($setup["live"]) {
             if (!self::liveOk($result)) {
@@ -91,6 +96,9 @@ function bulk_query_ip_direct_setup($mockres)
         ]);
         $client = new IpAddressSDK($merged_opts);
         $idmap = $env["IP_ADDRESS_TEST_BULK_QUERY_IP_ENTID"] ?? [];
+        // A path parameter's example stands in for an id *_ENTID does not give.
+        $idmap = array_merge(["ips01" => '1.1.1.1,8.8.8.8,9.9.9.9'],
+            is_array($idmap) ? $idmap : []);
         return [
             "client" => $client,
             "calls" => $calls,

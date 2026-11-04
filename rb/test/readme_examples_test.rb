@@ -44,8 +44,13 @@ class ReadmeExamplesTest < Minitest::Test
   # Entity accessor (client.<Name>) => fixture storage key (lowercase name).
   ENTITIES = {
     "BulkQueryIp" => "bulk_query_ip",
-    "GetCurrentIp" => "get_current_ip",
-    "GetIpIntelligence" => "get_ip_intelligence",
+    "CurrentIp" => "current_ip",
+    "IpIntelligence" => "ip_intelligence",
+  }
+
+  # Fixture key => the entity's declared identity field, where it is not "id".
+  ID_FIELDS = {
+    "ip_intelligence" => "ip",
   }
 
   # Documented SDK method names — used only to recognise the NARROW
@@ -147,7 +152,11 @@ class ReadmeExamplesTest < Minitest::Test
     refs = ENTITIES.select { |name, _| block =~ /#{CLIENT}\.#{Regexp.escape(name)}\b/ }
     refs = ENTITIES if refs.empty?
     entity = {}
-    refs.each_value { |storage| entity[storage] = { "test01" => { "id" => "test01" } } }
+    refs.each_value do |storage|
+      record = { "id" => "test01" }
+      record[ID_FIELDS[storage]] = "test01" if ID_FIELDS.key?(storage)
+      entity[storage] = { "test01" => record }
+    end
     { "entity" => entity }.inspect
   end
 

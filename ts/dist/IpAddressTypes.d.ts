@@ -1,27 +1,25 @@
 export interface BulkQueryIp {
-    id?: string;
     ip?: string;
     isp?: string;
     location?: Record<string, any>;
     risk?: Record<string, any>;
 }
 export interface BulkQueryIpListMatch {
-    id: string;
+    ips: string;
     format?: string;
 }
-export interface GetCurrentIp {
+export interface CurrentIp {
 }
-export interface GetCurrentIpLoadMatch {
+export interface CurrentIpLoadMatch {
     format?: string;
 }
-export interface GetIpIntelligence {
-    id?: string;
+export interface IpIntelligence {
     ip?: string;
     isp?: string;
     location?: Record<string, any>;
     risk?: Record<string, any>;
 }
-export interface GetIpIntelligenceLoadMatch {
+export interface IpIntelligenceLoadMatch {
     id: string;
     format?: string;
 }

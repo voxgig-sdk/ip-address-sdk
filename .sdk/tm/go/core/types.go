@@ -33,7 +33,10 @@ type Entity interface {
 	Deleted() bool
 }
 
-type IpAddressEntity interface {
+// IpAddressEntityBase is the full CRUD contract every generated entity
+// implements. Named `...Base`, as in the other targets, because an entity
+// struct is `<Entity>Entity`.
+type IpAddressEntityBase interface {
 	Entity
 	Load(reqmatch map[string]any, ctrl map[string]any) (any, error)
 	List(reqmatch map[string]any, ctrl map[string]any) (any, error)
@@ -52,3 +55,8 @@ type StreamItem struct {
 }
 
 type FetcherFunc func(ctx *Context, fullurl string, fetchdef map[string]any) (any, error)
+
+// IpAddressEntity is the former name of IpAddressEntityBase.
+//
+// Deprecated: use IpAddressEntityBase.
+type IpAddressEntity = IpAddressEntityBase

@@ -41,10 +41,10 @@ $client = new IpAddressSDK();
 ```php
 try {
     // list() returns entity instances; data_get() reads each record.
-    $bulkqueryips = $client->BulkQueryIp()->list(["id" => "example"]);
+    $bulkqueryips = $client->BulkQueryIp()->list(["ips" => "example"]);
     foreach ($bulkqueryips as $record) {
         $item = $record->data_get();
-        echo $item["id"] . " " . $item["ip"] . "\n";
+        echo $item["ip"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -59,7 +59,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $getcurrentip = $client->GetCurrentIp()->load();
+    $currentip = $client->CurrentIp()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -131,13 +131,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = IpAddressSDK::test([
-    "entity" => ["get_ip_intelligence" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["ip_intelligence" => ["test01" => ["id" => "test01"]]],
 ]);
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$getipintelligence = $client->GetIpIntelligence()->load(["id" => "test01"]);
-print_r($getipintelligence->data_get());
+$ipintelligence = $client->IpIntelligence()->load(["id" => "test01"]);
+print_r($ipintelligence->data_get());
 ```
 
 ### Use a custom fetch function
@@ -217,8 +217,8 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
 | `BulkQueryIp` | `($data): BulkQueryIpEntity` | Create a BulkQueryIp entity instance. |
-| `GetCurrentIp` | `($data): GetCurrentIpEntity` | Create a GetCurrentIp entity instance. |
-| `GetIpIntelligence` | `($data): GetIpIntelligenceEntity` | Create a GetIpIntelligence entity instance. |
+| `CurrentIp` | `($data): CurrentIpEntity` | Create a CurrentIp entity instance. |
+| `IpIntelligence` | `($data): IpIntelligenceEntity` | Create an IpIntelligence entity instance. |
 
 ### Entity interface
 
@@ -259,7 +259,6 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -269,7 +268,7 @@ Operations: List.
 
 API path: `/{ips}`
 
-#### GetCurrentIp
+#### CurrentIp
 
 | Field | Description |
 | --- | --- |
@@ -278,11 +277,10 @@ Operations: Load.
 
 API path: `/`
 
-#### GetIpIntelligence
+#### IpIntelligence
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
 | `ip` | The queried IP address |
 | `isp` | Internet Service Provider name |
 | `location` | Location information for the IP address |
@@ -311,7 +309,6 @@ Create an instance: `$bulk_query_ip = $client->BulkQueryIp();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `array` | Location information for the IP address |
@@ -321,13 +318,13 @@ Create an instance: `$bulk_query_ip = $client->BulkQueryIp();`
 
 ```php
 // list() returns an array of BulkQueryIp entities, one per record (throws on error).
-$bulk_query_ips = $client->BulkQueryIp()->list(["id" => "example"]);
+$bulk_query_ips = $client->BulkQueryIp()->list(["ips" => "example"]);
 ```
 
 
-### GetCurrentIp
+### CurrentIp
 
-Create an instance: `$get_current_ip = $client->GetCurrentIp();`
+Create an instance: `$current_ip = $client->CurrentIp();`
 
 #### Operations
 
@@ -338,14 +335,14 @@ Create an instance: `$get_current_ip = $client->GetCurrentIp();`
 #### Example: Load
 
 ```php
-// load() returns the ENTITY — call data_get() for the GetCurrentIp record (throws on error).
-$get_current_ip = $client->GetCurrentIp()->load();
+// load() returns the ENTITY — call data_get() for the CurrentIp record (throws on error).
+$current_ip = $client->CurrentIp()->load();
 ```
 
 
-### GetIpIntelligence
+### IpIntelligence
 
-Create an instance: `$get_ip_intelligence = $client->GetIpIntelligence();`
+Create an instance: `$ip_intelligence = $client->IpIntelligence();`
 
 #### Operations
 
@@ -357,7 +354,6 @@ Create an instance: `$get_ip_intelligence = $client->GetIpIntelligence();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` |  |
 | `ip` | `string` | The queried IP address |
 | `isp` | `string` | Internet Service Provider name |
 | `location` | `array` | Location information for the IP address |
@@ -366,8 +362,8 @@ Create an instance: `$get_ip_intelligence = $client->GetIpIntelligence();`
 #### Example: Load
 
 ```php
-// load() returns the ENTITY — call data_get() for the GetIpIntelligence record (throws on error).
-$get_ip_intelligence = $client->GetIpIntelligence()->load(["id" => "get_ip_intelligence_id"]);
+// load() returns the ENTITY — call data_get() for the IpIntelligence record (throws on error).
+$ip_intelligence = $client->IpIntelligence()->load(["id" => "ip_intelligence_id"]);
 ```
 
 ## Features
@@ -532,11 +528,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$getcurrentip = $client->GetCurrentIp();
-$getcurrentip->load();
+$currentip = $client->CurrentIp();
+$currentip->load();
 
-// $getcurrentip->data_get() now returns the getcurrentip data from the last load
-// $getcurrentip->match_get() returns the last match criteria
+// $currentip->data_get() now returns the currentip data from the last load
+// $currentip->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

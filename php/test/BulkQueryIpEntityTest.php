@@ -33,7 +33,7 @@ class BulkQueryIpEntityTest extends TestCase
         $client = IpAddressSDK::test(null, ["feature" => ["validate" => ["active" => true]]]);
         $err = null;
         try {
-            $client->BulkQueryIp(null)->list(["id" => 1], null);
+            $client->BulkQueryIp(null)->list(["ips" => 1], null);
         } catch (\Throwable $e) {
             $err = $e;
         }
@@ -45,11 +45,18 @@ class BulkQueryIpEntityTest extends TestCase
         $setup = bulk_query_ip_basic_setup(null);
         // Per-op sdk-test-control.json skip.
         $_live = !empty($setup["live"]);
-        foreach ([] as $_op) {
+        foreach (["list"] as $_op) {
             [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "bulk_query_ip." . $_op, $_live ? "live" : "unit");
             if ($_shouldSkip) {
                 $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
                 return;
+            }
+        }
+        if (!empty($setup["live"])) {
+            foreach (["ips01" => '1.1.1.1,8.8.8.8,9.9.9.9'] as $_liveKey => $_liveEx) {
+                if (!empty($setup["synthetic_only"]) || null === ($setup["idmap"][$_liveKey] ?? null)) {
+                    $setup["idmap"][$_liveKey] = $_liveEx;
+                }
             }
         }
         $client = $setup["client"];
@@ -61,6 +68,18 @@ class BulkQueryIpEntityTest extends TestCase
         if (count($bulk_query_ip_ref01_data_raw) > 0) {
             $bulk_query_ip_ref01_data = Helpers::to_map($bulk_query_ip_ref01_data_raw[0][1]);
         }
+
+        if (!empty($setup["live"])) {
+            Runner::live_pace();
+        }
+        // LIST
+        $bulk_query_ip_ref01_ent = $client->BulkQueryIp(null);
+        $bulk_query_ip_ref01_match = [
+            "ips" => $setup["idmap"]["ips01"],
+        ];
+
+        $bulk_query_ip_ref01_list_result = $bulk_query_ip_ref01_ent->list($bulk_query_ip_ref01_match, null);
+        $this->assertIsArray($bulk_query_ip_ref01_list_result);
 
     }
 }
@@ -80,7 +99,7 @@ function bulk_query_ip_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["bulk_query_ip01", "bulk_query_ip02", "bulk_query_ip03"] as $k) {
+    foreach (["bulk_query_ip01", "bulk_query_ip02", "bulk_query_ip03", "ips01"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

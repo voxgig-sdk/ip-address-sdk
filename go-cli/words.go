@@ -75,14 +75,14 @@ func runOp(client *sdk.IpAddressSDK, op string, query *eng.Value, entityAtom eng
 
 // entityFor dispatches on the lowercase entity name. The generator
 // emits one `case "<name>":` per entity defined in the SDK model.
-func entityFor(client *sdk.IpAddressSDK, name string) (sdk.IpAddressEntity, error) {
+func entityFor(client *sdk.IpAddressSDK, name string) (sdk.IpAddressEntityBase, error) {
 	switch strings.ToLower(name) {
 	case "bulk_query_ip":
 		return client.BulkQueryIp(nil), nil
-	case "get_current_ip":
-		return client.GetCurrentIp(nil), nil
-	case "get_ip_intelligence":
-		return client.GetIpIntelligence(nil), nil
+	case "current_ip":
+		return client.CurrentIp(nil), nil
+	case "ip_intelligence":
+		return client.IpIntelligence(nil), nil
 
 	}
 	return nil, fmt.Errorf("unknown entity %q", name)

@@ -1,8 +1,8 @@
 // IpAddress Ts SDK
 
 import { BulkQueryIpEntity } from './entity/BulkQueryIpEntity'
-import { GetCurrentIpEntity } from './entity/GetCurrentIpEntity'
-import { GetIpIntelligenceEntity } from './entity/GetIpIntelligenceEntity'
+import { CurrentIpEntity } from './entity/CurrentIpEntity'
+import { IpIntelligenceEntity } from './entity/IpIntelligenceEntity'
 
 export type * from './IpAddressTypes'
 
@@ -170,6 +170,13 @@ class IpAddressSDK {
       }
     }
 
+    // A raw request has no point to declare its response type, so it asks
+    // for the JSON it reads: an API that negotiates on Accept otherwise
+    // answers in its own default format. A caller's own accept wins.
+    if (!Object.keys(spec.headers).some((key) => 'accept' === key.toLowerCase())) {
+      spec.headers.accept = 'application/json'
+    }
+
     
 
     const authResult = prepareAuth(ctx)
@@ -330,21 +337,21 @@ class IpAddressSDK {
   }
 
 
-  // Entity access: `client.GetCurrentIp().list()` / `client.GetCurrentIp().load({ id })`.
+  // Entity access: `client.CurrentIp().list()` / `client.CurrentIp().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
-  GetCurrentIp(entopts?: Record<string, any>) {
+  CurrentIp(entopts?: Record<string, any>) {
     const self = this
-    return new GetCurrentIpEntity(self, entopts)
+    return new CurrentIpEntity(self, entopts)
   }
 
 
-  // Entity access: `client.GetIpIntelligence().list()` / `client.GetIpIntelligence().load({ id })`.
+  // Entity access: `client.IpIntelligence().list()` / `client.IpIntelligence().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
-  GetIpIntelligence(entopts?: Record<string, any>) {
+  IpIntelligence(entopts?: Record<string, any>) {
     const self = this
-    return new GetIpIntelligenceEntity(self, entopts)
+    return new IpIntelligenceEntity(self, entopts)
   }
 
 
